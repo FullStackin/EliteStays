@@ -1,16 +1,16 @@
-"use strict";
+'use strict';
 
-/** @type {import('sequelize-cli').Migration} */
 const { User } = require('../models');
 const bcrypt = require("bcryptjs");
 
 let options = {};
-if (process.env.NODE_ENV === "production") {
-  options.schema = process.env.SCHEMA;
+if (process.env.NODE_ENV === 'production') {
+  options.schema = process.env.SCHEMA;  // define your schema in options object
 }
 
+/** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  up: async (queryInterface, Sequelize) => {
+  async up(queryInterface, Sequelize) {
     options.tableName = "Users";
     return queryInterface.bulkInsert(
       options,
@@ -27,21 +27,21 @@ module.exports = {
           lastName: "Nurmagomedov",
           email: "Eagle@aa.io",
           username: "TheEagle",
-          hashedPassword: bcrypt.hashSync("password"),
+          hashedPassword: bcrypt.hashSync("password2"),
         },
         {
           firstName: "Connor",
           lastName: "McGregor",
           email: "Proper@aa.io",
           username: "Proper12",
-          hashedPassword: bcrypt.hashSync("password"),
+          hashedPassword: bcrypt.hashSync("password3"),
         },
         {
           firstName: "Omar",
           lastName: "El Sahlah",
           email: "TheBull@aa.io",
-          username: "TheBull",
-          hashedPassword: bcrypt.hashSync("password"),
+          username: "OmarTheBull",
+          hashedPassword: bcrypt.hashSync("password4"),
         },
       ],
       {}
@@ -55,7 +55,7 @@ module.exports = {
       options,
       {
         username: {
-          [Op.in]: ["JohnnyBonesJones", "TheEagle", "Proper12", "TheBull"],
+          [Op.in]: ["JohnnyBonesJones", "TheEagle", "Proper12", "OmarTheBull"],
         },
       },
       {}
