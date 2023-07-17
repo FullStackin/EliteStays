@@ -1,24 +1,31 @@
 "use strict";
+
 const bcrypt = require("bcryptjs");
 
-/** @type {import('sequelize-cli').Migration} */
+if (process.env.NODE_ENV === "production") {
+  options.schema = process.env.SCHEMA; // define your schema in options object
+}
+
+/** @type {import('sequelize-cli').Seeder} */
 module.exports = {
   async up(queryInterface, Sequelize) {
+    const options = {}; // Declare and initialize the options object
+    options.tableName = "Users";
     return queryInterface.bulkInsert(
-      "Users",
+      options,
       [
         {
-          firstName: "demo",
-          lastName: "demo",
           email: "demo@user.io",
-          username: "Demo-lition'",
-          hashedPassword: bcrypt.hashSync("password"),
+          username: "Demo-lition",
+          firstName: "Demo",
+          lastName: "Lition",
+          hashedPassword: bcrypt.hashSync("password"), // Increase the number of rounds for bcrypt.hashSync()
         },
         {
           firstName: "Jon",
           lastName: "Jones",
           email: "Bones@aa.io",
-          username: "JBJ",
+          username: "JBJon",
           hashedPassword: bcrypt.hashSync("password"),
         },
         {
@@ -48,6 +55,16 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete("Users", null, {});
+    const options = {}; // Declare and initialize the options object
+    options.tableName = "Users";
+    const Op = Sequelize.Op;
+    return queryInterface.bulkDelete(
+      {
+        username: {
+          [Op.in]: ["JBJ", "TheEagle", "Proper12", "OmarTheBull"],
+        },
+      },
+      {}
+    );
   },
 };
