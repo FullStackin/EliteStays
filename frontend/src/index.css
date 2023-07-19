@@ -1,1 +1,10 @@
 /* TODO Add site wide styles */
+
+body {
+  max-width: 1660px;
+  margin: 0 auto;
+}
+
+/* * {
+
+} */

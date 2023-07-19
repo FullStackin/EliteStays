@@ -41,7 +41,6 @@ export const fetchUserBookingsAction = (userBookings) => {
   };
 };
 
-// Thunk action creators
 export const fetchAllBookingsThunk = (spotId) => async (dispatch) => {
   try {
     const res = await csrfFetch(`/api/spots/${spotId}/bookings`);

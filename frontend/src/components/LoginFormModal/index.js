@@ -4,7 +4,6 @@ import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import "./LoginForm.css";
-
 function LoginFormModal() {
   const dispatch = useDispatch();
   const [credential, setCredential] = useState("");
@@ -42,41 +41,46 @@ function LoginFormModal() {
 
   return (
     <>
-      <form className="form-container" onSubmit={handleSubmit}>
-        <h1 className="logIn">Log In</h1>
-        <label className="text-input">
-          {/* Username or Email */}
+      <form className="signup-form-container" onSubmit={handleSubmit}>
+        <h1 className="signup-form-heading">Log In</h1>
+        <div className="signup-form-row">
+          <label htmlFor="credential" className="signup-form-label">
+            Username or Email
+          </label>
           <input
-            className="input credentials"
-            placeholder="Username or Email"
+            className="signup-form-input"
+            id="credential"
             type="text"
             value={credential}
             onChange={(e) => setCredential(e.target.value)}
             required
           />
-        </label>
-        <label className="text-input">
-          {/* Password */}
+        </div>
+        <div className="signup-form-row">
+          <label htmlFor="password" className="signup-form-label">
+            Password
+          </label>
           <input
-            className="input password"
-            placeholder="Password"
+            className="signup-form-input"
+            id="password"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-        </label>
-        {errors.credential && <p>{errors.credential}</p>}
+        </div>
+        {errors.credential && <p className="signup-form-error">{errors.credential}</p>}
+        <div className="login-button">
         <button
           className={
-            disabled ? "submit-button-inactive" : "submit-button-login"
+            disabled ? "signup-form-button-disabled" : "signup-form-button-active"
           }
           type="submit"
           disabled={disabled}
         >
           Log In
-        </button>
-        <button className="demo-button" onClick={loginDemo}>
+        </button></div>
+        <button className="signup-form-demo-button" onClick={loginDemo}>
           DemoUser Login
         </button>
       </form>
