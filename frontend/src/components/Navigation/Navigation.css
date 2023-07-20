@@ -87,8 +87,8 @@
   width: 200px;
   border-radius: 5px;
   padding: 10px;
-  background-color: white;
-  box-shadow: 0 0 10px rgb(224, 218, 218);
+  background-color: whitesmoke;
+  box-shadow: 0 0 10px rgb(115, 108, 108);
   z-index: 1;
 }
 

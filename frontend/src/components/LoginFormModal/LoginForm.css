@@ -37,9 +37,8 @@
   margin-bottom: 10px;
 }
 
-.login-button{
+.login-button {
   padding: 10px 20px;
-  width: 22a0px;
   background-color: rgb(163, 159, 159);
   color: white;
   margin-left: 20px;
@@ -47,9 +46,14 @@
   border-radius: 5px;
   cursor: pointer;
   align-items: center;
-
+  width: 250px;
 }
-
+.signup-form-button-disabled {
+  align-items: center;
+  cursor: pointer;
+  justify-content: center;
+  text-align: center;
+}
 .signup-form-demo-button {
   padding: 10px 20px;
   width: 250px;

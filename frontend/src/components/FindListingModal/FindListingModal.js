@@ -72,14 +72,11 @@ export default function FindListingModal() {
       <form id="search-spot-form" onSubmit={handleSubmit}>
         <h1>Search Listing</h1>
         <div className="search-item-div">
-          <h4>Search By Listing Name</h4>
+          <h4>Search By Name</h4>
           <label>
-            {/* <span>
-                    Spot Name
-                </span> */}
             <input
               type="text"
-              placeholder="Please enter the spot name"
+              placeholder="Enter the spot name"
               value={name}
               onChange={(e) => setName(e.target.value)}
               className="search-input"
@@ -90,10 +87,10 @@ export default function FindListingModal() {
           <h4>Search By Price Range</h4>
           <div className="search-criteria-div">
             <label>
-              <span>Minimum price</span>
+              <span>Low</span>
               <input
                 type="number"
-                placeholder="minimum price"
+                placeholder="Enter lowest amount"
                 step="any"
                 value={minPrice}
                 onChange={(e) => setMinPrice(e.target.value)}
@@ -101,10 +98,10 @@ export default function FindListingModal() {
               />
             </label>
             <label>
-              <span>Maximum Price</span>
+              <span>High</span>
               <input
                 type="number"
-                placeholder="maximum price"
+                placeholder="Enter max amount"
                 step="any"
                 value={maxPrice}
                 onChange={(e) => setMaxPrice(e.target.value)}
@@ -114,10 +111,10 @@ export default function FindListingModal() {
           </div>
         </div>
         <div className="search-item-div">
-          <h4>Search By Preferred Schedule</h4>
+          <h4>Search By Schedule</h4>
           <div className="search-criteria-div">
             <label>
-              <span>Preferred Check-In Date</span>
+              <span>Check-In</span>
               <input
                 type="date"
                 placeholder="Please enter prefer check-in date"
@@ -127,7 +124,7 @@ export default function FindListingModal() {
               />
             </label>
             <label>
-              <span>Preferred Check Out Date</span>
+              <span>Check Out</span>
               <input
                 type="date"
                 placeholder="Please enter prefer check-out date"
@@ -139,13 +136,13 @@ export default function FindListingModal() {
           </div>
         </div>
         <div className="search-item-div">
-          <h4>Search by Latitude Range</h4>
+          <h4>Search by Latitude / Longitude</h4>
           <div className="search-criteria-div">
             <label>
-              <span>Minimum Latitude</span>
+              <span>Min Latitude</span>
               <input
                 type="number"
-                placeholder="minimum latitude"
+                placeholder="Enter min latitude"
                 step="any"
                 value={minLat}
                 onChange={(e) => setMinLat(e.target.value)}
@@ -153,10 +150,10 @@ export default function FindListingModal() {
               />
             </label>
             <label>
-              <span>Maximum Latitude</span>
+              <span>Max Latitude</span>
               <input
                 type="number"
-                placeholder="maximum latitude"
+                placeholder="Enter max latitude"
                 step="any"
                 value={maxLat}
                 onChange={(e) => setMaxLat(e.target.value)}
@@ -169,10 +166,10 @@ export default function FindListingModal() {
           <h4>Search By Longitude Range</h4>
           <div className="search-criteria-div">
             <label>
-              <span>Minimum Longitude</span>
+              <span>Min Longitude</span>
               <input
                 type="number"
-                placeholder="minimum longitude"
+                placeholder="Enter min longitude"
                 step="any"
                 value={minLng}
                 onChange={(e) => setMinLng(e.target.value)}
@@ -180,10 +177,10 @@ export default function FindListingModal() {
               />
             </label>
             <label>
-              <span>Maximum Longitude</span>
+              <span>Max Longitude</span>
               <input
                 type="number"
-                placeholder="maximum longitude"
+                placeholder="Enter max longitude"
                 step="any"
                 value={maxLng}
                 onChange={(e) => setMaxLng(e.target.value)}
