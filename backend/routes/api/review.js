@@ -10,8 +10,8 @@ const {
 } = require("../../utils/auth");
 
 const {
-  Spot,
-  SpotImage,
+  Listing,
+  ListingImage,
   Review,
   ReviewImage,
   User,
@@ -37,7 +37,7 @@ router.get("/current", requireAuth, async (req, res, next) => {
     include: [
       { model: User, attributes: ["id", "firstName", "lastName"] },
       {
-        model: Spot,
+        model: Listing,
         attributes: [
           "id",
           "ownerId",
@@ -57,9 +57,9 @@ router.get("/current", requireAuth, async (req, res, next) => {
 
   for (let i = 0; i < userReviews.length; i++) {
     const review = userReviews[i];
-    const spot = review.Spot;
+    const listing = review.Listing;
 
-    let previewImage = await SpotImage.findOne({ where: { spotId: spot.id } });
+    let previewImage = await ListingImage.findOne({ where: { listingId: listing.id } });
 
     if (previewImage) {
       previewImage = previewImage.url;
@@ -67,7 +67,7 @@ router.get("/current", requireAuth, async (req, res, next) => {
       previewImage = null;
     }
 
-    spot.dataValues.previewImage = previewImage;
+    listing.dataValues.previewImage = previewImage;
   }
 
   return res.status(200).json({
@@ -82,21 +82,17 @@ router.post("/:reviewId/images", requireAuth, async (req, res, next) => {
   const foundReview = await Review.findByPk(req.params.reviewId);
 
   if (!foundReview) {
-    return res
-      .status(404)
-      .json({
-        message:
-          "The review you are trying to add an image to could not be found.",
-      });
+    return res.status(404).json({
+      message:
+        "The review you are trying to add an image to could not be found.",
+    });
   }
 
   if (foundReview.userId !== req.user.id) {
-    return res
-      .status(403)
-      .json({
-        message:
-          "Access Denied. You are not allowed to add an image to this review.",
-      });
+    return res.status(403).json({
+      message:
+        "Access Denied. You are not allowed to add an image to this review.",
+    });
   }
 
   const allImages = await ReviewImage.findAll({
@@ -106,12 +102,9 @@ router.post("/:reviewId/images", requireAuth, async (req, res, next) => {
   });
 
   if (allImages.length >= 10) {
-    return res
-      .status(403)
-      .json({
-        message:
-          "The maximum number of images for this review has been reached.",
-      });
+    return res.status(403).json({
+      message: "The maximum number of images for this review has been reached.",
+    });
   } else {
     const newImage = await ReviewImage.create({
       reviewId: foundReview.id,

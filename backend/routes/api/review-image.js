@@ -10,8 +10,8 @@ const {
 } = require("../../utils/auth");
 
 const {
-  Spot,
-  SpotImage,
+  Listing,
+  ListingImage,
   Review,
   User,
   ReviewImage,

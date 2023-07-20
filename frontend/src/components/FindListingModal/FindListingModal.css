@@ -1,4 +1,4 @@
-#search-spot-form {
+#search-listing-form {
   width: 500px;
   display: flex;
   flex-direction: column;
@@ -18,7 +18,7 @@
   border-radius: 1px;
 }
 
-#search-spot-form span {
+#search-listing-form span {
   font-size: 25px;
 }
 

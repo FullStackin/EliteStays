@@ -10,47 +10,47 @@ if (process.env.NODE_ENV === "production") {
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    options.tableName = "SpotImages";
+    options.tableName = "ListingImages";
     return queryInterface.bulkInsert(
       options,
       [
         {
-          spotId: 1,
+          listingId: 1,
           url: "Images from gym url 1",
           preview: true,
         },
         {
-          spotId: 1,
+          listingId: 1,
           url: "Images from gym url 1",
           preview: false,
         },
         {
-          spotId: 2,
+          listingId: 2,
           url: "Images from gym url 2",
           preview: false,
         },
         {
-          spotId: 2,
+          listingId: 2,
           url: "Images from gym url 2",
           preview: true,
         },
         {
-          spotId: 3,
+          listingId: 3,
           url: "Images from gym url 3",
           preview: true,
         },
         {
-          spotId: 3,
+          listingId: 3,
           url: "Images from gym url 3",
           preview: false,
         },
         {
-          spotId: 4,
+          listingId: 4,
           url: "Images from gym url 4",
           preview: true,
         },
         {
-          spotId: 4,
+          listingId: 4,
           url: "Images from gym url 4",
           preview: false,
         },
@@ -60,7 +60,7 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    options.tableName = "SpotImages";
+    options.tableName = "ListingImages";
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete(
       options,

@@ -15,25 +15,25 @@ module.exports = {
       options,
       [
         {
-          spotId: 1,
+          listingId: 1,
           userId: 1,
           startDate: "2023-07-18",
           endDate: "2023-09-19",
         },
         {
-          spotId: 2,
+          listingId: 2,
           userId: 2,
           startDate: "2023-07-20",
           endDate: "2023-09-25",
         },
         {
-          spotId: 3,
+          listingId: 3,
           userId: 3,
           startDate: "2023-07-19",
           endDate: "2023-09-26",
         },
         {
-          spotId: 4,
+          listingId: 4,
           userId: 4,
           startDate: "2023-07-18",
           endDate: "2023-09-20",

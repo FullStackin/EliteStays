@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
         onDelete: "CASCADE",
         hooks: true,
       });
-      User.hasMany(models.Spot, {
+      User.hasMany(models.Listing, {
         foreignKey: "ownerId",
         onDelete: "CASCADE",
         hooks: true,

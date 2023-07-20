@@ -3,15 +3,15 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Spot extends Model {
+  class Listing extends Model {
     static associate(models) {
-      Spot.hasMany(models.Review, {foreignKey: 'spotId', onDelete: 'CASCADE',  hooks: true})
-      Spot.hasMany(models.SpotImage, {foreignKey: 'spotId', onDelete: 'CASCADE',  hooks: true})
-      Spot.belongsTo(models.User, {foreignKey: 'ownerId',  as: 'Owner'})
-      Spot.hasMany(models.Booking, {foreignKey: 'spotId', onDelete: 'CASCADE',  hooks: true})
+      Listing.hasMany(models.Review, {foreignKey: 'listingId', onDelete: 'CASCADE',  hooks: true})
+      Listing.hasMany(models.ListingImage, {foreignKey: 'listingId', onDelete: 'CASCADE',  hooks: true})
+      Listing.belongsTo(models.User, {foreignKey: 'ownerId',  as: 'Owner'})
+      Listing.hasMany(models.Booking, {foreignKey: 'listingId', onDelete: 'CASCADE',  hooks: true})
     }
   }
-  Spot.init({
+  Listing.init({
     ownerId: {
       type: DataTypes.INTEGER,
       allowNull: false
@@ -57,7 +57,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {
     sequelize,
-    modelName: 'Spot',
+    modelName: 'Listing',
   });
-  return Spot;
+  return Listing;
 };

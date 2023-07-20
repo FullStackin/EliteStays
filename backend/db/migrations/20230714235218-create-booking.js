@@ -17,11 +17,11 @@ module.exports = {
           primaryKey: true,
           type: Sequelize.INTEGER,
         },
-        spotId: {
+        listingId: {
           type: Sequelize.INTEGER,
           allowNull: false,
           references: {
-            model: "Spots",
+            model: "Listing",
             key: "id",
           },
           onDelete: "cascade",

@@ -4,12 +4,12 @@ module.exports = (sequelize, DataTypes) => {
   class Booking extends Model {
     static associate(models) {
       Booking.belongsTo(models.User, { foreignKey: "userId" });
-      Booking.belongsTo(models.Spot, { foreignKey: "spotId" });
+      Booking.belongsTo(models.Listing, { foreignKey: "listingId" });
     }
   }
   Booking.init(
     {
-      spotId: {
+      listingId: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
