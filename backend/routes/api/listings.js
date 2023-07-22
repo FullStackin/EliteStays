@@ -38,7 +38,7 @@ const validateListing = [
   check("description")
     .exists({ checkFalsy: true })
     .isLength({ min: 30 })
-    .withMessage("Description needs 30 or more characters"),
+    .withMessage("Description needs at least 30 or more characters"),
   check("price")
     .exists({ checkFalsy: true })
     .withMessage("Price per day is required"),
@@ -51,7 +51,7 @@ const validateReview = [
     .withMessage("Review text is required"),
   check("stars")
     .isInt({ min: 1, max: 5 })
-    .withMessage("Stars must be an integer from 1 to 5"),
+    .withMessage("Stars must be an number from 1 to 5"),
   handleValidationErrors,
 ];
 
@@ -236,7 +236,7 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-// Get all Listings owned by the Current User
+// Get all Listings owned by Current User
 router.get("/current", requireAuth, async (req, res, next) => {
   try {
     const listings = await Listing.findAll({
@@ -301,14 +301,14 @@ router.get("/current", requireAuth, async (req, res, next) => {
   }
 });
 
-// Get details of a listing from an id
+// Get details of a listing from id
 router.get("/:id", async (req, res, next) => {
   try {
     const listingId = req.params.id;
     const listing = await Listing.findByPk(listingId);
 
     if (!listing) {
-      const err = new Error("Listing couldn't be found");
+      const err = new Error("The listing couldn't be found");
       err.status = 404;
       return next(err);
     }
@@ -371,7 +371,7 @@ router.get("/:id", async (req, res, next) => {
   }
 });
 
-// Create a Listing
+// Create Listing
 router.post("/", requireAuth, validateListing, async (req, res, next) => {
   try {
     const {
@@ -405,14 +405,14 @@ router.post("/", requireAuth, validateListing, async (req, res, next) => {
   }
 });
 
-// Add an Image to a Listing based on the Listing's id
+// Add an Image to a Listing by Listing id
 router.post("/:listingId/images", requireAuth, async (req, res, next) => {
   try {
     const { url, preview } = req.body;
     const listing = await Listing.findByPk(req.params.listingId);
 
     if (!listing) {
-      return res.status(404).json({ message: "Listing couldn't be found" });
+      return res.status(404).json({ message: "The listing couldn't be found" });
     }
 
     if (listing.ownerId !== req.user.id) {
@@ -437,7 +437,7 @@ router.post("/:listingId/images", requireAuth, async (req, res, next) => {
   }
 });
 
-// Edit a listing
+// Edit listing
 router.put("/:listingId", requireAuth, validateListing, async (req, res, next) => {
   try {
     const {
@@ -455,7 +455,7 @@ router.put("/:listingId", requireAuth, validateListing, async (req, res, next) =
 
     if (!listing) {
       return res.status(404).json({
-        message: "Listing couldn't be found",
+        message: "The listing couldn't be found",
       });
     }
 
@@ -483,13 +483,13 @@ router.put("/:listingId", requireAuth, validateListing, async (req, res, next) =
   }
 });
 
-// Delete a Listing
+// Delete Listing
 router.delete("/:listingId", requireAuth, async (req, res, next) => {
   try {
     const listing = await Listing.findByPk(req.params.listingId);
 
     if (!listing) {
-      return res.status(404).json({ message: "Listing couldn't be found" });
+      return res.status(404).json({ message: "The listing couldn't be found" });
     }
 
     if (listing.ownerId !== req.user.id) {
@@ -513,7 +513,7 @@ router.get("/:listingId/reviews", async (req, res, next) => {
 
     if (!listing) {
       return res.status(404).json({
-        message: "Listing couldn't be found",
+        message: "The listing couldn't be found",
       });
     }
 
@@ -535,7 +535,7 @@ router.get("/:listingId/reviews", async (req, res, next) => {
   }
 });
 
-// Create a Review for a Listing based on the Listing's id
+// Create a Review for a Listing for a specific Listing id
 router.post(
   "/:listingId/reviews",
   requireAuth,
@@ -547,7 +547,7 @@ router.post(
 
       if (!listing) {
         return res.status(404).json({
-          message: "Listing couldn't be found",
+          message: "The listing couldn't be found",
         });
       }
 
@@ -560,7 +560,7 @@ router.post(
 
       if (oldReview) {
         return res.status(403).json({
-          message: "User already has a review for this listing",
+          message: "User already has a review",
         });
       }
 
@@ -585,7 +585,7 @@ router.get("/:listingId/bookings", requireAuth, async (req, res, next) => {
 
     if (!listing) {
       return res.status(404).json({
-        message: "Listing couldn't be found",
+        message: "The listing couldn't be found",
       });
     }
 
@@ -608,19 +608,19 @@ router.get("/:listingId/bookings", requireAuth, async (req, res, next) => {
   }
 });
 
-// Create a Booking from a listing based on the listing's id
+// Create a Booking from a listing id
 router.post("/:listingId/bookings", requireAuth, async (req, res, next) => {
   try {
     const { startDate, endDate } = req.body;
     const listing = await Listing.findByPk(req.params.listingId);
 
     if (!listing) {
-      return res.status(404).json({ message: "Listing couldn't be found" });
+      return res.status(404).json({ message: "The listing couldn't be found" });
     }
 
     if (listing.ownerId === req.user.id) {
       return res.status(400).json({
-        message: "You are the listing owner!",
+        message: "You are the owner of this listing!",
       });
     }
 
@@ -634,7 +634,7 @@ router.post("/:listingId/bookings", requireAuth, async (req, res, next) => {
 
     if (checkStartDate) {
       const err = new Error(
-        "Sorry, this listing is already booked for the specified dates"
+        "Sorry, this listing is already booked for the specific date"
       );
       err.error = {
         startDate: "Start date conflicts with an existing booking",
@@ -656,7 +656,7 @@ router.post("/:listingId/bookings", requireAuth, async (req, res, next) => {
 
     if (checkEndDate) {
       const err = new Error(
-        "Sorry, this listing is already booked for the specified dates"
+        "Sorry, this listing is already booked for the specific date"
       );
       err.error = {
         startDate: "End date conflicts with an existing booking",
@@ -678,7 +678,7 @@ router.post("/:listingId/bookings", requireAuth, async (req, res, next) => {
 
     if (checkBothDate) {
       const err = new Error(
-        "Sorry, this listing is already booked for the specified dates"
+        "Sorry, this listing is already booked for the specific date"
       );
       err.error = {
         startDate: "Schedule conflict with an existing booking",
