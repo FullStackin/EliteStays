@@ -1,26 +1,26 @@
-"use strict";
-const config = require("./index");
+// backend/config/database.js
+const config = require('./index');
 
 module.exports = {
   development: {
     storage: config.dbFile,
     dialect: "sqlite",
     seederStorage: "sequelize",
-    logging: false, // Enable logging
     logQueryParameters: true,
-    typeValidation: true,
+    typeValidation: true
   },
   production: {
-    use_env_variable: "DATABASE_URL",
-    dialect: "postgres",
-    seederStorage: "sequelize",
+    use_env_variable: 'DATABASE_URL',
+    dialect: 'postgres',
+    seederStorage: 'sequelize',
     dialectOptions: {
       ssl: {
         require: true,
-        rejectUnauthorized: false,
-      },
+        rejectUnauthorized: false
+      }
     },
-    define: {},
-    schema: process.env.SCHEMA,
-  },
+    define: {
+      schema: process.env.SCHEMA
+    }
+  }
 };
