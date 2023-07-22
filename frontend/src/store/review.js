@@ -3,7 +3,7 @@ import { csrfFetch } from "./csrf";
 export const FETCH_REVIEWS = "review/FETCH_REVIEWS";
 export const ADD_REVIEW = "review/ADD_REVIEW";
 export const DELETE_REVIEW = "review/DELETE_REVIEW";
-export const UPDATE_REVIEW = "reviwe/UPDATE_REVIEW";
+export const UPDATE_REVIEW = "review/UPDATE_REVIEW";
 export const RESET_REVIEW = "review/RESET_REVIEW";
 
 export const fetchReviewsAction = (reviews) => {
@@ -40,8 +40,8 @@ export const resetReviewAction = () => {
   };
 };
 
-export const fetchReviewsThunk = (spotId) => async (dispatch) => {
-  const res = await csrfFetch(`/api/spots/${spotId}/reviews`);
+export const fetchReviewsThunk = (listingId) => async (dispatch) => {
+  const res = await csrfFetch(`/api/listings/${listingId}/reviews`);
 
   if (res.ok) {
     const reviews = await res.json();
@@ -53,9 +53,9 @@ export const fetchReviewsThunk = (spotId) => async (dispatch) => {
   }
 };
 
-export const createReviewThunk = (spotId, review) => async (dispatch) => {
+export const AddReviewThunk = (listingId, review) => async (dispatch) => {
   try {
-    const res = await csrfFetch(`/api/spots/${spotId}/reviews`, {
+    const res = await csrfFetch(`/api/listings/${listingId}/reviews`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(review),
@@ -72,13 +72,13 @@ export const createReviewThunk = (spotId, review) => async (dispatch) => {
   }
 };
 
-export const deleteReviewThunk = (reviewId) => async (dispatch) => {
+export const removeReviewThunk = (reviewId) => async (dispatch) => {
   const res = await csrfFetch(`/api/reviews/${reviewId}`, {
     method: "DELETE",
   });
 
   if (res.ok) {
-    dispatch(deleteReviewAction(reviewId));
+    dispatch(resetReviewAction(reviewId));
     return;
   } else {
     const errors = await res.json();
@@ -86,7 +86,7 @@ export const deleteReviewThunk = (reviewId) => async (dispatch) => {
   }
 };
 
-export const fetchCurrentUserReviewsThunk = () => async (dispatch) => {
+export const userReviewsThunk = () => async (dispatch) => {
   try {
     const res = await csrfFetch("/api/reviews/current");
 
@@ -121,7 +121,7 @@ export const updateReviewThunk = (reviewId, payload) => async (dispatch) => {
 };
 
 //reducer
-const initialState = {};
+const initialState = [];
 
 const reviewReducer = (state = initialState, action) => {
   switch (action.type) {

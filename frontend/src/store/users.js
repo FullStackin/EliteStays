@@ -4,7 +4,7 @@ import { csrfFetch } from "./csrf";
 const FETCH_USER_DETAILS = "users/FETCH_USER_DETAILS";
 
 //action creator
-export const fetchUserDetailsAction = (user) => {
+export const fetchUserAction = (user) => {
   return {
     type: FETCH_USER_DETAILS,
     user,
@@ -12,12 +12,12 @@ export const fetchUserDetailsAction = (user) => {
 };
 
 //thunk action creator
-export const fetchUserDetailsThunk = (userId) => async (dispatch) => {
+export const fetchUserThunk = (userId) => async (dispatch) => {
   const res = await csrfFetch(`/api/users/${userId}`);
 
   if (res.ok) {
     const user = await res.json();
-    dispatch(fetchUserDetailsAction(user));
+    dispatch(fetchUserAction(user));
     return user;
   } else {
     const errors = await res.json();

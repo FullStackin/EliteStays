@@ -41,9 +41,9 @@ export const fetchUserBookingsAction = (userBookings) => {
   };
 };
 
-export const fetchAllBookingsThunk = (spotId) => async (dispatch) => {
+export const fetchAllBookingsThunk = (listingId) => async (dispatch) => {
   try {
-    const res = await csrfFetch(`/api/spots/${spotId}/bookings`);
+    const res = await csrfFetch(`/api/listings/${listingId}/bookings`);
 
     if (res.ok) {
       const bookings = await res.json();
@@ -57,9 +57,9 @@ export const fetchAllBookingsThunk = (spotId) => async (dispatch) => {
   }
 };
 
-export const createNewBookingThunk = (spotId, booking) => async (dispatch) => {
+export const createNewBookingThunk = (listingId, booking) => async (dispatch) => {
   try {
-    const res = await csrfFetch(`/api/spots/${spotId}/bookings`, {
+    const res = await csrfFetch(`/api/listings/${listingId}/bookings`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(booking),

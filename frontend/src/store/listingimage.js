@@ -1,17 +1,17 @@
 import { csrfFetch } from "./csrf";
 
-const UPLOAD_IMAGE = 'spotImages/UPLOAD_IMAGE';
+const UPLOAD_IMAGE = 'listingImages/UPLOAD_IMAGE';
 
-const uploadImage = (image) => {
+const uploadImageAction = (image) => {
   return {
     type: UPLOAD_IMAGE,
     payload: image
   };
 };
 
-export const uploadSpotImage = (spotId) => async (dispatch) => {
+export const uploadListingImageThunk = (listingId) => async (dispatch) => {
   try {
-    const res = await csrfFetch(`/api/spots/${spotId}/images`, {
+    const res = await csrfFetch(`/api/listings/${listingId}/images`, {
       method: "POST",
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -22,24 +22,24 @@ export const uploadSpotImage = (spotId) => async (dispatch) => {
 
     if (res.ok) {
       const newImage = await res.json();
-      dispatch(uploadImage(newImage));
+      dispatch(uploadImageAction(newImage));
       return newImage;
     } else {
       const errors = await res.json();
       return errors;
     }
   } catch (error) {
-    console.error('Error uploading spot image:', error);
+    console.error('Error uploading listing image:', error);
   }
 };
 
 const initialState = {};
 
-const spotImageReducer = (state = initialState, action) => {
+const listingImageReducer = (state = initialState, action) => {
   switch (action.type) {
     case UPLOAD_IMAGE: {
-      const spotImagesState = { ...state, [action.payload.id]: action.payload };
-      return spotImagesState;
+      const listingImagesState = { ...state, [action.payload.id]: action.payload };
+      return listingImagesState;
     }
 
     default:
@@ -47,4 +47,4 @@ const spotImageReducer = (state = initialState, action) => {
   }
 };
 
-export default spotImageReducer;
+export default listingImageReducer;
