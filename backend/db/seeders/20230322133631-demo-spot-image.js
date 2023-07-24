@@ -23,42 +23,42 @@ module.exports = {
       [
         {
           spotId: 1,
-          url: "..",
+          url: "https://cdn.discordapp.com/attachments/1132975397701693480/1132975483324223508/LA1.png",
           preview: true,
         },
         {
           spotId: 1,
-          url: "/",
+          url: "https://cdn.discordapp.com/attachments/1132975397701693480/1132975483714277416/LA2.png",
           preview: true,
         },
         {
           spotId: 2,
-          url: "/",
+          url: "https://cdn.discordapp.com/attachments/1132975397701693480/1132975484221804571/MLB1.png",
           preview: true,
         },
         {
           spotId: 2,
-          url: "/",
+          url: "https://cdn.discordapp.com/attachments/1132975397701693480/1132975484897079359/MLB2.png",
           preview: true,
         },
         {
           spotId: 3,
-          url: "/",
+          url: "https://cdn.discordapp.com/attachments/1132975397701693480/1132975485995995169/SB1.png",
           preview: true,
         },
         {
           spotId: 3,
-          url: "/",
+          url: "https://cdn.discordapp.com/attachments/1132975397701693480/1132975486990037013/SB2.png",
           preview: true,
         },
         {
           spotId: 4,
-          url: "/",
+          url: "https://cdn.discordapp.com/attachments/1132975397701693480/1132975487673700432/SD1.png",
           preview: true,
         },
         {
           spotId: 4,
-          url: "/",
+          url: "https://cdn.discordapp.com/attachments/1132975397701693480/1132975488449663017/SD2.png",
           preview: true,
         },
       ],
