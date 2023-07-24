@@ -1,3 +1,4 @@
+import React from "react";
 import SpotForm from "../SpotForm";
 import "./CreateSpotForm.css";
 
@@ -14,11 +15,9 @@ const CreateSpotForm = () => {
     price: "",
   };
 
-  const spotImgs = {};
-
   return (
-    <div className="-create-form-wrapper">
-      <SpotForm spot={spot} type={"new"} className="spot-form-box" />
+    <div className="create-form-wrapper">
+      <SpotForm spot={spot} type={"new"} className="spot-form" />
     </div>
   );
 };

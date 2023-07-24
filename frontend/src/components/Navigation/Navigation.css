@@ -14,6 +14,11 @@
 .nav-item {
   display: flex;
   align-items: center;
+  justify-content: center;
+  width: 120px; /* Adjust the width as needed */
+  height: 40px; /* Adjust the height as needed */
+  border-radius: 5px; /* Optional: Add border-radius for rounded corners */
+  background: linear-gradient(90deg, gold, rgb(127, 111, 16));
 }
 
 .left-nav {
@@ -45,9 +50,8 @@
 .right-nav {
   display: flex;
   gap: 15px;
-  margin-right: 9.5%;
+  margin-right: 10%;
   align-items: flex-end;
-  gap: 15px;
 }
 
 .create-spot {
@@ -116,4 +120,12 @@
 
 .profile-menu-wrapper button:hover {
   background-color: goldenrod;
+}
+
+.login-button {
+  
+}
+
+.signup-button {
+
 }

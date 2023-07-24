@@ -32,8 +32,7 @@
 .login-modal button {
     padding: 4px;
     margin: 4px;
-    background-color: darkseagreen;
-    color: white;
+    background: linear-gradient(90deg, gold, rgb(127, 111, 16));
     border: none;
     cursor: pointer;
     border: 2px solid black;
@@ -41,7 +40,7 @@
 }
 
 .login-modal button:hover {
-    background-color: 	olivedrab;
+    background-color: 	goldenrod;
   }
 
 .login-form button:disabled {

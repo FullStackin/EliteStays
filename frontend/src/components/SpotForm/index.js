@@ -85,13 +85,10 @@ function SpotForm({ spot, type, updateId }) {
         history.push(`/spots/${updateId}`);
       }
     }
-
-    // history.push(`/spots/${createdSpot.id}`);
   };
 
   return (
     <div className="form-wrapper">
-      <div className="boundary"></div>
       <form onSubmit={handleSubmit} className="spot-form">
         <h2 className="form-title">
           {type === "new"
@@ -276,7 +273,6 @@ function SpotForm({ spot, type, updateId }) {
           Establish Spot
         </button>
       </form>
-      <div className="boundary"></div>
     </div>
   );
 }

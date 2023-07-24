@@ -1,4 +1,3 @@
-import { useDispatch } from "react-redux";
 import "./AllSpotsItem.css";
 import { NavLink } from "react-router-dom";
 
@@ -34,14 +33,13 @@ function AllSpotsItem({ spot }) {
         <h2>{spot.name}</h2>
         <img alt={spot.name} src={imgKeys[spot.id][1]} />
         <img src={imgKeys[spot.id][0]}></img>
-        {/* {spot.previewImage} */}
         <div className="spot-info">
           <div className="spot-info-row1">
             <h3>
               {spot.city},{" " + spot.state}
             </h3>
             <h3>
-              <i class="fa-solid fa-star"></i>
+              <i className="fa-solid fa-star"></i>
               {ratingDisplay}
             </h3>
           </div>

@@ -1,7 +1,39 @@
+/* AllSpots.css */
+.page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
 .all-spots {
-    display: flex;
-    justify-content: space-between;
-    gap: 4%;
-    flex-wrap: wrap;
-    margin:50px 5%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  max-width: 1500px;
+  padding: 20px;
+  width: 100%;
+}
+
+.social-media-links {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.social-media-links a {
+  margin: 0 10px;
+}
+
+.social-media-links svg {
+  width: 30px;
+  height: 30px;
+  color: #555;
+}
+
+.social-media-links img {
+  width: 30px;
+  height: 30px;
+  margin: 0 10px;
 }

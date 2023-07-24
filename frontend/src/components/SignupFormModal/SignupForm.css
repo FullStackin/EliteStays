@@ -36,15 +36,15 @@
     padding: 4px;
     margin-top: 10px;
     width: 83%;
-    background-color: darkseagreen;
+    background: linear-gradient(90deg, gold, rgb(127, 111, 16));
     color: white;
     border: none;
     cursor: pointer;
     border: 2px solid black;
-    box-shadow: 2px 2px 2px grey;
+    box-shadow: 2px 2px 2px black;
 }
 .sign-up-modal button:hover {
-    background-color: 	olivedrab;
+    background-color: 	goldenrod;
 }
 
 .sign-up-modal button:disabled {

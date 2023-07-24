@@ -4,49 +4,12 @@ import { useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
-import "./Navigation.css";
 import SignupFormModal from "../SignupFormModal";
 import logoImage from "../../assets/HighClassBnb/Compass.png";
+import "./Navigation.css";
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector((state) => state.session.user);
-
-  let sessionLinks;
-  if (sessionUser) {
-    sessionLinks = (
-      <div className="right-nav">
-        <div className="nav-item">
-          <NavLink
-            exact
-            to="/spots/new"
-            style={{ textDecoration: "none" }}
-            className="create-spot"
-          >
-            Create a New Spot
-          </NavLink>
-        </div>
-        <ProfileButton user={sessionUser} className="profile-button" />
-      </div>
-    );
-  } else {
-    sessionLinks = (
-      <div className="right-nav">
-        <div className="nav-item">
-          <OpenModalButton
-            buttonText="Log In"
-            modalComponent={<LoginFormModal />}
-          />
-        </div>
-        <div className="nav-item">
-          <OpenModalButton
-            buttonText="Sign Up"
-            modalComponent={<SignupFormModal />}
-          />
-        </div>
-      </div>
-    );
-  }
-
 
   return (
     <div className="nav">
@@ -65,11 +28,38 @@ function Navigation({ isLoaded }) {
           className="home-title"
           style={{ textDecoration: "none" }}
         >
-          {" "}
           <i>EliteStays</i>
         </NavLink>
       </div>
-      {isLoaded && sessionLinks}
+      {isLoaded && (
+        <div className="right-nav">
+          {sessionUser ? (
+            <>
+              <NavLink
+                exact
+                to="/spots/new"
+                className="create-spot"
+              >
+                Create a New Spot
+              </NavLink>
+              <ProfileButton user={sessionUser} className="profile-button" />
+            </>
+          ) : (
+            <>
+              <OpenModalButton
+                buttonText="Log In"
+                modalComponent={<LoginFormModal />}
+                className="login-button"
+              />
+              <OpenModalButton
+                buttonText="Sign Up"
+                modalComponent={<SignupFormModal />}
+                className="signup-button"
+              />
+            </>
+          )}
+        </div>
+      )}
     </div>
   );
 }
