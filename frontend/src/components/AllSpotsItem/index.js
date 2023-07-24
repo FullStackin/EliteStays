@@ -27,12 +27,16 @@ function AllSpotsItem({ spot }) {
     ratingDisplay = Number(ratingDisplay).toFixed(1);
   }
 
+  let spotImages = imgKeys[spot.id];
+  let img1 = spotImages ? spotImages[1] : null;
+  let img0 = spotImages ? spotImages[0] : null;
+
   return (
     <div title={spot.name} className="spot-item">
       <NavLink className="spot-item-link" exact to={`/spots/${spot.id}`}>
         <h2>{spot.name}</h2>
-        <img alt={spot.name} src={imgKeys[spot.id][1]} />
-        <img src={imgKeys[spot.id][0]}></img>
+        {img1 && <img alt={spot.name} src={img1} />}
+        {img0 && <img src={img0}></img>}
         <div className="spot-info">
           <div className="spot-info-row1">
             <h3>

@@ -39,15 +39,11 @@ function SingleSpot() {
   }, [dispatch, spotId]);
 
   let spotImageUrls = [];
-  for (let e in spot.SpotImages) {
-    spotImageUrls.push(spot.SpotImages[e].url);
+  if (spot && spot.SpotImages) {
+    for (let e in spot.SpotImages) {
+      spotImageUrls.push(spot.SpotImages[e].url);
+    }
   }
-  // let mainImg = spotImageUrls[0];
-
-  // let galleryImages = new Array(4).fill(placeholderImg);
-  // for (let i = 1; i < 5; i++) {
-  //   if (spotImageUrls[i]) galleryImages[i - 1] = spotImageUrls[i];
-  // }
 
   let reviewList = Object.values(reviews);
   let ratingDisplay = spot.avgStarRating
@@ -57,6 +53,11 @@ function SingleSpot() {
   if (Object.values(spot) < 1) {
     return <h1>Loading...</h1>;
   }
+
+  const mainImg = spotImageUrls && spotImageUrls[0];
+  const galleryImages = new Array(4).fill(null).map((_, i) => {
+    return spotImageUrls && spotImageUrls[i + 1];
+  });
 
   return (
     <div className="single-spot-wrapper">
@@ -68,12 +69,12 @@ function SingleSpot() {
       </div>
       <div className="spot-details">
         <div className="gallery">
-          <img src={imgKeys[spot.id][0]} className="main-img" alt="Main" />
+          <img src={mainImg} className="main-img" alt="Main" />
           <div className="gallery-image-wrapper">
             <img
               className="gallery-image"
               alt={spot.name}
-              src={imgKeys[spot.id][1]}
+              src={galleryImages[0]}
             />
           </div>
         </div>

@@ -154,7 +154,7 @@ function SpotForm({ spot, type, updateId }) {
         <label className="form-label">
           <h3>Furnish a comprehensive description of your spot</h3>
           <p>
-            Highlight your space's prime features, any unique amenities such as
+            list your space's prime features, any unique amenities such as
             high-speed wifi or parking, and the charming aspects of your
             neighbourhood.
           </p>
