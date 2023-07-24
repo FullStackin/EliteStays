@@ -1,19 +1,14 @@
-
 import React, { useState, useEffect, useRef } from "react";
-import { useDispatch } from 'react-redux';
-import { NavLink,  } from "react-router-dom";
-import * as sessionActions from '../../store/session';
-import LoginFormModal from '../LoginFormModal';
-import SignupFormModal from '../SignupFormModal';
-import { useHistory } from "react-router-dom";
-import MenuItemModal from "./MenuItemModal";
+import { useDispatch } from "react-redux";
+import * as sessionActions from "../../store/session";
+import { NavLink, useHistory } from "react-router-dom";
+import "./Navigation.css";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
   const history = useHistory();
-
   const openMenu = () => {
     if (showMenu) return;
     setShowMenu(true);
@@ -28,80 +23,42 @@ function ProfileButton({ user }) {
       }
     };
 
-    document.addEventListener('click', closeMenu);
+    document.addEventListener("click", closeMenu);
 
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu]);
 
-  const closeMenu = () => setShowMenu(false);
-
   const logout = (e) => {
     e.preventDefault();
     dispatch(sessionActions.logout());
-    history.push('/');
-    closeMenu();
+    history.push(`/`);
   };
 
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
 
   return (
-    <>
-      <button
-      onClick={openMenu}
-      className='profile-button'
-      >
-        <i className="fas fa-user-circle" />
+    <div className="profile-menu-wrapper">
+      <button onClick={openMenu} className="profile-menu">
+        <i className="fa-solid fa-bars" /> <i className="fas fa-user-circle" />
       </button>
-      <ul className={ulClassName} ref={ulRef}>
-        {user ? (
-          <>
-            <li className='profile-li'>{`Hello, ${user.username}`}</li>
-            <li className='profile-li'>{user.firstName} {user.lastName}</li>
-            <li className='profile-li'>{user.email}</li>
-            <div id='manage-spot-link'>
-              <NavLink to='/spots/current'>
-                Manage Spot
+      <div className={ulClassName} ref={ulRef}>
+        <div className="menu-wrap">
+          <div>Hello, {user.firstName}</div>
+          <div>{user.username}</div>
+          <div>{user.email}</div>
+          {
+            <div>
+              <NavLink exact to="/spots/current">
+                Manage Spots
               </NavLink>
             </div>
-            <div id='update-review-link'>
-              <NavLink to='/reviews/current'>
-                Manage Reviews
-              </NavLink>
-            </div>
-            <div id='manage-bookings-link'>
-              <NavLink to='/bookings/current'>
-                Manage Bookings
-              </NavLink>
-            </div>
-            <li>
-              <button
-              onClick={logout}
-              id='logout-button'
-              >
-                Log Out</button>
-            </li>
-          </>
-        ) : (
-          <>
-          <div className='openModalMenuItem'>
-
-              <MenuItemModal
-                itemText="Log In"
-                onItemClick={closeMenu}
-                modalComponent={<LoginFormModal />}
-              />
-
-              <MenuItemModal
-                itemText="Sign Up"
-                onItemClick={closeMenu}
-                modalComponent={<SignupFormModal />}
-              />
-
-          </div>
-          </>
-        )}
-      </ul>
-    </>
+          }
+          <h3>
+            <button onClick={logout}>Log Out</button>
+          </h3>
+        </div>
+      </div>
+    </div>
   );
 }
 

@@ -1,8 +1,8 @@
-'use strict';
+"use strict";
 
 let options = {};
-if (process.env.NODE_ENV === 'production') {
-  options.schema = process.env.SCHEMA;  // define your schema in options object
+if (process.env.NODE_ENV === "production") {
+  options.schema = process.env.SCHEMA; // define your schema in options object
 }
 
 /** @type {import('sequelize-cli').Migration} */
@@ -16,48 +16,54 @@ module.exports = {
      *   name: 'John Doe',
      *   isBetaMember: false
      * }], {});
-    */
-    options.tableName = 'SpotImages';
-    return queryInterface.bulkInsert(options, [
-      {
-        spotId: 1,
-        url: 'img1',
-        preview: true
-      },
-      {
-        spotId: 1,
-        url: 'img1',
-        preview: true
-      },
-      {
-        spotId: 2,
-        url: 'img2',
-        preview: true
-      },
-      {
-        spotId: 2,
-        url: 'img2',
-        preview: true
-      },   {
-        spotId: 3,
-        url: 'img3',
-        preview: true
-      },
-      {
-        spotId: 3,
-        url: 'img3',
-        preview: true
-      },   {
-        spotId: 4,
-        url: 'img4',
-        preview: true
-      },
-      {
-        spotId: 4,
-        url: 'img4',
-        preview: true
-      },
-    ], {});
+     */
+    options.tableName = "SpotImages";
+    return queryInterface.bulkInsert(
+      options,
+      [
+        {
+          spotId: 1,
+          url: "..",
+          preview: true,
+        },
+        {
+          spotId: 1,
+          url: "/",
+          preview: true,
+        },
+        {
+          spotId: 2,
+          url: "/",
+          preview: true,
+        },
+        {
+          spotId: 2,
+          url: "/",
+          preview: true,
+        },
+        {
+          spotId: 3,
+          url: "/",
+          preview: true,
+        },
+        {
+          spotId: 3,
+          url: "/",
+          preview: true,
+        },
+        {
+          spotId: 4,
+          url: "/",
+          preview: true,
+        },
+        {
+          spotId: 4,
+          url: "/",
+          preview: true,
+        },
+      ],
+      {}
+    );
   },
 
   async down(queryInterface, Sequelize) {
@@ -67,7 +73,7 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    options.tableName = 'SpotImages';
+    options.tableName = "SpotImages";
     return queryInterface.bulkDelete(options);
-  }
+  },
 };

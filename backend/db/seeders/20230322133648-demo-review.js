@@ -37,7 +37,7 @@ module.exports = {
         {
           spotId: 1,
           userId: 3,
-          review: "Spacious and comfortable, loved the treehouse design!",
+          review: "Spacious and comfortable",
           stars: 5,
         },
         {

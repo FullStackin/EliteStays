@@ -1,0 +1,7 @@
+.manage-spots-gallery {
+    display: flex;
+    justify-content: start;
+    gap: 5%;
+    flex-wrap: wrap;
+    margin: 20px 10%;
+}

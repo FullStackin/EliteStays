@@ -2,49 +2,75 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";
-import MenuItemModal from "./MenuItemModal";
-import FindListingModal from "../FindListingModal/FindListingModal";
+import OpenModalButton from "../OpenModalButton";
+import LoginFormModal from "../LoginFormModal";
 import "./Navigation.css";
+import SignupFormModal from "../SignupFormModal";
+import logoImage from "../../assets/HighClassBnb/Compass.png";
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector((state) => state.session.user);
 
-  return (
-    <ul className="nav-ul">
-      <li>
-        <NavLink exact to="/" id="logo-link">
-          <img
-            src={require("../../assets/StrikeBnb-logos/StrikeBnb-logos.jpeg")}
-            alt="StrikeBnb Logo"
-            className="logo-image"
+  let sessionLinks;
+  if (sessionUser) {
+    sessionLinks = (
+      <div className="right-nav">
+        <div className="nav-item">
+          <NavLink
+            exact
+            to="/spots/new"
+            style={{ textDecoration: "none" }}
+            className="create-spot"
+          >
+            Create a New Spot
+          </NavLink>
+        </div>
+        <ProfileButton user={sessionUser} className="profile-button" />
+      </div>
+    );
+  } else {
+    sessionLinks = (
+      <div className="right-nav">
+        <div className="nav-item">
+          <OpenModalButton
+            buttonText="Log In"
+            modalComponent={<LoginFormModal />}
           />
-        </NavLink>
-      </li>
+        </div>
+        <div className="nav-item">
+          <OpenModalButton
+            buttonText="Sign Up"
+            modalComponent={<SignupFormModal />}
+          />
+        </div>
+      </div>
+    );
+  }
 
-      <div id="spot-search">
-        <MenuItemModal
-          itemText="Search Listings"
-          // onItemClick={closeMenu}
-          modalComponent={<FindListingModal />}
-        />
+
+  return (
+    <div className="nav">
+      <div className="left-nav">
+        <NavLink
+          exact
+          to="/"
+          className="home-logo"
+          style={{ textDecoration: "none" }}
+        >
+          <img src={logoImage} alt="EliteStays" />
+        </NavLink>
+        <NavLink
+          exact
+          to="/"
+          className="home-title"
+          style={{ textDecoration: "none" }}
+        >
+          {" "}
+          <i>EliteStays</i>
+        </NavLink>
       </div>
-      <div id="login-user">
-        {(() => {
-          if (sessionUser) {
-            return (
-              <NavLink to="/spots/new" id="create-new-spot-link">
-                Create a New Listing
-              </NavLink>
-            );
-          }
-        })()}
-        {isLoaded && (
-          <li>
-            <ProfileButton user={sessionUser} />
-          </li>
-        )}
-      </div>
-    </ul>
+      {isLoaded && sessionLinks}
+    </div>
   );
 }
 

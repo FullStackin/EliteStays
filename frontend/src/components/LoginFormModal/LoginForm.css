@@ -1,70 +1,53 @@
-.signup-form-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 3rem;
+.login-modal {
+    height: 300px;
+    width: 400px;
+    display: flex;
+    flex-direction:column;
+    align-content: center;
+    border-radius: 5px;
 }
 
-.signup-form-heading {
-  font-size: 32px;
-  color: black;
-  margin-bottom: 20px;
+.login-form{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: 10%;
+    margin-right: 10%;
 }
 
-.signup-form-row {
-  display: flex;
-  width: 300px;
-  flex-direction: column;
-  margin-bottom: 15px;
+.login-modal h1{
+    display: flex;
+    justify-content: center;
 }
 
-.signup-form label {
-  color: black;
-  margin-bottom: 10px;
-  font-weight: bold;
+.login-form input {
+    background-color: aliceblue;
+    display: flex;
+    padding: 4px;
+    justify-content: center;
+    /* width: 80%; */
+    margin: 4px
 }
 
-.signup-form-input {
-  padding: 10px;
-  margin-bottom: 15px;
-  border: 2px solid rgb(170, 139, 139);
-  border-radius: 5px;
+.login-modal button {
+    padding: 4px;
+    margin: 4px;
+    background-color: darkseagreen;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border: 2px solid black;
+    box-shadow: 2px 2px 2px grey;
 }
 
-.signup-form-error {
-  color: red;
-  margin-bottom: 10px;
-}
+.login-modal button:hover {
+    background-color: 	olivedrab;
+  }
 
-.login-button {
-  padding: 10px 20px;
-  background-color: rgb(163, 159, 159);
-  color: white;
-  margin-left: 20px;
-  margin-bottom: 10px;
-  border-radius: 5px;
-  cursor: pointer;
-  align-items: center;
-  width: 250px;
-}
-.signup-form-button-disabled {
-  align-items: center;
-  cursor: pointer;
-  justify-content: center;
-  text-align: center;
-}
-.signup-form-demo-button {
-  padding: 10px 20px;
-  width: 250px;
-  background-color: rgb(241, 78, 78);
-  color: white;
-  margin-left: 20px;
-  margin-bottom: 10px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.signup-form-demo-button:hover {
-  background-color: #990000;
+.login-form button:disabled {
+    border-color:  grey;
+    color: grey;
+    background-color: white;
+    border: 2px solid black;
+    box-shadow: 2px 2px 2px grey;
 }
