@@ -19,7 +19,7 @@ module.exports = {
      */
     options.tableName = "Spots";
     return queryInterface.bulkInsert(
-      options.tableName,
+      options,
       [
         // Adjust the method call here
         {
@@ -85,6 +85,6 @@ module.exports = {
      * await queryInterface.bulkDelete('People', null, {});
      */
     options.tableName = "Spots";
-    return queryInterface.bulkDelete(options.tableName, null, {}); // Adjust the method call here
+    return queryInterface.bulkDelete(options, null, {}); // Adjust the method call here
   },
 };
