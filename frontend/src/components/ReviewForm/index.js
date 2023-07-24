@@ -14,19 +14,11 @@ import { getSpotThunk } from "../../store/spots";
 function ReviewForm({ spotId, review, type, updateId }) {
   const dispatch = useDispatch();
   const { closeModal } = useModal();
-  console.log(type);
-  console.log(spotId);
   const [text, setText] = useState("");
   const [stars, setStars] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    console.log("Submitting review...");
-    console.log("spotId in review form", spotId);
-
-    console.log("spotId in review form", spotId);
-
     if (type === "update") {
       const newReview = {
         id: review.id,

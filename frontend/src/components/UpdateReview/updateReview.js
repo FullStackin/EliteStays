@@ -6,8 +6,6 @@ import ReviewForm from "../ReviewForm";
 
 const UpdateReview = ({ review, spotId }) => {
   const spot = useSelector((state) => state.spots.allSpots[spotId]);
-  console.log(spotId);
-  console.log(review);
   return (
     <ReviewForm
       review={review}

@@ -32,7 +32,7 @@ module.exports = {
           lng: 90.01,
           name: "The Beauty",
           description: "Beautiful home on Coronado Island in San Diego, CA",
-          price: 10.01,
+          price: 12000.00,
         },
         {
           ownerId: 2,
@@ -45,7 +45,7 @@ module.exports = {
           name: "Coastal Retreat",
           description:
             "Stunning coastal retreat in Santa Barbara with ocean views.",
-          price: 25.01,
+          price: 14000,
         },
         {
           ownerId: 3,
@@ -58,7 +58,7 @@ module.exports = {
           name: "Malibu Paradise",
           description:
             "Luxurious beachfront property in Malibu with private beach access.",
-          price: 45.01,
+          price: 34000,
         },
         {
           ownerId: 3,
@@ -71,7 +71,7 @@ module.exports = {
           name: "LA Coastal Living",
           description:
             "Contemporary coastal home in Los Angeles offering city and ocean views.",
-          price: 30.01,
+          price: 10000,
         },
       ],
       {}

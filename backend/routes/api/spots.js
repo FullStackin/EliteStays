@@ -51,7 +51,6 @@ router.get('/', async (req, res) => {
     //query validation
     let { size, page, minLat, maxLat, minLng, maxLng, minPrice, maxPrice } = req.query;
 
-    // console.log(size, page);
     if (page < 1) {
         return res.status(400).json({
             "message": "Validation Error",
@@ -512,7 +511,6 @@ router.delete('/:spotId', requireAuth, async (req, res, next) => {
     const spotId = req.params.spotId;
     const userId = req.user.id;
     const spot = await Spot.findByPk(spotId);
-    // console.log('spot in delete', spot);
 
     if (!spot) {
         return res.status(404).json({
@@ -520,8 +518,7 @@ router.delete('/:spotId', requireAuth, async (req, res, next) => {
             "statusCode": 404
         });
     }
-    console.log('spot owner', spot.ownerId);
-    console.log('userId', userId);
+
     if (spot.ownerId != userId) {
         return res.status(403).json({
             "message": "Spot must belong to you",

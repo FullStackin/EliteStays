@@ -14,7 +14,6 @@ function ManageSpots() {
     dispatch(getUserSpotsThunk());
   }, [dispatch]);
 
-  console.log("users spots in component", userSpots);
   return (
     <div>
       <h2> Manage Spots</h2>

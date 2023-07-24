@@ -57,7 +57,6 @@ function SingleSpot() {
   if (Object.values(spot) < 1) {
     return <h1>Loading...</h1>;
   }
-  console.log(spot);
 
   return (
     <div className="single-spot-wrapper">

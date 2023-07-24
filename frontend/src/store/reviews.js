@@ -59,7 +59,6 @@ export const getReviewsThunk = (spotId) => async (dispatch) => {
 
   if (res.ok) {
     const reviews = (await res.json()).Reviews;
-    console.log("reviews", reviews);
     dispatch(GetReviewsAction(reviews));
     return reviews;
   }
@@ -99,34 +98,22 @@ const reviewReducer = (state = initialState, action) => {
   switch (action.type) {
     case CREATE_REVIEW: {
       newState = { ...state, spot: { ...state.spot }, user: { ...state.user } };
-      console.log("state", newState);
-      console.log("action obj", action);
       newState.spot[action.payload.id] = action.payload;
-      console.log("state2", newState);
       return newState;
     }
     case GET_REVIEWS: {
       newState = { ...state, spot: {}, user: {} };
-      console.log("get reviews case", action.payload);
       action.payload.forEach((review) => (newState.spot[review.id] = review));
-      console.log("new state after reviews", newState);
       return newState;
     }
     case UPDATE_REVIEW: {
       newState = { ...state };
-      console.log("updated review state", newState);
-      console.log("action obj in update", action.payload);
       newState.spot[action.payload.id] = action.payload;
-      console.log("state after update", newState);
       return newState;
     }
     case DELETE_REVIEW: {
-      // console.log('state',state);
       newState = { ...state, spot: { ...state.spot }, user: { ...state.user } };
-      console.log("state spot reviews", newState);
-      console.log("action obj in delete", action.payload);
       delete newState.spot[action.payload];
-      console.log("state2", newState);
       return newState;
     }
     default:

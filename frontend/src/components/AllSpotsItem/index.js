@@ -19,11 +19,7 @@ const imgKeys = {
 };
 
 function AllSpotsItem({ spot }) {
-  // const dispatch = useDispatch();
-  console.log("spot  from all spots item", spot);
-
   let priceDisplay = Math.round(spot.price);
-
   let rating = Math.round(Number(spot.avgRating) * 10) / 10;
   let ratingDisplay = " " + rating.toFixed(1);
   if (ratingDisplay == 0) {
@@ -35,7 +31,7 @@ function AllSpotsItem({ spot }) {
   return (
     <div title={spot.name} className="spot-item">
       <NavLink className="spot-item-link" exact to={`/spots/${spot.id}`}>
-        {/* <h1>{spot.name}</h1> */}
+        <h2>{spot.name}</h2>
         <img alt={spot.name} src={imgKeys[spot.id][1]} />
         <img src={imgKeys[spot.id][0]}></img>
         {/* {spot.previewImage} */}

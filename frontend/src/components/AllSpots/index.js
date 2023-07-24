@@ -8,7 +8,6 @@ function AllSpots() {
   const allSpots = Object.values(
     useSelector((state) => state.spots.allSpots)
   ).reverse();
-  // console.log(allSpots);
 
   const dispatch = useDispatch();
   useEffect(() => {

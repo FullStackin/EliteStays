@@ -7,7 +7,6 @@ import "./SpotForm.css";
 import { useEffect } from "react";
 
 function SpotForm({ spot, type, updateId }) {
-  console.log(spot);
   const [name, setName] = useState(spot ? spot.name : "");
   const [address, setAddress] = useState(spot ? spot.address : "");
   const [city, setCity] = useState(spot ? spot.city : "");
@@ -48,7 +47,6 @@ function SpotForm({ spot, type, updateId }) {
   //handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("spot on submit", spot);
 
     if (Object.values(err).length > 0) {
       setShowError(true);
@@ -76,28 +74,16 @@ function SpotForm({ spot, type, updateId }) {
 
       //Split between new/update
       if (type === "new") {
-        console.log(
-          "spotinfo recieved from user on submit for new",
-          createdSpot
-        );
-        // console.log("submit attempt");
         const newSpot = await dispatch(
           createSpotThunk({ createdSpot, spotImgs })
         ).catch(async (res) => {
           const data = await res.json();
-          // if (data && data.errors) {
-          //   setErr({ ...err, ...data.errors });
-          // }
-          console.log("errors", err);
         });
         history.push(`/spots/${newSpot.id}`);
       } else {
-        // console.log("edited spot sumbit created  spot data", createdSpot);
         const spot = await dispatch(updateSpotThunk({ createdSpot, spotImgs }));
         history.push(`/spots/${updateId}`);
       }
-
-      console.log("err", err);
     }
 
     // history.push(`/spots/${createdSpot.id}`);
