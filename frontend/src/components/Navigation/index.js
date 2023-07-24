@@ -35,11 +35,7 @@ function Navigation({ isLoaded }) {
         <div className="right-nav">
           {sessionUser ? (
             <>
-              <NavLink
-                exact
-                to="/spots/new"
-                className="create-spot"
-              >
+              <NavLink exact to="/spots/new" className="create-spot">
                 Create a New Spot
               </NavLink>
               <ProfileButton user={sessionUser} className="profile-button" />

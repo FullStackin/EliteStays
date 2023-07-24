@@ -222,7 +222,7 @@ function SpotForm({ spot, type, updateId }) {
               </p>
               <input
                 className="form-input"
-                type="text"
+                type="url"
                 value={img1}
                 onChange={(e) => setImg1(e.target.value)}
                 placeholder="Preview Image URL"
@@ -232,7 +232,7 @@ function SpotForm({ spot, type, updateId }) {
               <br />
               <input
                 className="form-input"
-                type="text"
+                type="url"
                 value={img2}
                 onChange={(e) => setImg2(e.target.value)}
                 placeholder="Image URL"
@@ -241,7 +241,7 @@ function SpotForm({ spot, type, updateId }) {
               <br />
               <input
                 className="form-input"
-                type="text"
+                type="url"
                 value={img3}
                 onChange={(e) => setImg3(e.target.value)}
                 placeholder="Image URL"
@@ -250,7 +250,7 @@ function SpotForm({ spot, type, updateId }) {
               <br />
               <input
                 className="form-input"
-                type="text"
+                type="url"
                 value={img4}
                 onChange={(e) => setImg4(e.target.value)}
                 placeholder="Image URL"
@@ -259,7 +259,7 @@ function SpotForm({ spot, type, updateId }) {
               <br />
               <input
                 className="form-input"
-                type="text"
+                type="url"
                 value={img5}
                 onChange={(e) => setImg5(e.target.value)}
                 placeholder="Image URL"

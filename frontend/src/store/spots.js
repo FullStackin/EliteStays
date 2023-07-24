@@ -7,45 +7,46 @@ const DELETE_SPOT = "spots/deleteSpot";
 const GET_USER_SPOTS = "spots/current";
 const UPDATE_SPOT = "spots/update";
 
-//ac for user spots
-const getUserSpotsAC = (spots) => {
-  return {
-    type: GET_USER_SPOTS,
-    payload: spots,
-  };
-};
+//Spot Actions
 
-//action creator for AllSpots
-const getAllSpotsAC = (spots) => {
+const getAllSpotsAction = (spots) => {
   return {
     type: GET_ALL_SPOTS,
     payload: spots,
   };
 };
 
-//ac for single spot
-const getSpotAC = (spot) => {
+const getSpotAction = (spot) => {
   return {
     type: GET_SPOT,
     payload: spot,
   };
 };
 
-const createSpotAC = (spot) => {
+const createSpotAction = (spot) => {
   return {
     type: CREATE_SPOT,
     payload: spot,
   };
 };
 
-const deleteSpotAC = (spot) => {
+const deleteSpotAction = (spot) => {
   return {
     type: DELETE_SPOT,
     payload: spot,
   };
 };
 
-const updateSpotAC = (spot) => {
+const getUserSpotsAction = (spots) => {
+  return {
+    type: GET_USER_SPOTS,
+    payload: spots,
+  };
+};
+
+
+
+const updateSpotAction = (spot) => {
   return {
     type: UPDATE_SPOT,
     payload: spot,
@@ -60,7 +61,7 @@ export const getUserSpotsThunk = () => async (dispatch) => {
     const userSpotsObj = {};
     userSpots.Spots.forEach((spot) => (userSpotsObj[spot.id] = spot));
 
-    dispatch(getUserSpotsAC(userSpotsObj));
+    dispatch(getUserSpotsAction(userSpotsObj));
   } else {
     //err
   }
@@ -84,7 +85,7 @@ export const createSpotThunk =
         });
       }
 
-      dispatch(createSpotAC(newSpot));
+      dispatch(createSpotAction(newSpot));
       return newSpot;
     }
   };
@@ -95,7 +96,7 @@ export const deleteSpotThunk = (spotId) => async (dispatch) => {
     headers: { "Content-Type": "application/json" },
   });
   if (res.ok) {
-    dispatch(deleteSpotAC(spotId));
+    dispatch(deleteSpotAction(spotId));
   } else {
     //err
   }
@@ -112,7 +113,7 @@ export const updateSpotThunk =
     });
     if (res.ok) {
       const spot = await res.json();
-      dispatch(updateSpotAC(createdSpot));
+      dispatch(updateSpotAction(createdSpot));
     } else {
     }
   };
@@ -120,7 +121,7 @@ export const updateSpotThunk =
 export const getSpotThunk = (spotId) => async (dispatch) => {
   const res = await csrfFetch(`/api/spots/${spotId}`);
   const spot = await res.json();
-  dispatch(getSpotAC(spot));
+  dispatch(getSpotAction(spot));
 };
 
 export const getAllSpotsThunk = () => async (dispatch) => {
@@ -128,7 +129,7 @@ export const getAllSpotsThunk = () => async (dispatch) => {
   const spots = await res.json();
   const allSpotsObj = {};
   spots.forEach((spot) => (allSpotsObj[spot.id] = spot));
-  dispatch(getAllSpotsAC(allSpotsObj));
+  dispatch(getAllSpotsAction(allSpotsObj));
 };
 
 const initialState = { allSpots: {}, singleSpot: {} };
