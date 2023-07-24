@@ -44,8 +44,6 @@ const getUserSpotsAction = (spots) => {
   };
 };
 
-
-
 const updateSpotAction = (spot) => {
   return {
     type: UPDATE_SPOT,
@@ -126,10 +124,15 @@ export const getSpotThunk = (spotId) => async (dispatch) => {
 
 export const getAllSpotsThunk = () => async (dispatch) => {
   const res = await csrfFetch("/api/spots");
-  const spots = await res.json();
-  const allSpotsObj = {};
-  spots.forEach((spot) => (allSpotsObj[spot.id] = spot));
-  dispatch(getAllSpotsAction(allSpotsObj));
+  if (res.ok) {
+    const spots = await res.json();
+    const allSpotsObj = {};
+    spots.forEach((spot) => (allSpotsObj[spot.id] = spot));
+    console.log(allSpotsObj);
+    dispatch(getAllSpotsAction(allSpotsObj));
+  } else {
+    console.log("ERror ALl");
+  }
 };
 
 const initialState = { allSpots: {}, singleSpot: {} };

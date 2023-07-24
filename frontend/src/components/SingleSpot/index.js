@@ -71,11 +71,13 @@ function SingleSpot() {
         <div className="gallery">
           <img src={mainImg} className="main-img" alt="Main" />
           <div className="gallery-image-wrapper">
-            <img
-              className="gallery-image"
-              alt={spot.name}
-              src={galleryImages[0]}
-            />
+            {galleryImages[0] && (
+              <img
+                className="gallery-image"
+                alt={spot.name}
+                src={galleryImages[0]}
+              />
+            )}
           </div>
         </div>
         <div className="single-spot-info-box">

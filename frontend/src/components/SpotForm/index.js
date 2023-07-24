@@ -79,10 +79,14 @@ function SpotForm({ spot, type, updateId }) {
         ).catch(async (res) => {
           const data = await res.json();
         });
-        history.push(`/spots/${newSpot.id}`);
+        setTimeout(() => {
+          history.push(`/spots/${newSpot.id}`);
+        }, 750);
       } else {
         const spot = await dispatch(updateSpotThunk({ createdSpot, spotImgs }));
-        history.push(`/spots/${updateId}`);
+        setTimeout(() => {
+          history.push(`/spots/${updateId}`);
+        }, 750);
       }
     }
   };
