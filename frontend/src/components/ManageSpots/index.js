@@ -1,3 +1,4 @@
+import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserSpotsThunk } from "../../store/spots";
@@ -10,13 +11,14 @@ import "./ManageSpots.css";
 function ManageSpots() {
   const dispatch = useDispatch();
   const userSpots = Object.values(useSelector((state) => state.spots.allSpots));
+
   useEffect(() => {
     dispatch(getUserSpotsThunk());
   }, [dispatch]);
 
   return (
     <div>
-      <h2> Manage Spots</h2>
+      <h2>Manage Spots</h2>
       {userSpots.length === 0 && (
         <NavLink exact to={"/spots/new"}>
           Create a new spot
@@ -25,6 +27,8 @@ function ManageSpots() {
       <section className="manage-spots-gallery">
         {userSpots.map((spot) => (
           <div key={spot.id}>
+            {" "}
+            {/* Add a unique key to the wrapping div */}
             <AllSpotsItem spot={spot} />
             <button className="update-button">
               <NavLink exact to={`/spots/${spot.id}/update`}>
@@ -34,6 +38,7 @@ function ManageSpots() {
             <OpenModalButton
               buttonText="Delete"
               modalComponent={<DeleteSpot spot={spot} />}
+              buttonClassName="delete-button"
             />
           </div>
         ))}

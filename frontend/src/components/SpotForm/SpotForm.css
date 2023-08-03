@@ -56,6 +56,7 @@
   border-color: grey;
   color: grey;
   background-color: white;
+  cursor: not-allowed;
 }
 
 .form-wrapper textarea {
@@ -80,5 +81,6 @@
 
 .price-icon {
   width: 18px;
-  margin-right: 5px;
+  height: 25px;
+  margin-right: 2px;
 }

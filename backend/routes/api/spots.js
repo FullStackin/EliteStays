@@ -233,8 +233,8 @@ router.get('/current', requireAuth, async (req, res) => {
 
 });
 
-router.get('/:spotid', async (req, res) => {
-    const spot = await Spot.findByPk(req.params.spotid, {
+router.get('/:spotId', async (req, res) => {
+    const spot = await Spot.findByPk(req.params.spotId, {
         include: [
             {
                 model: SpotImage,

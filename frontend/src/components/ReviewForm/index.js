@@ -14,11 +14,26 @@ import { getSpotThunk } from "../../store/spots";
 function ReviewForm({ spotId, review, type, updateId }) {
   const dispatch = useDispatch();
   const { closeModal } = useModal();
-  const [text, setText] = useState("");
-  const [stars, setStars] = useState("");
+  const [text, setText] = useState(type === "update" ? review?.review : "");
+  const [stars, setStars] = useState(type === "update" ? review?.stars : "");
+  const [isFormValid, setIsFormValid] = useState(true);
+
+  const maxCharacterCount = 2000;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!stars || text.trim().length === 0) {
+      setIsFormValid(false);
+      return;
+    }
+
+    if (text.length > maxCharacterCount) {
+      setIsFormValid(false);
+      return;
+    }
+
+    setIsFormValid(true);
+
     if (type === "update") {
       const newReview = {
         id: review.id,
@@ -49,8 +64,25 @@ function ReviewForm({ spotId, review, type, updateId }) {
         <textarea
           placeholder="Leave your review here"
           value={text}
-          onChange={(e) => setText(e.target.value)}
+          onChange={(e) => {
+            setText(e.target.value);
+            setIsFormValid(true);
+          }}
+          maxLength={maxCharacterCount}
         />
+        {text.length > maxCharacterCount && (
+          <p className="error-message">
+            Review should not exceed {maxCharacterCount} characters.
+          </p>
+        )}
+        {!isFormValid && (
+          <p className="error-message">
+            Please provide both a rating and a review before submitting.
+          </p>
+        )}
+        <div className="character-count">
+          {text.length}/{maxCharacterCount} characters
+        </div>
         <div className="star-rating">
           <div
             className={stars >= 1 ? "filled" : "empty"}
@@ -113,7 +145,12 @@ function ReviewForm({ spotId, review, type, updateId }) {
             )}
           </div>
         </div>
-        <button type="submit" disabled={!stars || text.length < 6}>
+        <button
+          type="submit"
+          disabled={
+            !stars || text.length < 6 || text.length > maxCharacterCount
+          }
+        >
           Submit Your Review
         </button>
       </form>

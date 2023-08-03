@@ -7,23 +7,52 @@ import "./SpotForm.css";
 import { useEffect } from "react";
 
 function SpotForm({ spot, type, updateId }) {
-  const [name, setName] = useState(spot ? spot.name : "");
-  const [address, setAddress] = useState(spot ? spot.address : "");
-  const [city, setCity] = useState(spot ? spot.city : "");
-  const [state, setState] = useState(spot ? spot.state : "");
-  const [country, setCountry] = useState(spot ? spot.country : "");
-  const [lat, setLat] = useState(spot ? spot.lat : "");
-  const [lng, setLng] = useState(spot ? spot.lng : "");
-  const [description, setDescription] = useState(spot ? spot.description : "");
-  const [price, setPrice] = useState(spot ? spot.price : "");
+  // Helper function to validate image URLs
+  const isValidImageUrl = (url) => {
+    const urlPattern = /^https?:\/\/.+\.(jpeg|jpg|gif|png)$/i;
+    return urlPattern.test(url);
+  };
+
+  // Use the spread operator to set default values for form fields if spot is undefined
+  const initialValues = {
+    name: spot?.name || "",
+    address: spot?.address || "",
+    city: spot?.city || "",
+    state: spot?.state || "",
+    country: spot?.country || "",
+    lat: spot?.lat || "",
+    lng: spot?.lng || "",
+    description: spot?.description || "",
+    price: spot?.price || "",
+  };
+
+  const [name, setName] = useState(initialValues.name);
+  const [address, setAddress] = useState(initialValues.address);
+  const [city, setCity] = useState(initialValues.city);
+  const [state, setState] = useState(initialValues.state);
+  const [country, setCountry] = useState(initialValues.country);
+  const [lat, setLat] = useState(initialValues.lat);
+  const [lng, setLng] = useState(initialValues.lng);
+  const [description, setDescription] = useState(initialValues.description);
+  const [price, setPrice] = useState(initialValues.price);
   const [err, setErr] = useState({});
   const [showError, setShowError] = useState(false);
 
-  const [img1, setImg1] = useState("");
-  const [img2, setImg2] = useState("");
-  const [img3, setImg3] = useState("");
-  const [img4, setImg4] = useState("");
-  const [img5, setImg5] = useState("");
+  const [img1, setImg1] = useState(
+    spot && spot.images && spot.images[0] ? spot.images[0].url : ""
+  );
+  const [img2, setImg2] = useState(
+    spot && spot.images && spot.images[1] ? spot.images[1].url : ""
+  );
+  const [img3, setImg3] = useState(
+    spot && spot.images && spot.images[2] ? spot.images[2].url : ""
+  );
+  const [img4, setImg4] = useState(
+    spot && spot.images && spot.images[3] ? spot.images[3].url : ""
+  );
+  const [img5, setImg5] = useState(
+    spot && spot.images && spot.images[4] ? spot.images[4].url : ""
+  );
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -39,20 +68,49 @@ function SpotForm({ spot, type, updateId }) {
       err.description = "Description needs a minimum of 30 characters";
     if (price.length < 1) err.price = "Price per night is required";
     if (isNaN(price)) err.price = "Price per night must be a number";
+    if (Number(price) < 10000) err.price = "Minimum price per night is 10000";
+    if (Number(price) < 0) err.price = "Price per night cannot be negative";
     if (type === "new" && img1.length < 1)
       err.img1 = "Preview image is required";
     setErr(err);
   }, [name, address, city, state, country, description, price, img1]);
 
-  //handle form submission
+  useEffect(() => {
+    setImg1(spot && spot.images && spot.images[0] ? spot.images[0].url : "");
+    setImg2(spot && spot.images && spot.images[1] ? spot.images[1].url : "");
+    setImg3(spot && spot.images && spot.images[2] ? spot.images[2].url : "");
+    setImg4(spot && spot.images && spot.images[3] ? spot.images[3].url : "");
+    setImg5(spot && spot.images && spot.images[4] ? spot.images[4].url : "");
+  }, [spot]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Validation checks for other fields (name, address, city, etc.)
+
+    // Handle image URL validation and errors for img1, img2, img3, img4, img5
+    const imageUrls = [img1, img2, img3, img4, img5];
+    const updatedImages = [];
+    for (let i = 0; i < imageUrls.length; i++) {
+      const imageUrl = imageUrls[i];
+      if (imageUrl) {
+        if (!isValidImageUrl(imageUrl)) {
+          setErr((prevErr) => ({
+            ...prevErr,
+            [`img${i + 1}`]: `Invalid URL format for Image ${i + 1}`,
+          }));
+          return;
+        }
+        updatedImages.push({ url: imageUrl, preview: i === 0 });
+      }
+    }
 
     if (Object.values(err).length > 0) {
       setShowError(true);
     } else {
       let createdSpot = {
         ...spot,
+        id: spot?.id || null,
         address: address,
         city: city,
         state: state,
@@ -63,26 +121,21 @@ function SpotForm({ spot, type, updateId }) {
         description: description,
         price: price,
       };
-      //add images
-      const spotImgs = [];
+      console.log("createdSpot before thunk call:", createdSpot);
 
-      if (img1) spotImgs.push({ url: img1, preview: true });
-      if (img2) spotImgs.push({ url: img2, preview: false });
-      if (img3) spotImgs.push({ url: img3, preview: false });
-      if (img4) spotImgs.push({ url: img4, preview: false });
-      if (img5) spotImgs.push({ url: img5, preview: false });
-
-      //Split between new/update
+      // Pass updatedImages directly instead of adding them to spotImgs array
       if (type === "new") {
         const newSpot = await dispatch(
-          createSpotThunk({ createdSpot, spotImgs })
+          createSpotThunk({ createdSpot, spotImgs: updatedImages })
         ).catch(async (res) => {
           const data = await res.json();
         });
 
         history.push(`/spots/${newSpot?.id}`);
       } else {
-        const spot = await dispatch(updateSpotThunk({ createdSpot, spotImgs }));
+        await dispatch(
+          updateSpotThunk({ createdSpot, spotImgs: updatedImages })
+        );
 
         history.push(`/spots/${updateId}`);
       }
@@ -214,61 +267,59 @@ function SpotForm({ spot, type, updateId }) {
         </label>
         <br />
         <hr />
-        {type === "new" && (
-          <div className="image-url-wrapper">
-            <label className="form-label">
-              <h3>Embellish your spot with striking visuals</h3>
-              <p>
-                A link to at least one image is required to present your spot to
-                potential guests.
-              </p>
-              <input
-                className="form-input"
-                type="url"
-                value={img1}
-                onChange={(e) => setImg1(e.target.value)}
-                placeholder="Preview Image URL"
-              />
-              {showError && err.img1 && <p className="err-msg">{err.img1}</p>}
-              <br />
-              <br />
-              <input
-                className="form-input"
-                type="url"
-                value={img2}
-                onChange={(e) => setImg2(e.target.value)}
-                placeholder="Image URL"
-              />
-              <br />
-              <br />
-              <input
-                className="form-input"
-                type="url"
-                value={img3}
-                onChange={(e) => setImg3(e.target.value)}
-                placeholder="Image URL"
-              />
-              <br />
-              <br />
-              <input
-                className="form-input"
-                type="url"
-                value={img4}
-                onChange={(e) => setImg4(e.target.value)}
-                placeholder="Image URL"
-              />
-              <br />
-              <br />
-              <input
-                className="form-input"
-                type="url"
-                value={img5}
-                onChange={(e) => setImg5(e.target.value)}
-                placeholder="Image URL"
-              />
-            </label>
-          </div>
-        )}
+        <div className="image-url-wrapper">
+          <label className="form-label">
+            <h3>Embellish your spot with striking visuals</h3>
+            <p>
+              A link to at least one image is required to present your spot to
+              potential guests.
+            </p>
+            <input
+              className="form-input"
+              type="url"
+              value={img1}
+              onChange={(e) => setImg1(e.target.value)}
+              placeholder="Preview Image URL"
+            />
+            {showError && err.img1 && <p className="err-msg">{err.img1}</p>}
+            <br />
+            <br />
+            <input
+              className="form-input"
+              type="url"
+              value={img2}
+              onChange={(e) => setImg2(e.target.value)}
+              placeholder="Image URL"
+            />
+            <br />
+            <br />
+            <input
+              className="form-input"
+              type="url"
+              value={img3}
+              onChange={(e) => setImg3(e.target.value)}
+              placeholder="Image URL"
+            />
+            <br />
+            <br />
+            <input
+              className="form-input"
+              type="url"
+              value={img4}
+              onChange={(e) => setImg4(e.target.value)}
+              placeholder="Image URL"
+            />
+            <br />
+            <br />
+            <input
+              className="form-input"
+              type="url"
+              value={img5}
+              onChange={(e) => setImg5(e.target.value)}
+              placeholder="Image URL"
+            />
+          </label>
+        </div>
         <br />
         <br />
         <button disabled={false} type="submit" className="form-submit">

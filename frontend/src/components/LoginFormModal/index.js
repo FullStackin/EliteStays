@@ -52,7 +52,7 @@ function LoginFormModal() {
           required
           placeholder="Password"
         />
-        {errors.credential && <p>{errors.credential}</p>}
+        {errors.credential && <p className="error-message">{errors.credential}</p>}
         <button
           disabled={credential.length < 4 || password.length < 6}
           type="submit"
@@ -66,3 +66,4 @@ function LoginFormModal() {
 }
 
 export default LoginFormModal;
+

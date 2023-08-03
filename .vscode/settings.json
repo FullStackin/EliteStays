@@ -3,7 +3,9 @@
         "listingimage",
         "listingshow",
         "mkres",
+        "neighbourhood",
         "newlisting",
+        "signup",
         "thunkaction"
     ]
 }

@@ -26,9 +26,9 @@ const imgKeys = {
 
 function SingleSpot() {
   const sessionUser = useSelector((state) => state.session.user);
-  const { spotId } = useParams();
   const spot = useSelector((state) => state.spots.singleSpot);
   const reviews = useSelector((state) => state.reviews.spot);
+  const { spotId } = useParams();
   const state = useSelector((state) => state);
 
   const dispatch = useDispatch();

@@ -1,7 +1,41 @@
+/* Style for the "Update" button */
 .manage-spots-gallery {
-    display: flex;
-    justify-content: start;
-    gap: 5%;
-    flex-wrap: wrap;
-    margin: 20px 10%;
+  display: flex;
+  justify-content: start;
+  gap: 5%;
+  flex-wrap: wrap;
+  margin: 20px 10%;
+}
+
+.update-button {
+  border: none;
+  background: linear-gradient(90deg, gold, rgb(155, 135, 21));
+  height: 40px;
+  width: 130px;
+  font-size: 20px;
+  color: white;
+  margin-left: 200px;
+  border-radius: 20px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.update-button:hover {
+  background-color: goldenrod;
+}
+
+/* Style for the "Delete" button */
+.delete-button {
+  border: none;
+  background: linear-gradient(90deg, gold, rgb(155, 135, 21));
+  height: 40px;
+  width: 130px;
+  font-size: 20px;
+  color: rgb(249, 245, 225);
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.delete-button:hover {
+  background-color: goldenrod;
 }

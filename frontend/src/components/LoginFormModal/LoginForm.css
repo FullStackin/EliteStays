@@ -1,52 +1,92 @@
+/* Updated Login CSS */
 .login-modal {
-    height: 300px;
-    width: 400px;
-    display: flex;
-    flex-direction:column;
-    align-content: center;
-    border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f9f9f9;
+  width: 300px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  margin: 10px;
 }
 
-.login-form{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    margin-left: 10%;
-    margin-right: 10%;
+.login-modal h3 {
+  display: flex;
+  font-size: 24px;
+  justify-content: center;
 }
 
-.login-modal h1{
-    display: flex;
-    justify-content: center;
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  margin: 10px;
+}
+
+.login-form label {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 10px;
+  color: #333;
+  font-weight: bold;
 }
 
 .login-form input {
-    background-color: aliceblue;
-    display: flex;
-    padding: 4px;
-    justify-content: center;
-    /* width: 80%; */
-    margin: 4px
+  background-color: aliceblue;
+  display: flex;
+  padding: 4px;
+  justify-content: center;
+  width: 90%;
+  margin: 4px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+.login-form input:focus {
+  outline: none;
+  border-color: #6c63ff;
 }
 
 .login-modal button {
-    padding: 4px;
-    margin: 4px;
-    background: linear-gradient(90deg, gold, rgb(127, 111, 16));
-    border: none;
-    cursor: pointer;
-    border: 2px solid black;
-    box-shadow: 2px 2px 2px grey;
+  padding: 4px;
+  margin: 4px;
+  background: linear-gradient(90deg, gold, rgb(127, 111, 16));
+  border: none;
+  cursor: pointer;
+  border: 2px solid black;
+  box-shadow: 2px 2px 2px whitesmoke;
+  margin-top: 20px;
+  width: 97%;
+  color: white;
+  font-size: 16px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .login-modal button:hover {
-    background-color: 	goldenrod;
-  }
+  background-color: goldenrod;
+}
 
 .login-form button:disabled {
-    border-color:  grey;
-    color: grey;
-    background-color: white;
-    border: 2px solid black;
-    box-shadow: 2px 2px 2px grey;
+  border-color: grey;
+  color: whitesmoke;
+  background-color: whitesmoke;
+  border: 2px solid black;
+  box-shadow: 2px 2px 2px grey;
+  cursor: not-allowed;
+}
+
+.login-form p.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.error {
+  color: red;
+  margin-top: 5px;
+  font-size: 14px;
 }

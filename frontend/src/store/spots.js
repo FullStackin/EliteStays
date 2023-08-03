@@ -68,23 +68,38 @@ export const getUserSpotsThunk = () => async (dispatch) => {
 export const createSpotThunk =
   ({ createdSpot, spotImgs }) =>
   async (dispatch) => {
-    const res = await csrfFetch("/api/spots", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(createdSpot),
-    });
-    if (res.ok) {
-      const newSpot = await res.json();
-      for (let i = 0; i < spotImgs.length; i++) {
-        await csrfFetch(`/api/spots/${newSpot.id}/images`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(spotImgs[i]),
-        });
-      }
+    try {
+      const res = await csrfFetch("/api/spots", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(createdSpot),
+      });
 
-      dispatch(createSpotAction(newSpot));
-      return newSpot;
+      if (res.ok) {
+        const newSpot = await res.json();
+        for (let i = 0; i < spotImgs.length; i++) {
+          await csrfFetch(`/api/spots/${newSpot.id}/images`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(spotImgs[i]),
+          });
+        }
+
+        dispatch(createSpotAction(newSpot));
+        return newSpot;
+      } else {
+        // Handle the case where the response is not okay
+        // For example, throw an error and let the caller handle it
+        throw new Error(
+          "Failed to create spot. Server responded with status: " + res.status
+        );
+      }
+    } catch (err) {
+      console.error("Error while creating spot:", err);
+
+      // Handle any exceptions that occurred during the API request
+      // For example, log the error or show an error message to the user
+      throw err;
     }
   };
 
@@ -103,16 +118,32 @@ export const deleteSpotThunk = (spotId) => async (dispatch) => {
 export const updateSpotThunk =
   ({ createdSpot }) =>
   async (dispatch) => {
-    const spotId = createdSpot.id;
-    const res = await csrfFetch(`/api/spots/${spotId}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(createdSpot),
-    });
-    if (res.ok) {
-      const spot = await res.json();
-      dispatch(updateSpotAction(createdSpot));
-    } else {
+    try {
+      const spotId = createdSpot.id;
+      const res = await csrfFetch(`/api/spots/${spotId}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(createdSpot),
+      });
+
+      if (res.ok) {
+        const spot = await res.json();
+        dispatch(updateSpotAction(createdSpot));
+        return spot;
+      } else {
+        console.log("Updating spot with data:", createdSpot);
+
+        // Handle the case where the response is not okay
+        // For example, throw an error and let the caller handle it
+        throw new Error(
+          "Failed to update spot. Server responded with status: " + res.status
+        );
+      }
+    } catch (err) {
+      // Handle any exceptions that occurred during the API request
+      // For example, log the error or show an error message to the user
+      console.error("Error while updating spot:", err);
+      throw err;
     }
   };
 
