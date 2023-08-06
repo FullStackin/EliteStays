@@ -27,8 +27,6 @@ function ManageSpots() {
       <section className="manage-spots-gallery">
         {userSpots.map((spot) => (
           <div key={spot.id}>
-            {" "}
-            {/* Add a unique key to the wrapping div */}
             <AllSpotsItem spot={spot} />
             <button className="update-button">
               <NavLink exact to={`/spots/${spot.id}/update`}>

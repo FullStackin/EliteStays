@@ -69,9 +69,6 @@ function SpotForm({ spot, type, updateId }) {
     if (price.length < 1) err.price = "Price per night is required";
     if (isNaN(price)) err.price = "Price per night must be a number";
     if (Number(price) < 10000) err.price = "Minimum price per night is 10000";
-    if (Number(price) < 0) err.price = "Price per night cannot be negative";
-    if (type === "new" && img1.length < 1)
-      err.img1 = "Preview image is required";
     setErr(err);
   }, [name, address, city, state, country, description, price, img1]);
 
