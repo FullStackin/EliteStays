@@ -7,7 +7,9 @@ import SpotForm from "../SpotForm";
 
 const UpdateSpotForm = () => {
   const { spotId } = useParams();
+
   const spot = useSelector((state) => state.spots.allSpots[spotId]);
+
   return <SpotForm spot={spot} type={"update"} updateId={spotId} />;
 };
 

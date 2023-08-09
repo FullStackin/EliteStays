@@ -88,18 +88,34 @@ function SpotForm({ spot, type, updateId }) {
     // Handle image URL validation and errors for img1, img2, img3, img4, img5
     const imageUrls = [img1, img2, img3, img4, img5];
     const updatedImages = [];
+
+    let hasAtLeastOneValidImage = false; // Track if at least one valid image is detected
+
     for (let i = 0; i < imageUrls.length; i++) {
       const imageUrl = imageUrls[i];
-      if (imageUrl) {
-        if (!isValidImageUrl(imageUrl)) {
-          setErr((prevErr) => ({
-            ...prevErr,
-            [`img${i + 1}`]: `Invalid URL format for Image ${i + 1}`,
-          }));
-          return;
-        }
+      if (imageUrl.trim() === "") {
+        // Empty URL case
+        setErr((prevErr) => ({
+          ...prevErr,
+          [`img${i + 1}`]: i === 0 ? `At least one image is required` : "",
+        }));
+      } else if (!isValidImageUrl(imageUrl)) {
+        // Invalid URL format case
+        setErr((prevErr) => ({
+          ...prevErr,
+          [`img${i + 1}`]:
+            i === 0 ? `Invalid URL format for Image ${i + 1}` : "",
+        }));
+      } else {
         updatedImages.push({ url: imageUrl, preview: i === 0 });
+        hasAtLeastOneValidImage = true;
       }
+    }
+
+    if (!hasAtLeastOneValidImage) {
+      // Display an error message if no valid image URLs are provided
+      setShowError(true);
+      return;
     }
 
     if (Object.values(err).length > 0) {
@@ -288,6 +304,7 @@ function SpotForm({ spot, type, updateId }) {
               onChange={(e) => setImg2(e.target.value)}
               placeholder="Image URL"
             />
+            {showError && err.img2 && <p className="err-msg">{err.img2}</p>}
             <br />
             <br />
             <input
@@ -297,6 +314,7 @@ function SpotForm({ spot, type, updateId }) {
               onChange={(e) => setImg3(e.target.value)}
               placeholder="Image URL"
             />
+            {showError && err.img3 && <p className="err-msg">{err.img3}</p>}
             <br />
             <br />
             <input
@@ -306,6 +324,7 @@ function SpotForm({ spot, type, updateId }) {
               onChange={(e) => setImg4(e.target.value)}
               placeholder="Image URL"
             />
+            {showError && err.img4 && <p className="err-msg">{err.img4}</p>}
             <br />
             <br />
             <input
@@ -315,6 +334,7 @@ function SpotForm({ spot, type, updateId }) {
               onChange={(e) => setImg5(e.target.value)}
               placeholder="Image URL"
             />
+            {showError && err.img5 && <p className="err-msg">{err.img5}</p>}
           </label>
         </div>
         <br />

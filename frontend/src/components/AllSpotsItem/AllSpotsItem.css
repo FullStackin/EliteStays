@@ -1,18 +1,16 @@
 .spot-item {
-    display: flex;
-    flex-direction: column;
-    width: 300px;
-    border-radius: 20px;
-    margin: 0 200px; /* Center the spot-item within its container */
-    overflow: hidden;
-  }
-
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  border-radius: 20px;
+  margin: 0 200px; /* Center the spot-item within its container */
+  overflow: hidden;
+}
 
 .spot-item img {
   height: 300px;
   width: 100%;
   border-radius: 10px;
-
 }
 
 .spot-info-row1 {
@@ -34,7 +32,7 @@
 }
 
 /* Style the star icon using the "gold-star" class */
-.gold-star {
+.fa-star {
   color: gold;
 }
 
