@@ -13,24 +13,24 @@ function Navigation({ isLoaded }) {
 
   return (
     <div className="nav">
-      <div className="left-nav">
-        <NavLink
-          exact
-          to="/"
-          className="home-logo"
-          style={{ textDecoration: "none" }}
-        >
-          <img src={logoImage} alt="EliteStays" />
-        </NavLink>
-        <NavLink
-          exact
-          to="/"
-          className="home-title"
-          style={{ textDecoration: "none" }}
-        >
-          <i>EliteStays</i>
-        </NavLink>
-      </div>
+    <div className="left-nav">
+      <NavLink
+        exact
+        to="/"
+        className="home-logo"
+        style={{ textDecoration: "none" }}
+      >
+        <img src={logoImage} alt="EliteStays" />
+      </NavLink>
+      <NavLink
+        exact
+        to="/"
+        className="home-title"
+        style={{ textDecoration: "none" }}
+      >
+        EliteStays
+      </NavLink>
+    </div>
       {isLoaded && (
         <div className="right-nav">
           {sessionUser ? (

@@ -149,7 +149,7 @@ function SpotForm({ spot, type, updateId }) {
         await dispatch(
           updateSpotThunk({ createdSpot, spotImgs: updatedImages })
         );
-
+        // Navigate to updated spot's page
         history.push(`/spots/${updateId}`);
       }
     }

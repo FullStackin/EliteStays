@@ -40,7 +40,17 @@
   margin-right: 10px;
   border-radius: 50%;
 }
+.home-title {
+  font-size: 3rem;
+  padding-right: 10px;
+  background: linear-gradient(90deg, gold, rgb(127, 111, 16));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-decoration: none;
+}
 
+/* Apply the consistent styling to the active state */
 .home-title.active {
   background: linear-gradient(90deg, gold, rgb(127, 111, 16));
   -webkit-background-clip: text;
@@ -49,6 +59,7 @@
   font-size: 3rem;
   padding-right: 10px; /* Add some padding to the right side */
 }
+
 
 .right-nav {
   display: flex;
