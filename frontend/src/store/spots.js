@@ -6,6 +6,7 @@ const CREATE_SPOT = "spots/createSpot";
 const DELETE_SPOT = "spots/deleteSpot";
 const GET_USER_SPOTS = "spots/current";
 const UPDATE_SPOT = "spots/update";
+const SEARCH_SPOTS = "spots/SEARCH_SPOTS";
 
 //Spot Actions
 
@@ -51,6 +52,12 @@ const updateSpotAction = (spot) => {
   };
 };
 
+const searchSpotAction = (spots) => {
+  return {
+    type: SEARCH_SPOTS,
+    spots,
+  };
+};
 
 export const getUserSpotsThunk = () => async (dispatch) => {
   const res = await csrfFetch("/api/spots/current");
@@ -62,7 +69,7 @@ export const getUserSpotsThunk = () => async (dispatch) => {
 
     dispatch(getUserSpotsAction(userSpotsObj));
   } else {
-    console.error('Error fetching user spots:', res.status);
+    //err
   }
 };
 
@@ -81,6 +88,7 @@ export const createSpotThunk =
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(createdSpot),
       });
+      console.log(spotImgs, " THIS IS SPOT IMAGES");
       if (res.ok) {
         const newSpot = await res.json();
         const formData = new FormData();
@@ -92,7 +100,6 @@ export const createSpotThunk =
           method: "POST",
           body: formData,
         });
-        console.log("New spot created:", newSpot);
 
         dispatch(createSpotAction(newSpot));
         return newSpot;
@@ -104,11 +111,7 @@ export const createSpotThunk =
         );
       }
     } catch (err) {
-      console.error("Error while creating spot:", err);
-
-      // Handle any exceptions that occurred during the API request
-      // For example, log the error or show an error message to the user
-      throw err;
+      //err
     }
   };
 
@@ -168,7 +171,24 @@ export const getAllSpotsThunk = () => async (dispatch) => {
   }
 };
 
+export const searchSpotThunk = (query) => async (dispatch) => {
+  try {
+    const res = await csrfFetch(`/api/spots?${query}`);
 
+    console.log("query in thunk: ", `/api/spots/${query}`);
+
+    if (res.ok) {
+      const spots = await res.json();
+      console.log("spots in Spot Thunk: ", spots);
+      dispatch(searchSpotAction(spots));
+      return spots;
+    }
+  } catch (err) {
+    const errors = await err.json();
+    console.log("errors in spot reducer: ", errors);
+    return errors;
+  }
+};
 
 const initialState = { allSpots: {}, singleSpot: {} };
 
@@ -205,7 +225,20 @@ const spotReducer = (state = initialState, action) => {
       newState.singleSpot = action.payload;
       return newState;
     }
+    case SEARCH_SPOTS: {
+      console.log("Search spots in reducer: ", action.spots);
+      const spotState = {
+        ...state,
+        allState: { ...state.allState },
+        singleSpot: { ...state.singleSpot },
+        searchSpot: {},
+      };
+      action.spots.Spots.forEach((spot) => {
+        spotState.searchSpot[spot.id] = spot;
+      });
 
+      return spotState;
+    }
     default:
       return state;
   }
