@@ -493,12 +493,14 @@ router.post(
         keys.map((key) =>
           SpotImage.create({
             url: key,
-            spotId,
+            spotId: parseInt(spotId), // turning string into number
+            preview: false,
           })
         )
       );
 
       // Construct an array of image URLs directly from the S3 bucket
+      console.log(images, " THESE ARE THE IMAGES!");
       const imageUrlList = images.map(
         (image) => `https://elitestays.s3.us-west-1.amazonaws.com/${image.url}`
       );
