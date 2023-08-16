@@ -1,28 +1,13 @@
-import { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getSpotThunk } from "../../store/spots";
-import "./Spots.css";
 import { useParams } from "react-router-dom";
 import { getReviewsThunk, updateReviewThunk } from "../../store/reviews";
 import Reviews from "../Reviews";
 import ReviewForm from "../ReviewForm";
 import OpenModalButton from "../OpenModalButton";
 
-import LA1 from "../../assets/spot-images/LA1.png";
-import LA2 from "../../assets/spot-images/LA2.png";
-import MLB1 from "../../assets/spot-images/MLB1.png";
-import MLB2 from "../../assets/spot-images/MLB2.png";
-import SB1 from "../../assets/spot-images/SB1.png";
-import SB2 from "../../assets/spot-images/SB2.png";
-import SD1 from "../../assets/spot-images/SD1.png";
-import SD2 from "../../assets/spot-images/SD2.png";
-
-const imgKeys = {
-  4: [LA1, LA2],
-  3: [MLB1, MLB2],
-  2: [SB1, SB2],
-  1: [SD1, SD2],
-};
+import "./Spots.css";
 
 function SingleSpot() {
   const sessionUser = useSelector((state) => state.session.user);
@@ -30,6 +15,7 @@ function SingleSpot() {
   const reviews = useSelector((state) => state.reviews.spot);
   const { spotId } = useParams();
   const state = useSelector((state) => state);
+  const [imageUrls, setImageUrls] = useState([]);
 
   const dispatch = useDispatch();
 
@@ -40,9 +26,9 @@ function SingleSpot() {
 
   let spotImageUrls = [];
   if (spot && spot.SpotImages) {
-    for (let e in spot.SpotImages) {
-      spotImageUrls.push(spot.SpotImages[e].url);
-    }
+    spot.SpotImages.forEach((image) => {
+      spotImageUrls.push(image.url);
+    });
   }
 
   let reviewList = Object.values(reviews);
@@ -59,6 +45,9 @@ function SingleSpot() {
     return spotImageUrls && spotImageUrls[i + 1];
   });
 
+  console.log("Main Image:", mainImg);
+  console.log("Gallery Images:", galleryImages);
+
   return (
     <div className="single-spot-wrapper">
       <div className="spot-header">
@@ -71,13 +60,10 @@ function SingleSpot() {
         <div className="gallery">
           <img src={mainImg} className="main-img" alt="Main" />
           <div className="gallery-image-wrapper">
-            {galleryImages[0] && (
-              <img
-                className="gallery-image"
-                alt={spot.name}
-                src={galleryImages[0]}
-              />
-            )}
+            {galleryImages.length &&
+              galleryImages.map((image) => (
+                <img className="gallery-image" alt={spot.name} src={image} />
+              ))}
           </div>
         </div>
         <div className="single-spot-info-box">

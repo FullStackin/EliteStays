@@ -1,10 +1,9 @@
 .review-modal {
   display: flex;
-  align-items: center; /* Align items vertically */
+  align-content: center;
   flex-direction: column;
   width: 400px;
-  min-height: 350px; /* Use min-height to allow expansion */
-  padding: 10px;
+  height: 350px;
 }
 
 .review-form {
@@ -21,16 +20,9 @@
 }
 
 .review-modal textarea {
-  resize: vertical; /* Allow vertical resizing */
   height: 150px;
   margin-bottom: 5%;
-  padding: 8px; /* Add some padding for better visual */
-}
-
-.character-count {
-  margin-bottom: 5px;
-  color: #888;
-  font-size: 12px;
+  padding: 8px;
 }
 
 .review-modal .star-rating {

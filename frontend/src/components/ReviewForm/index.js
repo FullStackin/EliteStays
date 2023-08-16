@@ -1,8 +1,6 @@
-// ReviewForm.js
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
 import {
   createReviewThunk,
   getReviewsThunk,
@@ -20,14 +18,14 @@ function ReviewForm({ spotId, review, type, updateId }) {
 
   const maxCharacterCount = 2000;
 
+  const handleStarMouseEnter = (rating) => {
+    setStars(rating);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!stars || text.trim().length === 0) {
-      setIsFormValid(false);
-      return;
-    }
 
-    if (text.length > maxCharacterCount) {
+    if (!stars || text.trim().length === 0 || text.length > maxCharacterCount) {
       setIsFormValid(false);
       return;
     }
@@ -86,11 +84,10 @@ function ReviewForm({ spotId, review, type, updateId }) {
         <div className="star-rating">
           <div
             className={stars >= 1 ? "filled" : "empty"}
-            onMouseEnter={() => setStars(1)}
-            onMouseLeave={() => setStars(stars)}
+            onMouseEnter={() => handleStarMouseEnter(1)}
             onClick={() => setStars(1)}
           >
-            {stars > 1 ? (
+            {stars >= 1 ? (
               <i className="fa-solid fa-star"></i>
             ) : (
               <i className="fa-regular fa-star"></i>
@@ -98,11 +95,10 @@ function ReviewForm({ spotId, review, type, updateId }) {
           </div>
           <div
             className={stars >= 2 ? "filled" : "empty"}
-            onMouseEnter={() => setStars(2)}
-            onMouseLeave={() => setStars(stars)}
+            onMouseEnter={() => handleStarMouseEnter(2)}
             onClick={() => setStars(2)}
           >
-            {stars > 1 ? (
+            {stars >= 2 ? (
               <i className="fa-solid fa-star"></i>
             ) : (
               <i className="fa-regular fa-star"></i>
@@ -110,11 +106,10 @@ function ReviewForm({ spotId, review, type, updateId }) {
           </div>
           <div
             className={stars >= 3 ? "filled" : "empty"}
-            onMouseEnter={() => setStars(3)}
-            onMouseLeave={() => setStars(stars)}
+            onMouseEnter={() => handleStarMouseEnter(3)}
             onClick={() => setStars(3)}
           >
-            {stars > 1 ? (
+            {stars >= 3 ? (
               <i className="fa-solid fa-star"></i>
             ) : (
               <i className="fa-regular fa-star"></i>
@@ -122,11 +117,10 @@ function ReviewForm({ spotId, review, type, updateId }) {
           </div>
           <div
             className={stars >= 4 ? "filled" : "empty"}
-            onMouseEnter={() => setStars(4)}
-            onMouseLeave={() => setStars(stars)}
+            onMouseEnter={() => handleStarMouseEnter(4)}
             onClick={() => setStars(4)}
           >
-            {stars > 1 ? (
+            {stars >= 4 ? (
               <i className="fa-solid fa-star"></i>
             ) : (
               <i className="fa-regular fa-star"></i>
@@ -134,11 +128,10 @@ function ReviewForm({ spotId, review, type, updateId }) {
           </div>
           <div
             className={stars >= 5 ? "filled" : "empty"}
-            onMouseEnter={() => setStars(5)}
-            onMouseLeave={() => setStars(stars)}
+            onMouseEnter={() => handleStarMouseEnter(5)}
             onClick={() => setStars(5)}
           >
-            {stars > 1 ? (
+            {stars >= 5 ? (
               <i className="fa-solid fa-star"></i>
             ) : (
               <i className="fa-regular fa-star"></i>

@@ -51,6 +51,7 @@ const updateSpotAction = (spot) => {
   };
 };
 
+
 export const getUserSpotsThunk = () => async (dispatch) => {
   const res = await csrfFetch("/api/spots/current");
 
@@ -61,8 +62,14 @@ export const getUserSpotsThunk = () => async (dispatch) => {
 
     dispatch(getUserSpotsAction(userSpotsObj));
   } else {
-    //err
+    console.error('Error fetching user spots:', res.status);
   }
+};
+
+export const getSpotThunk = (spotId) => async (dispatch) => {
+  const res = await csrfFetch(`/api/spots/${spotId}`);
+  const spot = await res.json();
+  dispatch(getSpotAction(spot));
 };
 
 export const createSpotThunk =
@@ -74,16 +81,18 @@ export const createSpotThunk =
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(createdSpot),
       });
-
       if (res.ok) {
         const newSpot = await res.json();
-        for (let i = 0; i < spotImgs.length; i++) {
-          await csrfFetch(`/api/spots/${newSpot.id}/images`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(spotImgs[i]),
-          });
-        }
+        const formData = new FormData();
+        Object.entries(spotImgs).forEach(([key, image]) => {
+          formData.append("images", image, key); // Adjust the key accordingly
+        });
+
+        const images = await csrfFetch(`/api/spots/${newSpot.id}/images`, {
+          method: "POST",
+          body: formData,
+        });
+        console.log("New spot created:", newSpot);
 
         dispatch(createSpotAction(newSpot));
         return newSpot;
@@ -147,24 +156,19 @@ export const updateSpotThunk =
     }
   };
 
-export const getSpotThunk = (spotId) => async (dispatch) => {
-  const res = await csrfFetch(`/api/spots/${spotId}`);
-  const spot = await res.json();
-  dispatch(getSpotAction(spot));
-};
-
 export const getAllSpotsThunk = () => async (dispatch) => {
   const res = await csrfFetch("/api/spots");
   if (res.ok) {
     const spots = await res.json();
     const allSpotsObj = {};
     spots.forEach((spot) => (allSpotsObj[spot.id] = spot));
-    console.log(allSpotsObj);
     dispatch(getAllSpotsAction(allSpotsObj));
   } else {
-    console.log("ERror ALl");
+    console.log("Error all");
   }
 };
+
+
 
 const initialState = { allSpots: {}, singleSpot: {} };
 
@@ -201,6 +205,7 @@ const spotReducer = (state = initialState, action) => {
       newState.singleSpot = action.payload;
       return newState;
     }
+
     default:
       return state;
   }

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import * as sessionActions from "../../store/session";
-import validator from "validator"; // Import the validator.js library
+import validator from "validator"; 
 
 import "./SignupForm.css";
 

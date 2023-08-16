@@ -157,9 +157,5 @@ router.delete('/:bookingId', requireAuth, async (req, res) => {
 
 })
 
-//test router setup
-router.get('/test', function (req, res) {
-    res.send('endpoint hit');
-});
 
 module.exports = router;
