@@ -45,9 +45,6 @@ function SingleSpot() {
     return spotImageUrls && spotImageUrls[i + 1];
   });
 
-  console.log("Main Image:", mainImg);
-  console.log("Gallery Images:", galleryImages);
-
   return (
     <div className="single-spot-wrapper">
       <div className="spot-header">
