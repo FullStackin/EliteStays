@@ -58,10 +58,10 @@ function SingleSpot() {
           <img src={mainImg} className="main-img" alt="Main" />
           <div className="gallery-image-wrapper">
             {galleryImages.length &&
-              galleryImages.map((image) => (
-                <img className="gallery-image" alt={spot.name} src={image} />
+              galleryImages.map((image, i ) => (
+                <img className="gallery-image" key={i} alt={spot.name} src={image} />
               ))}
-          </div>
+          </div>  
         </div>
         <div className="single-spot-info-box">
           <div className="name-desc-box">
