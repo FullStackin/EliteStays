@@ -6,7 +6,9 @@ import { getReviewsThunk, updateReviewThunk } from "../../store/reviews";
 import Reviews from "../Reviews";
 import ReviewForm from "../ReviewForm";
 import OpenModalButton from "../OpenModalButton";
-
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from "react-responsive-carousel";
+import ImageZoom from "react-image-zoom";
 import "./Spots.css";
 
 function SingleSpot() {
@@ -36,7 +38,7 @@ function SingleSpot() {
     ? spot.avgStarRating.toFixed(1)
     : " New";
 
-  if (Object.values(spot) < 1) {
+  if (Object.keys(spot).length === 0) {
     return <h1>Loading...</h1>;
   }
 
@@ -55,13 +57,34 @@ function SingleSpot() {
       </div>
       <div className="spot-details">
         <div className="gallery">
-          <img src={mainImg} className="main-img" alt="Main" />
+          <img
+            src={mainImg}
+            className="main-img"
+            alt="Main"
+            style={{ borderRadius: "20px", margin: "10px" }}
+          />
+
           <div className="gallery-image-wrapper">
-            {galleryImages.length &&
-              galleryImages.map((image, i ) => (
-                <img className="gallery-image" key={i} alt={spot.name} src={image} />
-              ))}
-          </div>  
+            <Carousel
+              showThumbs={false}
+              showStatus={false}
+              className="custom-carousel"
+            >
+              {galleryImages.map((image, i) =>
+                image ? (
+                  <div key={i}>
+                    <img
+                      className="gallery-image"
+                      alt={spot.name}
+                      src={image}
+                    />
+                  </div>
+                ) : (
+                  <div className="empty-gallery-slot" key={i}></div>
+                )
+              )}
+            </Carousel>
+          </div>
         </div>
         <div className="single-spot-info-box">
           <div className="name-desc-box">

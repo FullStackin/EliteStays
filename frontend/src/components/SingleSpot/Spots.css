@@ -35,15 +35,22 @@
 .gallery-image-wrapper {
   display: flex;
   object-fit: cover;
-  height: 100%;
+  /* height: 100%; */
   flex-wrap: wrap;
+  margin-top: 15px;
+  /* margin-bottom: 10px; */
+
 }
 
 .gallery-image {
   display: flex;
-  height: 50%;
-  width: 50%;
+  max-width: 500px;
+  max-height: 400px;
   object-fit: cover;
+  margin-top: 50px;
+  border-radius: 20px;
+  margin-bottom: 45px;
+  border-radius: 35px;
 }
 
 .main-img {
@@ -51,6 +58,14 @@
   width: 50%;
   height: 100%;
   object-fit: cover;
+  border-radius: 20px;
+  margin: 10px;
+  cursor: zoom-in;
+  transition: transform 0.3s ease-in-out;
+}
+
+.main-img:hover {
+  transform: scale(1.1);
 }
 
 .single-spot-info-box {
@@ -154,4 +169,23 @@ hr {
   height: 1px;
   background: black;
   margin: 20px 0;
+}
+
+.custom-carousel .carousel .dot {
+  width: 10px;
+  height: 10px;
+  margin: 0 5px;
+  background-color: black;
+  border-radius: 50%;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.custom-carousel .carousel .selected {
+  background: linear-gradient(
+    90deg,
+    rgb(170, 145, 6),
+    rgb(255, 255, 255),
+    rgb(255, 255, 255),
+    rgb(170, 145, 6)
+  );
 }
