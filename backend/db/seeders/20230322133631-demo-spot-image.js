@@ -2,21 +2,12 @@
 
 let options = {};
 if (process.env.NODE_ENV === "production") {
-  options.schema = process.env.SCHEMA; // define your schema in options object
+  options.schema = process.env.SCHEMA;
 }
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    /**
-     * Add seed commands here.
-     *
-     * Example:
-     * await queryInterface.bulkInsert('People', [{
-     *   name: 'John Doe',
-     *   isBetaMember: false
-     * }], {});
-     */
     options.tableName = "SpotImages";
     return queryInterface.bulkInsert(
       options,
@@ -42,6 +33,11 @@ module.exports = {
           url: "https://cdn.discordapp.com/attachments/1108279175581794324/1141808596947054705/25b66c0ca399c0c97a5c6a6036f66bac-cc_ft_576.png",
           preview: true,
         },
+        {
+          spotId: 1,
+          url: "https://cdn.discordapp.com/attachments/1108279175581794324/1141964643603062864/56b658c0552292b8cfd939c391cd34bc-uncropped_scaled_within_1344_1008.png",
+          preview: true,
+        },
         // Spot #2
         {
           spotId: 2,
@@ -63,25 +59,35 @@ module.exports = {
           url: "https://cdn.discordapp.com/attachments/1108279175581794324/1141809629165256845/c6589adadb3825d74beaa82b3a184313-cc_ft_576.png",
           preview: true,
         },
+        {
+          spotId: 2,
+          url: "https://cdn.discordapp.com/attachments/1108279175581794324/1141962679423078521/79ba349aac65f8befc9c8c2bb58a6f54-cc_ft_576.png",
+          preview: true,
+        },
         // Spot #3
         {
           spotId: 3,
-          url: "https://cdn.discordapp.com/attachments/1108279175581794324/1141810356436607056/eaf8b82959673a489d29f59dc55e676d-cc_ft_960.png",
+          url: "https://cdn.discordapp.com/attachments/1108279175581794324/1141961538979246121/Screenshot_2023-08-17_at_10.04.41_PM.png",
           preview: true,
         },
         {
           spotId: 3,
-          url: "https://cdn.discordapp.com/attachments/1108279175581794324/1141810356784738344/0c8f6aaf7dc3164a0eca061fdd935308-cc_ft_576.png",
+          url: "https://cdn.discordapp.com/attachments/1108279175581794324/1141961539524501504/Screenshot_2023-08-17_at_10.05.24_PM.png",
           preview: true,
         },
         {
           spotId: 3,
-          url: "https://cdn.discordapp.com/attachments/1108279175581794324/1141810357028012082/7181bb2de72d3a3487cda0b8585f91ea-cc_ft_576.png",
+          url: "https://cdn.discordapp.com/attachments/1108279175581794324/1141961540111699968/Screenshot_2023-08-17_at_10.05.59_PM.png",
           preview: true,
         },
         {
           spotId: 3,
-          url: "https://cdn.discordapp.com/attachments/1108279175581794324/1141810357267083285/a932c4f3f648ff8d17c264f92f779191-cc_ft_576.png",
+          url: "https://cdn.discordapp.com/attachments/1108279175581794324/1141961541550354532/Screenshot_2023-08-17_at_10.06.30_PM.png",
+          preview: true,
+        },
+        {
+          spotId: 3,
+          url: "https://cdn.discordapp.com/attachments/1108279175581794324/1141961542179491851/Screenshot_2023-08-17_at_10.07.23_PM.png",
           preview: true,
         },
         // Spot #4
@@ -105,6 +111,11 @@ module.exports = {
           url: "https://cdn.discordapp.com/attachments/1108279175581794324/1141812603631439983/b6c7c2edfc996d35821c8e50b68f15e1-cc_ft_576.png",
           preview: true,
         },
+        {
+          spotId: 4,
+          url: "https://cdn.discordapp.com/attachments/1108279175581794324/1141960506010255400/Screenshot_2023-08-17_at_10.03.16_PM.png",
+          preview: true,
+        },
         // Spot #5
         {
           spotId: 5,
@@ -124,6 +135,11 @@ module.exports = {
         {
           spotId: 5,
           url: "https://cdn.discordapp.com/attachments/1108279175581794324/1141816638958735510/Screenshot_2023-08-17_at_12.31.35_PM.png",
+          preview: true,
+        },
+        {
+          spotId: 5,
+          url: "https://cdn.discordapp.com/attachments/1108279175581794324/1141959775966466119/Screenshot_2023-08-17_at_10.00.22_PM.png",
           preview: true,
         },
         // Spot #6
@@ -147,6 +163,11 @@ module.exports = {
           url: "https://cdn.discordapp.com/attachments/1108279175581794324/1141824769432490074/Screenshot_2023-08-17_at_1.03.50_PM.png",
           preview: true,
         },
+        {
+          spotId: 6,
+          url: "https://cdn.discordapp.com/attachments/1108279175581794324/1141959234263711804/ac90114f934fc9cc4d5254c28f6d8958-cc_ft_576.png",
+          preview: true,
+        },
         // Spot #7
         {
           spotId: 7,
@@ -156,6 +177,11 @@ module.exports = {
         {
           spotId: 7,
           url: "https://cdn.discordapp.com/attachments/1108279175581794324/1141826329440944138/251e6d9ff57da165e62ff951b160f5b7-cc_ft_576.png",
+          preview: true,
+        },
+        {
+          spotId: 7,
+          url: "https://cdn.discordapp.com/attachments/1108279175581794324/1141958861998280744/1806b61ce73713415a21048c54ced6d5-cc_ft_576.png",
           preview: true,
         },
         {
@@ -189,10 +215,20 @@ module.exports = {
           url: "https://cdn.discordapp.com/attachments/1108279175581794324/1141831608438096023/Screenshot_2023-08-17_at_1.30.48_PM.png",
           preview: true,
         },
+        {
+          spotId: 8,
+          url: "https://cdn.discordapp.com/attachments/1108279175581794324/1141958326322741299/958befff-3f79-4965-9cbf-c9486b826a1c.png",
+          preview: true,
+        },
         // Spot #9
         {
           spotId: 9,
           url: "https://cdn.discordapp.com/attachments/1108279175581794324/1141833303528312883/Screenshot_2023-08-17_at_1.36.52_PM.png",
+          preview: true,
+        },
+        {
+          spotId: 9,
+          url: "https://cdn.discordapp.com/attachments/1108279175581794324/1141920766934396999/afa5257f-6923-473c-a6ea-b64f7276c1b5.png",
           preview: true,
         },
         {
@@ -218,6 +254,11 @@ module.exports = {
         },
         {
           spotId: 10,
+          url: "https://cdn.discordapp.com/attachments/1108279175581794324/1141920492979241031/647fe9fe-73aa-464d-8bb0-e1cc4f541489.png",
+          preview: true,
+        },
+        {
+          spotId: 10,
           url: "https://cdn.discordapp.com/attachments/1108279175581794324/1141834126429782112/Screenshot_2023-08-17_at_1.40.37_PM.png",
           preview: true,
         },
@@ -239,6 +280,11 @@ module.exports = {
         },
         {
           spotId: 11,
+          url: "https://cdn.discordapp.com/attachments/1108279175581794324/1141919866799009927/baef0a80-a9eb-4603-9166-a85d433f9f4f.png",
+          preview: true,
+        },
+        {
+          spotId: 11,
           url: "https://cdn.discordapp.com/attachments/1108279175581794324/1141847049093009418/2dfc8784-0dc5-4853-981a-9f59fb0517c0.png",
           preview: true,
         },
@@ -256,6 +302,11 @@ module.exports = {
         {
           spotId: 12,
           url: "https://cdn.discordapp.com/attachments/1108279175581794324/1141848837611335701/af4389ce-56d7-44ea-ab7d-f884b66585a8.png",
+          preview: true,
+        },
+        {
+          spotId: 12,
+          url: "https://cdn.discordapp.com/attachments/1108279175581794324/1141919518885695528/fc3c747e_original.png",
           preview: true,
         },
         {
@@ -287,6 +338,11 @@ module.exports = {
         {
           spotId: 13,
           url: "https://cdn.discordapp.com/attachments/1108279175581794324/1141850374093938780/7e9c72ca-ed60-43b3-b44c-0b59aea75f1a.png",
+          preview: true,
+        },
+        {
+          spotId: 13,
+          url: "https://cdn.discordapp.com/attachments/1108279175581794324/1141918969310224464/d080f583-9dc1-43f5-b5db-f0b7bdbb3708.png",
           preview: true,
         },
         {
@@ -352,12 +408,6 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     * await queryInterface.bulkDelete('People', null, {});
-     */
     options.tableName = "SpotImages";
     return queryInterface.bulkDelete(options);
   },

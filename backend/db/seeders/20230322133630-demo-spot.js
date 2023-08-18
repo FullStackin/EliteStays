@@ -2,21 +2,12 @@
 
 let options = {};
 if (process.env.NODE_ENV === "production") {
-  options.schema = process.env.SCHEMA; // define your schema in options object
+  options.schema = process.env.SCHEMA;
 }
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    /**
-     * Add seed commands here.
-     *
-     * Example:
-     * await queryInterface.bulkInsert('People', [{
-     *   name: 'John Doe',
-     *   isBetaMember: false
-     * }], {});
-     */
     options.tableName = "Spots";
     return queryInterface.bulkInsert(
       options,
@@ -121,8 +112,7 @@ module.exports = {
           lat: 51.51,
           lng: -0.13,
           name: "Unplug and escape off the grid",
-          description:
-            "Indulge in regal elegance in the great out doors.",
+          description: "Indulge in regal elegance in the great out doors.",
           price: 28000,
         },
         {
@@ -160,7 +150,8 @@ module.exports = {
           lat: 25.0343,
           lng: -77.3963,
           name: "Tropical Paradise Villa",
-          description: "Experience the beauty of the Caribbean in this beachfront villa.",
+          description:
+            "Experience the beauty of the Caribbean in this beachfront villa.",
           price: 28000,
         },
         {
@@ -198,7 +189,8 @@ module.exports = {
           lat: 30.3285,
           lng: 35.4444,
           name: "Luxurious Petra Retreat",
-          description: "Experience the wonders of Petra with this elegant retreat.",
+          description:
+            "Experience the wonders of Petra with this elegant retreat.",
           price: 45000,
         },
         {
@@ -219,13 +211,7 @@ module.exports = {
     );
   },
   async down(queryInterface, Sequelize) {
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     * await queryInterface.bulkDelete('People', null, {});
-     */
     options.tableName = "Spots";
-    return queryInterface.bulkDelete(options, null, {}); // Adjust the method call here
+    return queryInterface.bulkDelete(options);
   },
 };
