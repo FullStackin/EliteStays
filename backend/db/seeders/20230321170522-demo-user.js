@@ -3,7 +3,7 @@ const bcrypt = require("bcryptjs");
 
 let options = {};
 if (process.env.NODE_ENV === "production") {
-  options.schema = process.env.SCHEMA; // define your schema in options object
+  options.schema = process.env.SCHEMA;
 }
 
 module.exports = {
@@ -45,7 +45,6 @@ module.exports = {
         username: "JSmith",
         hashedPassword: bcrypt.hashSync("password5"),
       },
-      // Add more user data here
       {
         firstName: "Michael",
         lastName: "Johnson",
@@ -121,6 +120,30 @@ module.exports = {
 
   down: async (queryInterface, Sequelize) => {
     options.tableName = "Users";
-    return queryInterface.bulkDelete(options);
+    return queryInterface.bulkDelete(
+      options,
+      {
+        username: {
+          [Op.in]: [
+            "Demo-lition",
+            "SpaceTesla",
+            "TallTechTitan",
+            "JDoe",
+            "JSmith",
+            "MJohnson",
+            "EWilliams",
+            "DBrown",
+            "SJones",
+            "MDavis",
+            "JMiller",
+            "WWilson",
+            "ATaylor",
+            "DAnderson",
+            "SMartinez",
+          ],
+        },
+      },
+      {}
+    );
   },
 };

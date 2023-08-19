@@ -88,7 +88,6 @@ export const createSpotThunk =
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(createdSpot),
       });
-      console.log(spotImgs, " THIS IS SPOT IMAGES");
       if (res.ok) {
         const newSpot = await res.json();
         const formData = new FormData();
@@ -143,7 +142,6 @@ export const updateSpotThunk =
         dispatch(updateSpotAction(createdSpot));
         return spot;
       } else {
-        console.log("Updating spot with data:", createdSpot);
 
         // Handle the case where the response is not okay
         // For example, throw an error and let the caller handle it
@@ -179,13 +177,11 @@ export const searchSpotThunk = (query) => async (dispatch) => {
 
     if (res.ok) {
       const spots = await res.json();
-      console.log("spots in Spot Thunk: ", spots);
       dispatch(searchSpotAction(spots));
       return spots;
     }
   } catch (err) {
     const errors = await err.json();
-    console.log("errors in spot reducer: ", errors);
     return errors;
   }
 };
@@ -226,7 +222,6 @@ const spotReducer = (state = initialState, action) => {
       return newState;
     }
     case SEARCH_SPOTS: {
-      console.log("Search spots in reducer: ", action.spots);
       const spotState = {
         ...state,
         allState: { ...state.allState },
