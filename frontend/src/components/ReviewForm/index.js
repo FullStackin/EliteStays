@@ -16,7 +16,7 @@ function ReviewForm({ spotId, review, type, updateId }) {
   const [stars, setStars] = useState(type === "update" ? review?.stars : "");
   const [isFormValid, setIsFormValid] = useState(true);
 
-  const maxCharacterCount = 2000;
+  const maxCharacterCount = 255;
 
   const handleStarMouseEnter = (rating) => {
     setStars(rating);
