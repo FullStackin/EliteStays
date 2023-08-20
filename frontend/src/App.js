@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { Route, Switch } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Redirect, Route, Switch } from "react-router-dom";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import AllSpots from "./components/AllSpots";
@@ -13,11 +13,11 @@ import UpdateReview from "./components/UpdateReview/updateReview";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
+  const sessionUser = useSelector((state) => state.session.user);
+
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
-
-
 
   return (
     <>
@@ -28,7 +28,7 @@ function App() {
             <AllSpots />
           </Route>
           <Route exact path="/spots/new">
-            <CreateSpotForm />
+            {sessionUser ? <CreateSpotForm /> : <Redirect to="/login" />}
           </Route>
           <Route exact path="/spots/current">
             <ManageSpots />

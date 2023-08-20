@@ -20,19 +20,21 @@ function SpotForm({ spot, type, updateId }) {
     price: spot?.price || "",
   };
 
+  // Using useState to manage form field states
   const [name, setName] = useState(initialValues.name);
   const [address, setAddress] = useState(initialValues.address);
   const [city, setCity] = useState(initialValues.city);
   const [state, setState] = useState(initialValues.state);
   const [country, setCountry] = useState(initialValues.country);
-  // const [lat, setLat] = useState(initialValues.lat);
-  // const [lng, setLng] = useState(initialValues.lng);
+
   const [description, setDescription] = useState(initialValues.description);
   const [price, setPrice] = useState(initialValues.price);
-  const [err, setErr] = useState({});
-  const [showError, setShowError] = useState(false);
-  const [images, setImages] = useState([]);
+  const [err, setErr] = useState({}); // Errors for form validation
+  const [showError, setShowError] = useState(false); // Toggles error display
+  const [images, setImages] = useState([]); // Stores uploaded images
+  const [imageError, setImageError] = useState("");
 
+  // Redux and React-Router hooks for dispatching actions and navigation
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -51,11 +53,19 @@ function SpotForm({ spot, type, updateId }) {
     setErr(err);
   }, [name, address, city, state, country, description, price]);
 
-  const updatefiles = (e) => {
+  // Function to handle image file input changes
+  const updateFiles = (e) => {
     const files = e.target.files;
-    setImages(files);
+
+    if (files.length === 0) {
+      setImageError("At least 1 image must be uploaded");
+    } else {
+      setImageError(""); // Reset image error here
+      setImages(files);
+    }
   };
 
+  // Function to handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -64,8 +74,9 @@ function SpotForm({ spot, type, updateId }) {
       return;
     }
 
-    if (Object.values(err).length > 0) {
+    if (Object.values(err).length > 0 || imageError !== "") {
       setShowError(true);
+      return;
     } else {
       let createdSpot = {
         ...spot,
@@ -81,18 +92,26 @@ function SpotForm({ spot, type, updateId }) {
         price: price,
       };
 
+      // Check if images were uploaded
+      if (!images.length) {
+        setImageError("At least 1 image must be uploaded"); // Set image error if no images
+        return;
+      }
       // Pass updatedImages directly instead of adding them to spotImgs array
+      // Logic to create or update a spot
       if (type === "new") {
+        // Create a new spot
         const newSpot = await dispatch(
           createSpotThunk({ createdSpot, spotImgs: images })
         ).catch(async (res) => {
           const data = await res.json();
         });
-
+        // Redirect to the new spot's page
         history.push(`/spots/${newSpot?.id}`);
       } else {
+        // Update an existing spot
         await dispatch(updateSpotThunk({ createdSpot, spotImgs: images }));
-        // Navigate to updated spot's page
+        // Redirect to the updated spot's page
         history.push(`/spots/${updateId}`);
       }
     }
@@ -130,7 +149,13 @@ function SpotForm({ spot, type, updateId }) {
             className="form-input"
             type="text"
             value={address}
-            onChange={(e) => setAddress(e.target.value)}
+            onChange={(e) => {
+              setAddress(e.target.value);
+              // Clear specific error when user starts typing
+              if (err.address) {
+                setErr({ ...err, address: "" });
+              }
+            }}
             placeholder="Address"
           />
           {showError && err.address && <p className="err-msg">{err.address}</p>}
@@ -236,9 +261,10 @@ function SpotForm({ spot, type, updateId }) {
                 type="file"
                 accept=".jpeg,.jpg,.png,.gif"
                 multiple
-                onChange={updatefiles}
+                onChange={updateFiles}
               />
             </label>
+            {imageError && <p className="err-msg">{imageError}</p>}
             <div className="Show_images">
               {Object.values(images).map((image, index) => (
                 <div key={index}>{image.name}</div>
@@ -248,7 +274,11 @@ function SpotForm({ spot, type, updateId }) {
         </div>
         <br />
         <br />
-        <button disabled={false} type="submit" className="form-submit">
+        <button
+          disabled={Object.values(err).length > 0 || imageError !== ""}
+          type="submit"
+          className="form-submit"
+        >
           Establish Spot
         </button>
       </form>

@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Redirect } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";
 import OpenModalButton from "../OpenModalButton";
@@ -8,29 +8,34 @@ import SignupFormModal from "../SignupFormModal";
 import logoImage from "../../assets/EliteBnb/Compass.png";
 import "./Navigation.css";
 
+
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector((state) => state.session.user);
 
+  if (!isLoaded) {
+    return null;
+  }
+
   return (
     <div className="nav">
-    <div className="left-nav">
-      <NavLink
-        exact
-        to="/"
-        className="home-logo"
-        style={{ textDecoration: "none" }}
-      >
-        <img src={logoImage} alt="EliteStays" />
-      </NavLink>
-      <NavLink
-        exact
-        to="/"
-        className="home-title"
-        style={{ textDecoration: "none" }}
-      >
-        EliteStays
-      </NavLink>
-    </div>
+      <div className="left-nav">
+        <NavLink
+          exact
+          to="/"
+          className="home-logo"
+          style={{ textDecoration: "none" }}
+        >
+          <img src={logoImage} alt="EliteStays" />
+        </NavLink>
+        <NavLink
+          exact
+          to="/"
+          className="home-title"
+          style={{ textDecoration: "none" }}
+        >
+          EliteStays
+        </NavLink>
+      </div>
       {isLoaded && (
         <div className="right-nav">
           {sessionUser ? (

@@ -26,18 +26,18 @@ function ManageSpots() {
       )}
       <section className="manage-spots-gallery">
         {userSpots.map((spot) => (
-          <div key={spot.id}>
+          <div key={spot.id} className="spot-card">
             <AllSpotsItem spot={spot} />
-            <button className="update-button">
-              <NavLink exact to={`/spots/${spot.id}/update`}>
+            <div className="button-row">
+              <NavLink exact to={`/spots/${spot.id}/update`} className="update-button">
                 Update
               </NavLink>
-            </button>
-            <OpenModalButton
-              buttonText="Delete"
-              modalComponent={<DeleteSpot spot={spot} />}
-              buttonClassName="delete-button"
-            />
+              <OpenModalButton
+                buttonText="Delete"
+                modalComponent={<DeleteSpot spot={spot} />}
+                buttonClassName="delete-button"
+              />
+            </div>
           </div>
         ))}
       </section>
