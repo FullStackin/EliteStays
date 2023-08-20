@@ -17,7 +17,7 @@ function ManageSpots() {
   }, [dispatch]);
 
   return (
-    <div>
+    <div className="center-content">
       <h2>Manage Spots</h2>
       {userSpots.length === 0 && (
         <NavLink exact to={"/spots/new"}>

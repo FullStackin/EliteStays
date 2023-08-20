@@ -25,6 +25,7 @@
     "@fortawesome/free-brands-svg-icons": "^6.4.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "sequelize": "^6.32.1",
+    "serve-favicon": "^2.5.0",
     "styled-components": "^6.0.5"
   }
 }

@@ -25,8 +25,8 @@ function SpotForm({ spot, type, updateId }) {
   const [city, setCity] = useState(initialValues.city);
   const [state, setState] = useState(initialValues.state);
   const [country, setCountry] = useState(initialValues.country);
-  const [lat, setLat] = useState(initialValues.lat);
-  const [lng, setLng] = useState(initialValues.lng);
+  // const [lat, setLat] = useState(initialValues.lat);
+  // const [lng, setLng] = useState(initialValues.lng);
   const [description, setDescription] = useState(initialValues.description);
   const [price, setPrice] = useState(initialValues.price);
   const [err, setErr] = useState({});
@@ -60,7 +60,6 @@ function SpotForm({ spot, type, updateId }) {
     e.preventDefault();
 
     if (!images.length) {
-      // Display an error message if no valid image URLs are provided
       setShowError(true);
       return;
     }

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import * as sessionActions from "../../store/session";
-import validator from "validator"; 
+import validator from "validator";
 
 import "./SignupForm.css";
 
@@ -36,6 +36,8 @@ function SignupFormModal() {
 
     if (validator.isEmpty(username)) {
       newErrors.username = "Username is required";
+    } else if (validator.isEmail(username)) {
+      newErrors.username = "Username cannot be an email";
     } else if (username.length < 4) {
       newErrors.username = "Username can't be less than 4 characters";
     }
@@ -76,6 +78,8 @@ function SignupFormModal() {
           password,
         })
       )
+
+
         .then(closeModal)
         .catch((res) => {
           if (res.data && res.data.errors) {

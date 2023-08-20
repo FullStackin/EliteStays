@@ -5,6 +5,7 @@
   margin: 0 auto;
   max-width: 600px;
   line-height: 1.6;
+  cursor: default;
 }
 
 .spot-title {

@@ -1,4 +1,12 @@
-/* Style for the "Update" button */
+.center-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 70vh;
+  cursor: default;
+}
+
 .manage-spots-gallery {
   display: flex;
   justify-content: start;

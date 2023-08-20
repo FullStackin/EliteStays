@@ -140,6 +140,7 @@ function SingleSpot() {
               <OpenModalButton
                 buttonText="Post Your Review"
                 modalComponent={<ReviewForm spotId={spot.id}></ReviewForm>}
+                buttonClassName="open-modal-button"
               />
             )}
           <Reviews reviews={reviewList} spot={spot} sessionUser={sessionUser} />

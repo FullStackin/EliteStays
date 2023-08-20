@@ -134,7 +134,6 @@ function SpotForm({ spot, type, updateId }) {
         description: description,
         price: price,
       };
-      console.log("createdSpot before thunk call:", createdSpot);
 
       // Pass updatedImages directly instead of adding them to spotImgs array
       if (type === "new") {
