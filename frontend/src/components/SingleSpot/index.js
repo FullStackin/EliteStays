@@ -8,7 +8,6 @@ import ReviewForm from "../ReviewForm";
 import OpenModalButton from "../OpenModalButton";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
-import ImageZoom from "react-image-zoom";
 import "./Spots.css";
 
 function SingleSpot() {
@@ -43,9 +42,7 @@ function SingleSpot() {
   }
 
   const mainImg = spotImageUrls && spotImageUrls[0];
-  const galleryImages = new Array(4).fill(null).map((_, i) => {
-    return spotImageUrls && spotImageUrls[i + 1];
-  });
+  const galleryImages = spotImageUrls.slice(1);
 
   return (
     <div className="single-spot-wrapper">

@@ -1,10 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 import { createSpotThunk, updateSpotThunk } from "../../store/spots";
 import "./SpotForm.css";
-import { useEffect } from "react";
 
 function SpotForm({ spot, type, updateId }) {
   // Use the spread operator to set default values for form fields if spot is undefined
@@ -51,18 +50,21 @@ function SpotForm({ spot, type, updateId }) {
     if (isNaN(price)) err.price = "Price per night must be a number";
     if (Number(price) < 10000) err.price = "Minimum price per night is 10000";
     setErr(err);
-  }, [name, address, city, state, country, description, price]);
+
+    if (images.length === 0) setImageError("At least 1 image must be uploaded");
+    if (images.length >= 1) setImageError("");
+  }, [name, address, city, state, country, description, price, images]);
 
   // Function to handle image file input changes
   const updateFiles = (e) => {
-    const files = e.target.files;
+    const uploadImage = e.target.files;
+    setImages(uploadImage);
 
-    if (files.length === 0) {
-      setImageError("At least 1 image must be uploaded");
-    } else {
-      setImageError(""); // Reset image error here
-      setImages(files);
-    }
+    // if (images.length === 0) {
+    //   setImageError("This is outside submit function");
+    // } else {
+    //   setImageError(""); // Reset image error here
+    // }
   };
 
   // Function to handle form submission
@@ -141,7 +143,7 @@ function SpotForm({ spot, type, updateId }) {
             onChange={(e) => setCountry(e.target.value)}
             placeholder="Country"
           />
-          {showError && err.country && <p className="err-msg">{err.country}</p>}
+          {!showError && <p className="err-msg">{err.country}</p>}
         </label>
         <label className="form-label">
           Street Address: <br />
@@ -158,7 +160,7 @@ function SpotForm({ spot, type, updateId }) {
             }}
             placeholder="Address"
           />
-          {showError && err.address && <p className="err-msg">{err.address}</p>}
+          {!showError && <p className="err-msg">{err.address}</p>}
         </label>
         <div className="row">
           <label className="form-input-inline">
@@ -170,8 +172,7 @@ function SpotForm({ spot, type, updateId }) {
               onChange={(e) => setCity(e.target.value)}
               placeholder="City"
             />
-            {showError && err.city && <p className="err-msg">{err.city}</p>}
-            {showError && err.state && <p className="err-msg">{err.state}</p>}
+            {!showError && <p className="err-msg">{err.city}</p>}
           </label>
           <label className="form-label">
             State <br></br>
@@ -181,7 +182,8 @@ function SpotForm({ spot, type, updateId }) {
               value={state}
               onChange={(e) => setState(e.target.value)}
               placeholder="State"
-            />
+            />{" "}
+            {!showError && <p className="err-msg">{err.state}</p>}
           </label>
         </div>
         <br />
@@ -201,11 +203,7 @@ function SpotForm({ spot, type, updateId }) {
             onChange={(e) => setDescription(e.target.value)}
             placeholder="Please write at least 30 characters"
           />
-          {showError && err.description && (
-            <p className="err-msg">
-              {"Description needs 30 or more characters"}
-            </p>
-          )}
+          {!showError && <p className="err-msg">{err.description}</p>}
         </label>
         <br />
         <hr />
@@ -222,9 +220,7 @@ function SpotForm({ spot, type, updateId }) {
             onChange={(e) => setName(e.target.value)}
             placeholder="Name of your spot"
           />
-          {showError && err.name && (
-            <p className="err-msg">{"Name is required"}</p>
-          )}
+          {!showError && <p className="err-msg">{err.name}</p>}
         </label>
         <br />
         <hr />
@@ -244,7 +240,7 @@ function SpotForm({ spot, type, updateId }) {
               placeholder="Price per night (USD)"
             />
           </div>
-          {showError && err.price && <p className="err-msg">{err.price}</p>}
+          {!showError && <p className="err-msg">{err.price}</p>}
         </label>
         <br />
         <hr />

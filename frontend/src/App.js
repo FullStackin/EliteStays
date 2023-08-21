@@ -9,6 +9,7 @@ import CreateSpotForm from "./components/CreateSpotForm";
 import ManageSpots from "./components/ManageSpots";
 import UpdateSpot from "./components/UpdateSpot";
 import UpdateReview from "./components/UpdateReview/updateReview";
+import LostInTheSauce from "./components/LostInTheSauce/index";
 
 function App() {
   const dispatch = useDispatch();
@@ -41,6 +42,9 @@ function App() {
           </Route>
           <Route exact path="/spots/:spotId/reviews/:reviewId/update">
             <UpdateReview />
+          </Route>
+          <Route path="*">
+            <LostInTheSauce />
           </Route>
         </Switch>
       )}

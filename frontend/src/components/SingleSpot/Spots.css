@@ -37,8 +37,7 @@
 
 .gallery-image-wrapper {
   display: flex;
-  object-fit: cover;
-
+  object-fit: contain;
   flex-wrap: wrap;
   margin-top: 15px;
 }
@@ -47,7 +46,7 @@
   display: flex;
   max-width: 500px;
   max-height: 400px;
-  object-fit: cover;
+  object-fit: contain;
   margin-top: 50px;
   border-radius: 20px;
   margin-bottom: 45px;

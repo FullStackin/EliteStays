@@ -128,7 +128,7 @@ export const deleteSpotThunk = (spotId) => async (dispatch) => {
 
 // This is an async thunk function responsible for updating a spot's information.
 export const updateSpotThunk =
-  ({ createdSpot }) =>
+  ({ createdSpot, spotImgs }) =>
   async (dispatch) => {
     try {
       // Extract the spot ID from the createdSpot object.
@@ -145,7 +145,17 @@ export const updateSpotThunk =
       if (res.ok) {
         // Parse the response JSON data to get the updated spot information.
         const spot = await res.json();
+        if (spotImgs) {
+          const formData = new FormData();
+          Object.entries(spotImgs).forEach(([key, image]) => {
+            formData.append("images", image, key);
+          });
 
+          const images = await csrfFetch(`/api/spots/${spotId}/images`, {
+            method: "POST",
+            body: formData,
+          });
+        }
         // Dispatch an action to update the spot in the Redux store.
         dispatch(updateSpotAction(createdSpot));
 
