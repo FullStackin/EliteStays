@@ -55,12 +55,18 @@ export const createReviewThunk =
   };
 
 export const getReviewsThunk = (spotId) => async (dispatch) => {
-  const res = await csrfFetch(`/api/spots/${spotId}/reviews`);
+  try {
+    const res = await csrfFetch(`/api/spots/${spotId}/reviews`);
 
-  if (res.ok) {
-    const reviews = (await res.json()).Reviews;
-    dispatch(GetReviewsAction(reviews));
-    return reviews;
+    if (res.ok) {
+      const reviews = (await res.json()).Reviews;
+      dispatch(GetReviewsAction(reviews));
+      return reviews;
+    } else {
+      console.error("Response not OK:", res.status, res.statusText);
+    }
+  } catch (error) {
+    console.error("Error fetching reviews:", error);
   }
 };
 

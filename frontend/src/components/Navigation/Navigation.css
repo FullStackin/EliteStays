@@ -114,25 +114,23 @@
   background-color: white;
   margin-right: 1%;
   border-radius: 1px solid;
-  /* border-radius: 10px; */
 }
 
 .profile-dropdown {
   position: absolute;
   font-size: 0.9em;
-  /* display: flex; */
-
   margin-top: 4px;
   padding: 10%;
-  height: 140px;
+  height: 160px;
   left: -95%;
-  width: 150px;
+  width: 200px;
   border-radius: 10px;
-  border: solid 1px goldenrod;
-  background-color: rgb(255, 246, 208);
-  /* flex-direction: column; */
-  /* align-items: center; */
-  /* justify-content: space-around; */
+  border: solid 1px rgb(140, 101, 3);
+  background: linear-gradient(
+    to top right,
+    rgb(247, 210, 46),
+    rgb(123, 112, 42)
+  );
 }
 
 .menu-wrap {

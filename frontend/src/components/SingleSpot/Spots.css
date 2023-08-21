@@ -81,6 +81,10 @@
 .name-desc-box {
   width: 100%;
   max-width: 600px;
+  background-color: #f8f8f8;
+  margin: 15px;
+  word-break: break-word;
+  padding: 10px;
 }
 
 .name-desc-box h2 {

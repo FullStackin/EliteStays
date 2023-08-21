@@ -126,33 +126,43 @@ export const deleteSpotThunk = (spotId) => async (dispatch) => {
   }
 };
 
+// This is an async thunk function responsible for updating a spot's information.
 export const updateSpotThunk =
   ({ createdSpot }) =>
   async (dispatch) => {
     try {
+      // Extract the spot ID from the createdSpot object.
       const spotId = createdSpot.id;
+
+      // Make a PUT request to the server API to update the spot with the given ID.
       const res = await csrfFetch(`/api/spots/${spotId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(createdSpot),
+        body: JSON.stringify(createdSpot), // Convert the updated spot data to JSON format.
       });
 
+      // Check if the response from the server is successful (status code 200-299).
       if (res.ok) {
+        // Parse the response JSON data to get the updated spot information.
         const spot = await res.json();
+
+        // Dispatch an action to update the spot in the Redux store.
         dispatch(updateSpotAction(createdSpot));
+
+        // Return the updated spot data to the caller.
         return spot;
       } else {
-
-        // Handle the case where the response is not okay
-        // For example, throw an error and let the caller handle it
+        // If the response status is not okay, handle the error.
+        // For example, throw an error with a descriptive message.
         throw new Error(
           "Failed to update spot. Server responded with status: " + res.status
         );
       }
     } catch (err) {
-      // Handle any exceptions that occurred during the API request
-      // For example, log the error or show an error message to the user
+      // Handle any exceptions that occurred during the API request.
+      // For instance, log the error for debugging purposes.
       console.error("Error while updating spot:", err);
+      // Rethrow the error to propagate it further.
       throw err;
     }
   };
