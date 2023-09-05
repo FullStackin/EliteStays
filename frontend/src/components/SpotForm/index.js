@@ -69,17 +69,23 @@ function SpotForm({ spot, type, updateId }) {
 
   // Function to handle form submission
   const handleSubmit = async (e) => {
+    // Prevent the default behavior of the form submission
     e.preventDefault();
 
+    // Check if there are no images
     if (!images.length) {
+      // Display an error if there are no images
       setShowError(true);
       return;
     }
 
+    // Check if there are other errors
     if (Object.values(err).length > 0 || imageError !== "") {
+      // Display an error if there are other errors
       setShowError(true);
       return;
     } else {
+      // Create a new spot object with the provided details
       let createdSpot = {
         ...spot,
         id: spot?.id || null,
@@ -94,26 +100,30 @@ function SpotForm({ spot, type, updateId }) {
         price: price,
       };
 
-      // Check if images were uploaded
+      // Check again if there are no images (this seems redundant as it's checked above)
       if (!images.length) {
-        setImageError("At least 1 image must be uploaded"); // Set image error if no images
+        // Set an error if there are no images
+        setImageError("At least 1 image must be uploaded");
         return;
       }
-      // Pass updatedImages directly instead of adding them to spotImgs array
-      // Logic to create or update a spot
+
+      // Determine whether to create a new spot or update an existing one
       if (type === "new") {
-        // Create a new spot
+        // Logic to create a new spot
         const newSpot = await dispatch(
           createSpotThunk({ createdSpot, spotImgs: images })
         ).catch(async (res) => {
+          // If there's an error, parse the error message
           const data = await res.json();
         });
-        // Redirect to the new spot's page
+
+        // Redirect the user to the new spot's page
         history.push(`/spots/${newSpot?.id}`);
       } else {
-        // Update an existing spot
+        // Logic to update an existing spot
         await dispatch(updateSpotThunk({ createdSpot, spotImgs: images }));
-        // Redirect to the updated spot's page
+
+        // Redirect the user to the updated spot's page
         history.push(`/spots/${updateId}`);
       }
     }
