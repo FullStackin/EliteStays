@@ -12,25 +12,28 @@ function AllSpotsItem({ spot }) {
   }
 
   return (
-    <div title={spot.name} className="spot-item">
-      <NavLink className="spot-item-link" exact to={`/spots/${spot.id}`}>
-        <h2>{spot.name}</h2>
-        <img src={spot.previewImage} />
-        <div className="spot-info">
-          <div className="spot-info-row1">
-            <h3>
-              {spot.city},{" " + spot.state}
-            </h3>
-            <h3>
-              <i className="fa-solid fa-star"></i>
-              {ratingDisplay}
-            </h3>
+    <div className="spot-item-container">
+      <div title={spot.name} className="spot-item">
+        {" "}
+        <NavLink className="spot-item-link" exact to={`/spots/${spot.id}`}>
+          <h2>{spot.name}</h2>
+          <img src={spot.previewImage} />
+          <div className="spot-info">
+            <div className="spot-info-row1">
+              <h3>
+                {spot.city},{" " + spot.state}
+              </h3>
+              <h3>
+                <i className="fa-solid fa-star"></i>
+                {ratingDisplay}
+              </h3>
+            </div>
+            <h4>
+              <strong>${priceDisplay}</strong> a night
+            </h4>
           </div>
-          <h4>
-            <strong>${priceDisplay}</strong> a night
-          </h4>
-        </div>
-      </NavLink>
+        </NavLink>
+      </div>
     </div>
   );
 }

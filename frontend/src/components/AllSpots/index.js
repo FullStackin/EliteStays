@@ -18,14 +18,14 @@ function AllSpots() {
   }, [dispatch]);
 
   return (
-    <div>
+    <div className="page-container">
       <div className="all-spots">
         {allSpots.map((spot) => (
           <AllSpotsItem spot={spot} key={spot.id} />
         ))}
       </div>
       <div className="social-media-links">
-      <a href="https://www.linkedin.com/in/omarelsahlah" target="_blank" rel="Socials">
+        <a href="https://www.linkedin.com/in/omarelsahlah" target="_blank" rel="Socials">
           <FontAwesomeIcon icon={faLinkedin} size="lg" />
         </a>
         <a href="https://www.github.com/fullstackin" target="_blank" rel="Socials">

@@ -2,9 +2,15 @@
   display: flex;
   flex-direction: column;
   width: 300px;
-  border-radius: 20px;
-  margin: 0 200px; /* Center the spot-item within its container */
-  overflow: hidden;
+  border-radius: 20px;  overflow: hidden;
+}
+
+.spot-item-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 0 auto;
 }
 
 .spot-item img {
@@ -16,7 +22,7 @@
 .spot-info-row1 {
   display: flex;
   justify-content: space-between;
-  align-items: center; /* Vertically align items in the row */
+  align-items: center;
 }
 
 .spot-item-link {
@@ -24,19 +30,16 @@
   color: black;
 }
 
-/* Add some margin and padding to the spot name and info */
 .spot-item-link h2,
 .spot-info {
   margin: 10px;
   padding: 5px;
 }
 
-/* Style the star icon using the "gold-star" class */
 .fa-star {
   color: gold;
 }
 
-/* Style the rating text */
 .rating {
   margin-left: 5px;
   font-weight: bold;

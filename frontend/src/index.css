@@ -1,4 +1,7 @@
 /* TODO Add site wide styles */
+
 body {
-    font-family: "Gloock", sans-serif;
-  }
+  font-family: "Gloock", sans-serif;
+  margin: 0;
+  padding: 0;
+}
