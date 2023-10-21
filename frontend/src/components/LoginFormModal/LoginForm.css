@@ -9,6 +9,10 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   margin: 10px;
 }
+.login-title {
+  font-weight: bold;
+  color: black;
+}
 
 .login-modal h3 {
   display: flex;
@@ -29,7 +33,7 @@
   flex-direction: column;
   align-items: flex-start;
   margin-bottom: 10px;
-  color: #333;
+  color: #888;
   font-weight: bold;
 }
 

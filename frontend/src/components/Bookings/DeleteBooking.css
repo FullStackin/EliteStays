@@ -1,0 +1,24 @@
+.confirm-delete-booking-div {
+  margin: 10px 0;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+}
+.confirm-delete-booking-div button {
+  width: 80%px;
+  height: 30px;
+  color: white;
+  border: none;
+  box-shadow: 3px 3px 5px rgb(126, 128, 130);
+  color: rgb(126, 128, 130);
+  border: 1px solid rgb(224, 218, 218);
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 10px 0;
+}
+
+#confirm-delete-booking-button {
+  background-color: #e87676;
+  color: #ffffff;
+  border: none;
+}

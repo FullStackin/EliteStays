@@ -111,7 +111,6 @@
   right: 2px;
   font-size: larger;
   position: absolute;
-  background-color: white;
   margin-right: 1%;
   border-radius: 1px solid;
 }
@@ -156,7 +155,7 @@
   border: none;
   cursor: pointer;
   border: 2px solid black;
-  box-shadow: 2px 2px 2px grey;
+  box-shadow: 2px 2px 2px rgb(227, 198, 95);
   align-items: center;
 }
 
@@ -164,4 +163,17 @@
   background-color: goldenrod;
 }
 
+.theme-toggle {
+  padding: 8px 16px;
+  background: linear-gradient(90deg, gold, black);
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-right: 10px;
+}
 
+.theme-toggle:hover {
+  background-color: goldenrod;
+  box-shadow: 2px 2px 2px grey;
+}

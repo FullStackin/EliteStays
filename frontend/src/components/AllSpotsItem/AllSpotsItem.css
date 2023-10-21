@@ -2,7 +2,8 @@
   display: flex;
   flex-direction: column;
   width: 300px;
-  border-radius: 20px;  overflow: hidden;
+  border-radius: 20px;
+  overflow: hidden;
 }
 
 .spot-item-container {

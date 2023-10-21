@@ -19,25 +19,6 @@ body {
   width: 100%;
 }
 
-.social-media-links {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
-.social-media-links a {
-  margin: 0 10px;
-}
-
-.social-media-links svg,
-.social-media-links img {
-  width: 30px;
-  height: 30px;
-  margin: 0 10px;
-  color: #555;
-}
-
 /* Media query for mobile screens */
 @media (max-width: 768px) {
   .page-container {
@@ -49,15 +30,5 @@ body {
   .all-spots {
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 10px;
-  }
-
-  .social-media-links {
-    flex-direction: column;
-    align-items: center;
-    margin-top: 10px;
-  }
-
-  .social-media-links a {
-    margin: 5px 0;
   }
 }

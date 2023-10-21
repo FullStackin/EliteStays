@@ -8,6 +8,7 @@ import configureStore from "./store";
 import { restoreCSRF, csrfFetch } from "./store/csrf";
 import * as sessionActions from "./store/session";
 import { ModalProvider, Modal } from "./context/Modal";
+import ThemeButton from "./ThemeButton";
 
 const store = configureStore();
 
@@ -24,6 +25,7 @@ function Root() {
     <ModalProvider>
       <Provider store={store}>
         <BrowserRouter>
+          <ThemeButton />
           <App />
           <Modal />
         </BrowserRouter>

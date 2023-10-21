@@ -5,6 +5,10 @@
   background-color: #f9f9f9;
 }
 
+.Sign-up {
+  font-weight: bold;
+  color: #333;}
+
 .form-container {
   display: flex;
   width: 300px;

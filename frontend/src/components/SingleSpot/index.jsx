@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getSpotThunk } from "../../store/spots";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory, NavLink } from "react-router-dom";
 import { getReviewsThunk, updateReviewThunk } from "../../store/reviews";
 import Reviews from "../Reviews";
 import ReviewForm from "../ReviewForm";
+import BookingIndex from "../Bookings/BookingIndex";
 import OpenModalButton from "../OpenModalButton";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
@@ -15,10 +16,12 @@ function SingleSpot() {
   const spot = useSelector((state) => state.spots.singleSpot);
   const reviews = useSelector((state) => state.reviews.spot);
   const { spotId } = useParams();
+  const dispatch = useDispatch();
+
+  const history = useHistory();
+
   const state = useSelector((state) => state);
   const [imageUrls, setImageUrls] = useState([]);
-
-  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getSpotThunk(spotId));
@@ -107,8 +110,13 @@ function SingleSpot() {
                 </h3>
               </div>
             </div>
-            <button onClick={() => alert("Feature coming soon.")}>
-              Reserve
+            <button
+              id="reserve-button"
+              onClick={() => {
+                history.push(`/spots/${spot.id}/bookings`);
+              }}
+            >
+              reserve
             </button>
           </div>
         </div>

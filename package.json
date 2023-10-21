@@ -19,6 +19,7 @@
     "@types/react-router-dom": "^5.3.3"
   },
   "dependencies": {
+    "is-mergeable-object": "^1.1.1",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
@@ -29,3 +30,4 @@
     "styled-components": "^6.0.5"
   }
 }
+ 

@@ -28,9 +28,9 @@ function SpotForm({ spot, type, updateId }) {
 
   const [description, setDescription] = useState(initialValues.description);
   const [price, setPrice] = useState(initialValues.price);
-  const [err, setErr] = useState({}); // Errors for form validation
-  const [showError, setShowError] = useState(false); // Toggles error display
-  const [images, setImages] = useState([]); // Stores uploaded images
+  const [err, setErr] = useState({});
+  const [showError, setShowError] = useState(false);
+  const [images, setImages] = useState([]);
   const [imageError, setImageError] = useState("");
 
   // Redux and React-Router hooks for dispatching actions and navigation

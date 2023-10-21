@@ -180,7 +180,8 @@ export const updateSpotThunk =
 export const getAllSpotsThunk = () => async (dispatch) => {
   const res = await csrfFetch("/api/spots");
   if (res.ok) {
-    const spots = await res.json();
+    const data = await res.json();
+    const spots = data.Spots;
     const allSpotsObj = {};
     spots.forEach((spot) => (allSpotsObj[spot.id] = spot));
     dispatch(getAllSpotsAction(allSpotsObj));

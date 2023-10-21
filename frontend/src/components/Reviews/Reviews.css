@@ -7,11 +7,13 @@
   line-height: 1.6;
   cursor: default;
 }
+.h2 {
 
+}
 .spot-title {
   font-size: 2rem;
   font-weight: bold;
-  color: #333;
+  color: black;
   text-align: center;
   margin-bottom: 30px;
 }

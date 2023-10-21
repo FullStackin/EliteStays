@@ -24,20 +24,6 @@ function AllSpots() {
           <AllSpotsItem spot={spot} key={spot.id} />
         ))}
       </div>
-      <div className="social-media-links">
-        <a href="https://www.linkedin.com/in/omarelsahlah" target="_blank" rel="Socials">
-          <FontAwesomeIcon icon={faLinkedin} size="lg" />
-        </a>
-        <a href="https://www.github.com/fullstackin" target="_blank" rel="Socials">
-          <FontAwesomeIcon icon={faGithub} size="lg" />
-        </a>
-        <a href="https://www.twitter.com/TallTechTitan" target="_blank" rel="Socials">
-          <FontAwesomeIcon icon={faTwitter} size="lg" />
-        </a>
-        <a href="https://www.instagram.com/TallTechTitan" target="_blank" rel="Socials">
-          <FontAwesomeIcon icon={faInstagram} size="lg" />
-        </a>
-      </div>
     </div>
   );
 }
