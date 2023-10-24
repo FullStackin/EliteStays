@@ -44,7 +44,7 @@ export const loadBookingThunk = (spotId) => async (dispatch) => {
       return bookings;
     }
   } catch (err) {
-    throw err; // Throw the error to handle it at a higher level
+    throw err; 
   }
 };
 
