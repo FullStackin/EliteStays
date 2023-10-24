@@ -115,7 +115,7 @@
 }
 
 .callout-wrapper button {
-  width: 100%;
+  width: 50%;
   height: 35px;
   margin-bottom: 5%;
   background: linear-gradient(90deg, gold, rgb(121, 113, 68));
@@ -170,8 +170,23 @@
   margin-right: 5px;
 }
 .open-modal-button {
+  width: 50%;
+  height: 35px;
+  margin-bottom: 5%;
+  background: linear-gradient(90deg, gold, rgb(121, 113, 68));
+  color: white;
+  border: none;
   cursor: pointer;
+  border: 2px solid black;
+  box-shadow: 2px 2px 2px grey;
+  font-size: 1rem;
+  transition: background-color 0.2s;
 }
+
+.open-modal-button:hover {
+  background-color: goldenrod;
+}
+
 hr {
   width: 100%;
   height: 1px;
@@ -179,21 +194,42 @@ hr {
   margin: 20px 0;
 }
 
+.custom-carousel {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.custom-carousel .carousel .slider-wrapper {
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.custom-carousel .carousel .slider {
+  border-radius: 20px;
+}
+
+.custom-carousel .carousel .slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f8f8f8;
+  border-radius: 20px;
+}
+
+.custom-carousel .carousel .thumbs-wrapper {
+  display: none; // Hide thumbnail navigation
+}
+
 .custom-carousel .carousel .dot {
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
   margin: 0 5px;
-  background-color: black;
+  background-color: #333;
   border-radius: 50%;
   transition: background-color 0.3s ease-in-out;
 }
 
 .custom-carousel .carousel .selected {
-  background: linear-gradient(
-    90deg,
-    rgb(170, 145, 6),
-    rgb(255, 255, 255),
-    rgb(255, 255, 255),
-    rgb(170, 145, 6)
-  );
+  background-color: goldenrod;
 }

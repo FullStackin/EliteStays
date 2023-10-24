@@ -53,7 +53,7 @@ export default function UpdateBookingModal({ booking }) {
   return (
     <>
       <div id="update-booking-title">
-        <h3>Update Your Reservation at</h3>
+        <h2>Update Your Luxoury Stay at</h2>
         <h3>{booking.Spot.name}</h3>
       </div>
       {hasSubmit && <p className="error">{errors.editStartDate}</p>}

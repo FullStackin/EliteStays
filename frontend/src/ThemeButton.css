@@ -2,11 +2,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  position: fixed;
-  top: 0;
+  position: fixed; /* Change to fixed */
+  top: 0; /* Stick to the top */
   left: 0;
   width: 100%;
-  z-index: 999;
+  z-index: 999; /* Ensure it's above other content */
 }
 
 .theme-button {

@@ -2,10 +2,12 @@
 .form-wrapper {
   display: flex;
   justify-content: center;
+  padding-bottom: 50px;
+
 }
 
 .spot-form {
-  width: 80%;
+  width: 100%;
   max-width: 700px;
   padding: 30px;
   margin: 20px auto;

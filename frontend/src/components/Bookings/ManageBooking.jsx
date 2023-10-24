@@ -29,14 +29,18 @@ export default function ManageBookings() {
   return (
     <>
       <h2 id="manage-booking-title">Manage Bookings</h2>
-      <div id="manage-booking-div">
+      <div id="manage-booking-div" className="grid">
         {userBookingsArr.map((booking) => (
-          <li key={booking.id}>
-            <div>
-              <img src={booking.Spot.previewImage} alt="" />
-              <p id="booking-spot-name">{booking.Spot.name}</p>
-            </div>
-            <div id="booking-info-div">
+          <div key={booking.id} className="booking-card">
+            <img
+              src={booking.Spot.previewImage}
+              alt=""
+              className="booking-image"
+            />
+            <p id="booking-spot-name" className="spot-name">
+              {booking.Spot.name}
+            </p>
+            <div id="booking-info-div" className="info-div">
               {(() => {
                 const month = booking.startDate.split("-")[1];
                 const year = booking.startDate.split("-")[0];
@@ -63,7 +67,7 @@ export default function ManageBookings() {
                 const date = booking.createdAt.split("-")[2].split("T")[0];
                 return (
                   <p>
-                    Reserved At: {month}/{date}/{year}
+                    Reserved on: {month}/{date}/{year}
                   </p>
                 );
               })()}
@@ -73,26 +77,26 @@ export default function ManageBookings() {
                 const date = booking.updatedAt.split("-")[2].split("T")[0];
                 return (
                   <p>
-                    Updated At: {month}/{date}/{year}
+                    Updated last: {month}/{date}/{year}
                   </p>
                 );
               })()}
             </div>
-            <div id="manage-booking-buttons">
-              <button>
+            <div id="manage-booking-buttons" className="button-row">
+              <button className="update-button">
                 <PopModalMenu
                   modalComponent={<UpdateBookingModal booking={booking} />}
                   itemText="Update"
                 />
               </button>
-              <button>
+              <button className="delete-button">
                 <PopModalMenu
                   modalComponent={<DeleteBookingModal booking={booking} />}
                   itemText="Delete"
                 />
               </button>
             </div>
-          </li>
+          </div>
         ))}
       </div>
     </>

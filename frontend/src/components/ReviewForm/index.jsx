@@ -1,36 +1,49 @@
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
-import { useState } from "react";
 import {
   createReviewThunk,
   getReviewsThunk,
   updateReviewThunk,
 } from "../../store/reviews";
-import "./ReviewForm.css";
 import { getSpotThunk } from "../../store/spots";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar as solidStar } from "@fortawesome/free-solid-svg-icons";
+import { faStar as regularStar } from "@fortawesome/free-regular-svg-icons";
+
+import "./ReviewForm.css";
 
 function ReviewForm({ spotId, review, type, updateId }) {
   const dispatch = useDispatch();
   const { closeModal } = useModal();
   const [text, setText] = useState(type === "update" ? review?.review : "");
-  const [stars, setStars] = useState(type === "update" ? review?.stars : "");
-  const [isFormValid, setIsFormValid] = useState(true);
+  const [stars, setStars] = useState(type === "update" ? review?.stars : 0);
+  const [isFormValid, setIsFormValid] = useState(false); // Initialize as false
 
   const maxCharacterCount = 255;
 
   const handleStarMouseEnter = (rating) => {
     setStars(rating);
+    validateForm(rating, text);
+  };
+
+  const handleTextareaChange = (e) => {
+    const newText = e.target.value;
+    setText(newText);
+    validateForm(stars, newText);
+  };
+
+  const validateForm = (rating, reviewText) => {
+    const isValid = rating > 0 && reviewText.trim().length > 0;
+    setIsFormValid(isValid);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!stars || text.trim().length === 0 || text.length > maxCharacterCount) {
-      setIsFormValid(false);
+    if (!isFormValid) {
       return;
     }
-
-    setIsFormValid(true);
 
     if (type === "update") {
       const newReview = {
@@ -39,20 +52,18 @@ function ReviewForm({ spotId, review, type, updateId }) {
         review: text,
         stars: stars,
       };
-      return dispatch(updateReviewThunk(newReview))
-        .then(() => dispatch(getReviewsThunk(spotId)))
-        .then(() => dispatch(getSpotThunk(spotId)))
-        .then(closeModal);
+      await dispatch(updateReviewThunk(newReview));
     } else {
       const newReview = {
         review: text,
         stars: stars,
       };
-      return dispatch(createReviewThunk({ spotId, review: newReview }))
-        .then(() => dispatch(getReviewsThunk(spotId)))
-        .then(() => dispatch(getSpotThunk(spotId)))
-        .then(closeModal);
+      await dispatch(createReviewThunk({ spotId, review: newReview }));
     }
+
+    dispatch(getReviewsThunk(spotId));
+    dispatch(getSpotThunk(spotId));
+    closeModal();
   };
 
   return (
@@ -62,10 +73,7 @@ function ReviewForm({ spotId, review, type, updateId }) {
         <textarea
           placeholder="Leave your review here"
           value={text}
-          onChange={(e) => {
-            setText(e.target.value);
-            setIsFormValid(true);
-          }}
+          onChange={handleTextareaChange}
           maxLength={maxCharacterCount}
         />
         {text.length > maxCharacterCount && (
@@ -82,68 +90,21 @@ function ReviewForm({ spotId, review, type, updateId }) {
           {text.length}/{maxCharacterCount} characters
         </div>
         <div className="star-rating">
-          <div
-            className={stars >= 1 ? "filled" : "empty"}
-            onMouseEnter={() => handleStarMouseEnter(1)}
-            onClick={() => setStars(1)}
-          >
-            {stars >= 1 ? (
-              <i className="fa-solid fa-star"></i>
-            ) : (
-              <i className="fa-regular fa-star"></i>
-            )}
-          </div>
-          <div
-            className={stars >= 2 ? "filled" : "empty"}
-            onMouseEnter={() => handleStarMouseEnter(2)}
-            onClick={() => setStars(2)}
-          >
-            {stars >= 2 ? (
-              <i className="fa-solid fa-star"></i>
-            ) : (
-              <i className="fa-regular fa-star"></i>
-            )}
-          </div>
-          <div
-            className={stars >= 3 ? "filled" : "empty"}
-            onMouseEnter={() => handleStarMouseEnter(3)}
-            onClick={() => setStars(3)}
-          >
-            {stars >= 3 ? (
-              <i className="fa-solid fa-star"></i>
-            ) : (
-              <i className="fa-regular fa-star"></i>
-            )}
-          </div>
-          <div
-            className={stars >= 4 ? "filled" : "empty"}
-            onMouseEnter={() => handleStarMouseEnter(4)}
-            onClick={() => setStars(4)}
-          >
-            {stars >= 4 ? (
-              <i className="fa-solid fa-star"></i>
-            ) : (
-              <i className="fa-regular fa-star"></i>
-            )}
-          </div>
-          <div
-            className={stars >= 5 ? "filled" : "empty"}
-            onMouseEnter={() => handleStarMouseEnter(5)}
-            onClick={() => setStars(5)}
-          >
-            {stars >= 5 ? (
-              <i className="fa-solid fa-star"></i>
-            ) : (
-              <i className="fa-regular fa-star"></i>
-            )}
-          </div>
+          {[1, 2, 3, 4, 5].map((rating) => (
+            <div
+              key={rating}
+              className={stars >= rating ? "filled" : "empty"}
+              onMouseEnter={() => handleStarMouseEnter(rating)}
+            >
+              {stars >= rating ? (
+                <FontAwesomeIcon icon={solidStar} />
+              ) : (
+                <FontAwesomeIcon icon={regularStar} />
+              )}
+            </div>
+          ))}
         </div>
-        <button
-          type="submit"
-          disabled={
-            !stars || text.length < 6 || text.length > maxCharacterCount
-          }
-        >
+        <button type="submit" disabled={!isFormValid}>
           Submit Your Review
         </button>
       </form>

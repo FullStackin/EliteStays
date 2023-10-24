@@ -79,7 +79,7 @@ export default function BookingIndex() {
               if (booking.User) {
                 return (
                   <p>
-                    ✅This spot is reserved by {booking.User.firstName}{" "}
+                    This spot is reserved by {booking.User.firstName}{" "}
                     {booking.User.lastName} between{" "}
                     {month[booking.startDate.split("-")[1]]}{" "}
                     {startDateString[0]} {booking.startDate.split("-")[0]} /{" "}
@@ -90,7 +90,7 @@ export default function BookingIndex() {
               } else {
                 return (
                   <p>
-                    ✅This spot is reserved between{" "}
+                    This spot is reserved between{" "}
                     {month[booking.startDate.split("-")[1]]}{" "}
                     {startDateString[0]} {booking.startDate.split("-")[0]} /{" "}
                     {endDateString[0]} {month[booking.endDate.split("-")[1]]}{" "}

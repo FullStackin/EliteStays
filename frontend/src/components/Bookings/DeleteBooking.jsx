@@ -30,7 +30,7 @@ export default function DeleteBookingModal({ booking }) {
   };
 
   return (
-    <>
+    <div className="deleted">
       <h1>Confirm Delete</h1>
       <p>Are you sure you want to delete this reservation?</p>
       {hasSubmit && <p className="error">{errors.message}</p>}
@@ -40,10 +40,10 @@ export default function DeleteBookingModal({ booking }) {
           onClick={handleBookingDelete}
           id="confirm-delete-booking-button"
         >
-          Yes (Delete Reservation)
+          Yes
         </button>
-        <button onClick={closeModal}>No (Keep Reservation)</button>
+        <button onClick={closeModal}>No</button>
       </div>
-    </>
+    </div>
   );
 }

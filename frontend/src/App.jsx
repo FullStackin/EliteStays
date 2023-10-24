@@ -15,6 +15,12 @@ import ManageBookings from "./components/Bookings/ManageBooking";
 // import Searching from './components/Spots/Searching';
 import Footer from "./components/Footer";
 
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fas } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+library.add(fas);
+
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);

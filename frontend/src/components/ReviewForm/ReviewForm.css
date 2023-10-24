@@ -3,7 +3,7 @@
   align-content: center;
   flex-direction: column;
   width: 400px;
-  height: 350px;
+  height: 450px;
 }
 
 .review-form {
@@ -59,4 +59,9 @@
 
 .review-modal button:disabled {
   cursor: not-allowed;
+}
+
+.error-message {
+  color: red;
+  font-weight: bold;
 }

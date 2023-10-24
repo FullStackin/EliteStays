@@ -1,5 +1,3 @@
-/* ManageSpots.css */
-
 /* Center the content */
 .center-content {
   display: flex;
@@ -11,18 +9,25 @@
 
 /* Create a grid layout for the spot cards */
 .manage-spots-gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+/* Create a container for the cards */
+.card-container {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
 }
 
 /* Style for individual spot cards */
 .spot-card {
   border-radius: 10px;
-  margin-bottom: 20px;
-  padding: 20px; /* Add padding for spacing and consistency */
-  background-color: #fff; /* Add a background color for clarity */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* Create a row for buttons with consistent styles */
@@ -31,12 +36,27 @@
   justify-content: center;
   gap: 20px;
   margin-top: 10px;
+  border: none;
+}
+
+/* Remove the border, outline, and styling for button links */
+.button-link {
+  border: none;
+  outline: none;
+  background: none;
+  font-size: 20px;
+  font-weight: bold;
+  font-family: "Gloock", sans-serif;
+  color: #000;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.2s;
 }
 
 /* Style for update and delete buttons */
 .update-button,
 .delete-button {
-  border: none;
+  border: none; /* Remove the border */
   background: linear-gradient(90deg, gold, rgb(155, 135, 21));
   height: 40px;
   display: flex;

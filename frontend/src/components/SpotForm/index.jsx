@@ -59,25 +59,12 @@ function SpotForm({ spot, type, updateId }) {
   const updateFiles = (e) => {
     const uploadImage = e.target.files;
     setImages(uploadImage);
-
-    // if (images.length === 0) {
-    //   setImageError("This is outside submit function");
-    // } else {
-    //   setImageError(""); // Reset image error here
-    // }
   };
 
   // Function to handle form submission
   const handleSubmit = async (e) => {
     // Prevent the default behavior of the form submission
     e.preventDefault();
-
-    // Check if there are no images
-    if (!images.length) {
-      // Display an error if there are no images
-      setShowError(true);
-      return;
-    }
 
     // Check if there are other errors
     if (Object.values(err).length > 0 || imageError !== "") {
@@ -153,7 +140,7 @@ function SpotForm({ spot, type, updateId }) {
             onChange={(e) => setCountry(e.target.value)}
             placeholder="Country"
           />
-          {!showError && <p className="err-msg">{err.country}</p>}
+          {err.country && <p className="err-msg">{err.country}</p>}
         </label>
         <label className="form-label">
           Street Address: <br />
@@ -170,7 +157,7 @@ function SpotForm({ spot, type, updateId }) {
             }}
             placeholder="Address"
           />
-          {!showError && <p className="err-msg">{err.address}</p>}
+          {err.address && <p className="err-msg">{err.address}</p>}
         </label>
         <div className="row">
           <label className="form-input-inline">
@@ -182,7 +169,7 @@ function SpotForm({ spot, type, updateId }) {
               onChange={(e) => setCity(e.target.value)}
               placeholder="City"
             />
-            {!showError && <p className="err-msg">{err.city}</p>}
+            {err.city && <p className="err-msg">{err.city}</p>}
           </label>
           <label className="form-label">
             State <br></br>
@@ -193,7 +180,7 @@ function SpotForm({ spot, type, updateId }) {
               onChange={(e) => setState(e.target.value)}
               placeholder="State"
             />{" "}
-            {!showError && <p className="err-msg">{err.state}</p>}
+            {err.state && <p className="err-msg">{err.state}</p>}
           </label>
         </div>
         <br />
@@ -213,7 +200,7 @@ function SpotForm({ spot, type, updateId }) {
             onChange={(e) => setDescription(e.target.value)}
             placeholder="Please write at least 30 characters"
           />
-          {!showError && <p className="err-msg">{err.description}</p>}
+          {err.description && <p className="err-msg">{err.description}</p>}
         </label>
         <br />
         <hr />
@@ -230,7 +217,7 @@ function SpotForm({ spot, type, updateId }) {
             onChange={(e) => setName(e.target.value)}
             placeholder="Name of your spot"
           />
-          {!showError && <p className="err-msg">{err.name}</p>}
+          {err.name && <p className="err-msg">{err.name}</p>}
         </label>
         <br />
         <hr />
@@ -250,7 +237,7 @@ function SpotForm({ spot, type, updateId }) {
               placeholder="Price per night (USD)"
             />
           </div>
-          {!showError && <p className="err-msg">{err.price}</p>}
+          {err.price && <p className="err-msg">{err.price}</p>}
         </label>
         <br />
         <hr />

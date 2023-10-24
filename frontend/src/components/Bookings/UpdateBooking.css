@@ -4,13 +4,29 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 10px;
+  color: #000;
+}
+#update-booking-title h2 {
+  font-weight: bold;
+  color: #000;
+  align-items: center;
+  justify-content: center;
+}
+
+#update-booking-title h3 {
+  font-weight: bold;
+  color: rgb(59, 61, 62);
+  margin-left: 130px;
+  color: goldenrod;
 }
 
 #update-booking-form {
   display: flex;
   flex-direction: column;
   align-items: center;
+  color: #000;
 }
+
 
 #update-booking-form input {
   font-size: 12px;
@@ -27,19 +43,27 @@
   height: 30px;
   box-shadow: 3px 3px 5px rgb(126, 128, 130);
   color: #ffffff;
-  background-color: #e87676;
   border-radius: 5px;
   cursor: pointer;
   margin: 10px 0;
+  font: bold;
+  font-family: "Gloock", sans-serif;
+
+
 }
 
+/* Update the disabled button styles */
 #update-booking-button-disabled {
-  width: 150px;
-  height: 30px;
+  width: 160px;
+  height: 55px;
   box-shadow: 3px 3px 5px rgb(126, 128, 130);
-  color: #ffffff;
-  background-color: rgb(224, 218, 218);
-  border-radius: 5px;
-  cursor: pointer;
+  color: #000;
+  background: linear-gradient(90deg, gold, rgb(155, 135, 21));
+  border-radius: 20px;
+  cursor: not-allowed;
   margin: 10px 0;
+  font-family: "Gloock", sans-serif;
+  font: bold;
+  font-size: 18px;
+  padding: 5px 10px;
 }

@@ -27,7 +27,9 @@
     "@fortawesome/react-fontawesome": "^0.2.0",
     "sequelize": "^6.32.1",
     "serve-favicon": "^2.5.0",
-    "styled-components": "^6.0.5"
+    "styled-components": "^6.0.5",
+    "@vitejs/plugin-react-swc": "^3.3.2",
+    "vite": "^4.4.5",
+    "bcryptjs": "^2.4.3"
   }
 }
- 

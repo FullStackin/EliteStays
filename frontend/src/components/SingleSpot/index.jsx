@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getSpotThunk } from "../../store/spots";
-import { useParams, useHistory, NavLink } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { getReviewsThunk, updateReviewThunk } from "../../store/reviews";
 import Reviews from "../Reviews";
 import ReviewForm from "../ReviewForm";
@@ -9,6 +9,9 @@ import BookingIndex from "../Bookings/BookingIndex";
 import OpenModalButton from "../OpenModalButton";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar as solidStar } from "@fortawesome/free-solid-svg-icons";
+import { faStar as regularStar } from "@fortawesome/free-regular-svg-icons"; // Import FontAwesome icons
 import "./Spots.css";
 
 function SingleSpot() {
@@ -17,10 +20,7 @@ function SingleSpot() {
   const reviews = useSelector((state) => state.reviews.spot);
   const { spotId } = useParams();
   const dispatch = useDispatch();
-
   const history = useHistory();
-
-  const state = useSelector((state) => state);
   const [imageUrls, setImageUrls] = useState([]);
 
   useEffect(() => {
@@ -69,10 +69,11 @@ function SingleSpot() {
               showThumbs={false}
               showStatus={false}
               className="custom-carousel"
+              showArrows={true}
             >
               {galleryImages.map((image, i) =>
                 image ? (
-                  <div key={i}>
+                  <div key={i} className="carousel-slide">
                     <img
                       className="gallery-image"
                       alt={spot.name}
@@ -99,7 +100,7 @@ function SingleSpot() {
               <h2 className="price">${spot.price} per night</h2>
               <div className="rating-review">
                 <h3>
-                  <i className="fa-solid fa-star"></i> {ratingDisplay}
+                  <FontAwesomeIcon icon={solidStar} /> {ratingDisplay}
                 </h3>
                 <h3>{reviewList.length > 0 && " · "}</h3>
                 <h3>
@@ -110,13 +111,14 @@ function SingleSpot() {
                 </h3>
               </div>
             </div>
+
             <button
               id="reserve-button"
               onClick={() => {
                 history.push(`/spots/${spot.id}/bookings`);
               }}
             >
-              reserve
+              Reserve
             </button>
           </div>
         </div>
