@@ -27,7 +27,6 @@
   color: #000;
 }
 
-
 #update-booking-form input {
   font-size: 12px;
   width: 50%;
@@ -38,32 +37,39 @@
   padding: 2px 0 2px 5px;
 }
 
-#update-booking-button-active {
-  width: 150px;
-  height: 30px;
-  box-shadow: 3px 3px 5px rgb(126, 128, 130);
-  color: #ffffff;
-  border-radius: 5px;
-  cursor: pointer;
-  margin: 10px 0;
-  font: bold;
-  font-family: "Gloock", sans-serif;
-
-
-}
-
-/* Update the disabled button styles */
-#update-booking-button-disabled {
+/* Common button styles for active and disabled states */
+.update-booking-button {
   width: 160px;
   height: 55px;
   box-shadow: 3px 3px 5px rgb(126, 128, 130);
-  color: #000;
-  background: linear-gradient(90deg, gold, rgb(155, 135, 21));
-  border-radius: 20px;
-  cursor: not-allowed;
+  border-radius: 5px;
+  cursor: pointer;
   margin: 10px 0;
   font-family: "Gloock", sans-serif;
-  font: bold;
+  font-weight: bold;
   font-size: 18px;
-  padding: 5px 10px;
+  color: #000;
 }
+
+#update-booking-button-disabled {
+  color: #000;
+  font-family: "Gloock", sans-serif;
+  font-weight: bold;
+  font-size: 18px;
+  margin: 10px 0;
+  border-radius: 50px;
+
+  background: linear-gradient(90deg, gold, rgb(155, 135, 21));
+  cursor: not-allowed;
+}
+
+/* Override the text color for the active button */
+#update-booking-button-active {
+  color: #000;
+  font-family: "Gloock", sans-serif;
+  font-weight: bold;
+  font-size: 18px;
+  margin: 10px 0;
+  border-radius: 50px;
+
+  background: linear-gradient(90deg, gold, rgb(155, 135, 21));}

@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getSpotThunk } from "../../store/spots";
 import { useParams, useHistory } from "react-router-dom";
 import { getReviewsThunk, updateReviewThunk } from "../../store/reviews";
+import { createBookingThunk } from "../../store/booking";
+import CreateBookingModal from "../Bookings/CreateBooking";
 import Reviews from "../Reviews";
 import ReviewForm from "../ReviewForm";
 import BookingIndex from "../Bookings/BookingIndex";
@@ -11,7 +13,8 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar as solidStar } from "@fortawesome/free-solid-svg-icons";
-import { faStar as regularStar } from "@fortawesome/free-regular-svg-icons"; // Import FontAwesome icons
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import "./Spots.css";
 
 function SingleSpot() {
@@ -22,6 +25,48 @@ function SingleSpot() {
   const dispatch = useDispatch();
   const history = useHistory();
   const [imageUrls, setImageUrls] = useState([]);
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
+
+  const openBookingModal = () => {
+    setIsBookingModalOpen(true);
+  };
+
+  // Add this function to handle booking creation
+  const handleBooking = async () => {
+    try {
+      if (!spot) {
+        // Handle the case where the spot information is not available
+        return;
+      }
+
+      if (!startDate || !endDate) {
+        // Handle the case where the user didn't select start and end dates
+        return;
+      }
+
+      const bookingData = {
+        startDate: startDate, // Use the selected start date
+        endDate: endDate, // Use the selected end date
+      };
+
+      const newBooking = await dispatch(
+        createBookingThunk(spot.id, bookingData)
+      );
+
+      if (newBooking.errors) {
+        // Handle validation errors or other errors
+        console.error("Booking error:", newBooking.errors);
+      } else {
+        // Booking was successful, you can redirect the user to the booking management page
+        history.push(`/bookings/current`);
+      }
+    } catch (error) {
+      // Handle any error that might occur during booking creation
+      console.error("Booking error:", error);
+    }
+  };
 
   useEffect(() => {
     dispatch(getSpotThunk(spotId));
@@ -111,15 +156,25 @@ function SingleSpot() {
                 </h3>
               </div>
             </div>
-
-            <button
-              id="reserve-button"
-              onClick={() => {
-                history.push(`/spots/${spot.id}/bookings`);
-              }}
-            >
-              Reserve
-            </button>
+            <div className="date-picker-container">
+              <DatePicker
+                selected={startDate}
+                onChange={(date) => setStartDate(date)}
+                placeholderText="Select start date"
+              />
+              <DatePicker
+                selected={endDate}
+                onChange={(date) => setEndDate(date)}
+                placeholderText="Select end date"
+              />
+            </div>
+            {isBookingModalOpen && (
+              <CreateBookingModal
+                spot={spot}
+                onClose={() => setIsBookingModalOpen(false)}
+              />
+            )}{" "}
+            <button onClick={handleBooking}>Reserve</button>
           </div>
         </div>
       </div>

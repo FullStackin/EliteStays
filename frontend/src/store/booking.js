@@ -44,7 +44,7 @@ export const loadBookingThunk = (spotId) => async (dispatch) => {
       return bookings;
     }
   } catch (err) {
-    throw err; 
+    throw err;
   }
 };
 
@@ -155,7 +155,7 @@ const bookingReducer = (state = initialState, action) => {
       };
     }
     case DELETE_BOOKING: {
-      const { [action.bookingId]: deletedBooking, ...newAllBookings } =
+      const { [action.bookingId]: deletedBookings, ...newAllBookings } =
         state.allBookings;
       return {
         ...state,

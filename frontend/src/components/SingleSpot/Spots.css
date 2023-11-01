@@ -233,3 +233,13 @@ hr {
 .custom-carousel .carousel .selected {
   background-color: goldenrod;
 }
+
+.react-datepicker-popper .react-datepicker__navigation--previous {
+  height: 30px;
+  width: 30px;
+}
+
+.react-datepicker-popper .react-datepicker__navigation--next {
+  height: 30px;
+  width: 30px;
+}
