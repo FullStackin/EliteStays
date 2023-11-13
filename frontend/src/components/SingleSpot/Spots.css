@@ -5,7 +5,7 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  margin: 50px auto; /* Adjust top margin for vertical centering */
+  margin: 0 auto;
   max-width: 1200px;
 }
 
@@ -18,15 +18,12 @@
   font-size: 2rem;
   font-weight: bold;
   color: black;
-  background: linear-gradient(90deg, gold, rgb(121, 113, 68));
   margin-bottom: 5px;
-  text-align: center;
 }
 
 .location {
   font-size: 1.2rem;
-  color: black;
-  background: linear-gradient(90deg, gold, rgb(121, 113, 68));
+  color: #888;
 }
 
 .gallery {
@@ -93,8 +90,7 @@
   font-size: 1.5rem;
   font-weight: bold;
   margin-bottom: 10px;
-  color: black;
-  background: linear-gradient(90deg, gold, rgb(121, 113, 68));
+  color: #333;
 }
 
 .desc {
