@@ -16,20 +16,21 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@types/react-router-dom": "^5.3.3"
+    "@types/react-router-dom": "^5.3.3",
+    "sequelize-cli": "^6.6.2"
   },
   "dependencies": {
-    "is-mergeable-object": "^1.1.1",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
     "@fortawesome/free-brands-svg-icons": "^6.4.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
+    "@vitejs/plugin-react-swc": "^3.3.2",
+    "bcryptjs": "^2.4.3",
+    "is-mergeable-object": "^1.1.1",
     "sequelize": "^6.32.1",
     "serve-favicon": "^2.5.0",
     "styled-components": "^6.0.5",
-    "@vitejs/plugin-react-swc": "^3.3.2",
-    "vite": "^4.4.5",
-    "bcryptjs": "^2.4.3"
+    "vite": "^4.4.5"
   }
 }
