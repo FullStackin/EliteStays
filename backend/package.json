@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "sequelize": "sequelize",
-    "sequelize-cli": "sequelize-cli",
+    "sequelize": "npx sequelize",
+    "sequelize-cli": "npx sequelize-cli",
     "start": "per-env",
     "start:development": "nodemon ./bin/www",
     "start:production": "node ./bin/www",
