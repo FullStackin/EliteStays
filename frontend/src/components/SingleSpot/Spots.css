@@ -1,6 +1,6 @@
 /* Spots.css */
 .single-spot-wrapper {
-  padding: 20px;
+  padding: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -23,7 +23,7 @@
 
 .location {
   font-size: 1.2rem;
-  color: #888;
+  color: black;
 }
 
 .gallery {
@@ -80,10 +80,18 @@
 .name-desc-box {
   width: 100%;
   max-width: 600px;
-  background-color: #f8f8f8;
+  background-color: #f0f0f0;
   margin: 15px;
   word-break: break-word;
-  padding: 10px;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.host-name {
+  background: -webkit-linear-gradient(90deg, gold, rgb(121, 113, 68));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline;
 }
 
 .name-desc-box h2 {
@@ -109,7 +117,7 @@
   justify-content: center;
   align-items: center;
   border-radius: 6px;
-  max-height: 120px;
+  max-height: 200px;
   padding: 10px;
   margin-bottom: 10px;
 }
@@ -165,9 +173,19 @@
   cursor: default;
 }
 
-.review-summary i {
-  color: gold;
-  margin-right: 5px;
+.review-summary h3,
+.rating-review h3 {
+  font-size: 1.2rem;
+  margin: 5px 0;
+}
+
+.review-section {
+  padding: 20px;
+}
+
+.review-summary,
+.rating-review {
+  text-align: center;
 }
 .open-modal-button {
   width: 50%;
@@ -232,6 +250,30 @@ hr {
 
 .custom-carousel .carousel .selected {
   background-color: goldenrod;
+}
+
+.date-picker-container {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0;
+}
+
+.react-datepicker-wrapper {
+  width: 40%;
+}
+
+.react-datepicker__input-container input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.react-datepicker__input-container input:focus {
+  outline: none;
+  border-color: #007bff;
 }
 
 .react-datepicker-popper .react-datepicker__navigation--previous {

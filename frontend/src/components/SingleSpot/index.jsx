@@ -135,11 +135,16 @@ function SingleSpot() {
         <div className="single-spot-info-box">
           <div className="name-desc-box">
             <h2>
-              Hosted by {spot.Owner ? spot.Owner.firstName : "Unknown"}{" "}
-              {spot.Owner ? spot.Owner.lastName : "Host"}
+              Hosted by{" "}
+              <span className="host-name">
+                {spot.Owner
+                  ? `${spot.Owner.firstName} ${spot.Owner.lastName}`
+                  : "Unknown Host"}
+              </span>
             </h2>
             <p className="desc">{spot.description}</p>
           </div>
+
           <div className="callout-wrapper">
             <div className="callout-row1">
               <h2 className="price">${spot.price} per night</h2>
