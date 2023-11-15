@@ -62,7 +62,7 @@
 .form-container button {
   padding: 4px;
   margin: 4px;
-  background: linear-gradient(90deg, gold, rgb(127, 111, 16));
+  background: linear-gradient(135deg, #ffd700, #ffa500);
   border: none;
   cursor: pointer;
   border: 2px solid black;

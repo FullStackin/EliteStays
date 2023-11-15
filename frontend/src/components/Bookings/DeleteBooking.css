@@ -30,7 +30,7 @@
 }
 
 #confirm-delete-booking-button {
-  background: linear-gradient(90deg, gold, rgb(155, 135, 21));
+  background: linear-gradient(135deg, #ffd700, #ffa500);
   color: #000;
   border: none;
 }

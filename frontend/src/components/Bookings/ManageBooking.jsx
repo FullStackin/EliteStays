@@ -23,7 +23,7 @@ export default function ManageBookings() {
 
   if (!userBookingsArr.length) {
     // Check if the user has any bookings, and if not, display a message
-    return <p>You don't have any reservation.</p>;
+    return <p>There are currently no reservation under your name.</p>;
   }
 
   return (

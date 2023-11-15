@@ -13,7 +13,7 @@
 .delete-review-modal button {
   height: 50px;
   margin: 4px;
-  background: linear-gradient(90deg, gold, rgb(127, 111, 16));
+  background: linear-gradient(135deg, #ffd700, #ffa500);
   color: #000;
   border: none;
   font-weight: bold;

@@ -36,7 +36,7 @@
   .not-found-button {
     display: flex;
     align-items: center;
-    background: linear-gradient(90deg, gold, rgb(83, 72, 12));
+    background: linear-gradient(135deg, #ffd700, #ffa500);
     color: black;
     padding: 0.5rem 1rem;
     border: none;

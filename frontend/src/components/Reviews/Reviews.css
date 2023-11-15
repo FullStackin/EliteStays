@@ -60,7 +60,7 @@
 }
 
 .action-buttons button {
-  background: linear-gradient(90deg, gold, rgb(127, 111, 16));
+  background: linear-gradient(135deg, #ffd700, #ffa500);
   border: none;
   padding: 8px 12px;
   border-radius: 5px;

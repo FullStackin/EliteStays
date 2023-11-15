@@ -3,7 +3,6 @@
   display: flex;
   justify-content: center;
   padding-bottom: 50px;
-
 }
 
 .spot-form {
@@ -41,7 +40,7 @@
 .form-submit {
   width: 100%;
   padding: 10px;
-  background: linear-gradient(90deg, gold, rgb(127, 111, 16));
+  background: linear-gradient(135deg, #ffd700, #ffa500);
   color: white;
   border: none;
   cursor: pointer;

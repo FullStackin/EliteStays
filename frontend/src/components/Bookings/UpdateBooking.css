@@ -59,7 +59,7 @@
   margin: 10px 0;
   border-radius: 50px;
 
-  background: linear-gradient(90deg, gold, rgb(155, 135, 21));
+  background: linear-gradient(135deg, #ffd700, #ffa500);
   cursor: not-allowed;
 }
 
@@ -72,4 +72,4 @@
   margin: 10px 0;
   border-radius: 50px;
 
-  background: linear-gradient(90deg, gold, rgb(155, 135, 21));}
+  background: linear-gradient(135deg, #ffd700, #ffa500);

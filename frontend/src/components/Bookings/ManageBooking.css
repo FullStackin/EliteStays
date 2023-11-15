@@ -3,9 +3,10 @@
   display: block;
   margin-bottom: 10px;
   padding: 20px;
-  color: #000;
+  color: #333;
   font-family: "Gloock", sans-serif;
   font-size: 24px;
+  text-align: center;
 }
 
 #manage-booking-title {
@@ -13,7 +14,7 @@
   justify-content: center;
   align-items: center;
   height: 100px;
-  margin: 0; /* Remove any default margin that might be present */
+  margin: 0;
 }
 
 /* Update the form container styles */
@@ -21,37 +22,39 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: #000;
-
+  color: #333;
 }
 
 /* Update input field styles */
 #update-booking-form input {
-  font-size: 14px;
-  width: 50%;
-  border: 1px solid rgb(224, 218, 218);
-  margin: 5px 0;
-  border-radius: 5px;
-  padding: 5px;
+  font-size: 16px;
+  width: 80%; /* More responsive width */
+  border: 1px solid #d1d5db;
+  margin: 10px 0;
+  border-radius: 8px;
+  padding: 10px;
   font-family: "Gloock", sans-serif;
 }
 
-/* Create a grid layout for the booking cards */
+/* Create a responsive grid layout for the booking cards */
 #manage-booking-div {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(250px, 1fr)
+  ); /* Responsive grid */
   gap: 20px;
   padding: 20px;
-  justify-content: center;
+  padding-bottom: 8%;
 }
 
 /* Update the active button styles */
 #update-booking-button-active {
   width: 150px;
   height: 40px;
-  box-shadow: 3px 3px 5px rgb(126, 128, 130);
-  background: linear-gradient(90deg, gold, rgb(155, 135, 21));
-  border-radius: 20px;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(135deg, #ffd700, #ffa500);
+  border-radius: 25px;
   cursor: pointer;
   margin: 10px 0;
   font-family: "Gloock", sans-serif;
@@ -60,35 +63,36 @@
 }
 
 .booking-card {
-  border-radius: 10px;
+  border-radius: 12px;
   background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 15px;
   text-align: center;
   list-style-type: none;
 }
 
 .booking-image {
   width: 100%;
-  height: 180px;
+  height: 200px; /* Slightly larger for better visibility */
   border-radius: 10px;
+  object-fit: cover; /* Ensure images cover the area well */
 }
 
 /* Style for booking card spot names */
 .spot-name {
-  padding: 20px 0;
-  font-weight: bold;
-  color: #000;
+  font-size: 24px;
+  font-weight: 600; /* Slightly less bold for modern look */
+  color: #333;
 }
 
 /* Style for booking information */
 .info-div {
-  padding: 20px 0;
+  padding: 15px 0;
   font-size: 14px;
   display: flex;
   flex-direction: column;
-  color: #222;
-  gap: 5px;
+  color: #444;
+  gap: 10px; /* Increase gap for better separation */
   text-align: center;
 }
 
@@ -104,17 +108,17 @@
 .update-button,
 .delete-button {
   border: none;
-  background: linear-gradient(90deg, gold, rgb(155, 135, 21));
+  background: linear-gradient(135deg, #ffd700, #ffa500);
   height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  width: 130px;
-  font-size: 20px;
+  width: 150px; /* Larger for better readability */
+  font-size: 16px;
   font-weight: bold;
-  color: #000;
-  border-radius: 20px;
+  color: #fff; /* White text for better contrast */
+  border-radius: 25px;
   cursor: pointer;
   text-decoration: none;
   transition: background-color 0.2s;
@@ -123,5 +127,5 @@
 /* Add a hover effect for the buttons */
 .update-button:hover,
 .delete-button:hover {
-  background: linear-gradient(90deg, goldenrod, rgb(175, 155, 41));
+  background: linear-gradient(135deg, #ffd700, #ffa500);
 }

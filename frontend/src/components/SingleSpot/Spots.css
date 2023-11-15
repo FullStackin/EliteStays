@@ -88,7 +88,7 @@
 }
 
 .host-name {
-  background: -webkit-linear-gradient(90deg, gold, rgb(121, 113, 68));
+  background: -webkit-linear-gradient(135deg, #ffd700, #ffa500);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   display: inline;
@@ -126,7 +126,7 @@
   width: 50%;
   height: 35px;
   margin-bottom: 5%;
-  background: linear-gradient(90deg, gold, rgb(121, 113, 68));
+  background: linear-gradient(135deg, #ffd700, #ffa500);
   color: white;
   border: none;
   cursor: pointer;
@@ -191,7 +191,7 @@
   width: 50%;
   height: 35px;
   margin-bottom: 5%;
-  background: linear-gradient(90deg, gold, rgb(121, 113, 68));
+  background: linear-gradient(135deg, #ffd700, #ffa500);
   color: white;
   border: none;
   cursor: pointer;
