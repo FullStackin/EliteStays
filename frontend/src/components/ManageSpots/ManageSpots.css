@@ -1,4 +1,4 @@
-/* Center the content */
+/* Center the content with minimal padding */
 .center-content {
   display: flex;
   flex-direction: column;
@@ -7,41 +7,44 @@
   cursor: default;
 }
 
-/* Create a grid layout for the spot cards */
+/* Enhance gallery layout */
 .manage-spots-gallery {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px;
 }
 
-/* Create a container for the cards with a max width */
+/* Optimize card container */
 .card-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px; /* Adjust the gap value to add space between cards */
-  max-width: 1200px; /* Set your desired max width */
-  margin: 0 auto; /* Center the container */
-  padding-bottom: 8%;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Adjusted column width */
+  gap: 15px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-/* Style for individual spot cards */
+/* Style individual spot cards */
 .spot-card {
   border-radius: 10px;
-  padding: 20px;
-  background-color: #fff;
+  padding: 15px;
+  background-color: gray;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: 100%; /* Adjust the width and subtract the desired space */
-  margin: 10px; /* Adjust the margin to add space around each card */
-  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  box-sizing: border-box;
 }
+
+/* Enlarge and bold the main title for clear hierarchy */
+#manage-booking-title {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
 
 /* Create a row for buttons with consistent styles */
 .button-row {
   display: flex;
   justify-content: center;
   gap: 20px;
-  margin-top: 10px;
   border: none;
 }
 
@@ -53,7 +56,7 @@
   font-size: 20px;
   font-weight: bold;
   font-family: "Gloock", sans-serif;
-  color: #000;
+  color: #ffffff;
   cursor: pointer;
   text-decoration: none;
   transition: background-color 0.2s;

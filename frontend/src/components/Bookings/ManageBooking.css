@@ -64,7 +64,7 @@
 
 .booking-card {
   border-radius: 12px;
-  background-color: #fff;
+  background-color: gray;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 15px;
   text-align: center;
@@ -80,9 +80,9 @@
 
 /* Style for booking card spot names */
 .spot-name {
-  font-size: 24px;
+  font-size: 25px;
   font-weight: 600; /* Slightly less bold for modern look */
-  color: #333;
+  color: black;
 }
 
 /* Style for booking information */
@@ -91,8 +91,7 @@
   font-size: 14px;
   display: flex;
   flex-direction: column;
-  color: #444;
-  gap: 10px; /* Increase gap for better separation */
+  color: black;
   text-align: center;
 }
 

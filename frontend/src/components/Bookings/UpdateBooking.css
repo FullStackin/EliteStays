@@ -18,6 +18,8 @@
   color: rgb(59, 61, 62);
   margin-left: 130px;
   color: goldenrod;
+  align-items: center;
+  display: flex;
 }
 
 #update-booking-form {
@@ -48,7 +50,7 @@
   font-family: "Gloock", sans-serif;
   font-weight: bold;
   font-size: 18px;
-  color: #000;
+  color: #ffffff;
 }
 
 #update-booking-button-disabled {
