@@ -15,11 +15,14 @@
   gap: 15px;
 }
 
-/* Create a container for the cards */
+/* Create a container for the cards with a max width */
 .card-container {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px; /* Adjust the gap value to add space between cards */
+  max-width: 1200px; /* Set your desired max width */
+  margin: 0 auto; /* Center the container */
+  padding-bottom: 8%;
 }
 
 /* Style for individual spot cards */
@@ -28,6 +31,9 @@
   padding: 20px;
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%; /* Adjust the width and subtract the desired space */
+  margin: 10px; /* Adjust the margin to add space around each card */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
 }
 
 /* Create a row for buttons with consistent styles */
