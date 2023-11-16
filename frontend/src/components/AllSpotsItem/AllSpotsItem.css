@@ -1,47 +1,77 @@
+.spot-item-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 20px auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+
+}
+
 .spot-item {
   display: flex;
   flex-direction: column;
   width: 300px;
   border-radius: 20px;
   overflow: hidden;
-}
-
-.spot-item-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  margin: 0 auto;
+  background-color: #fcfcfc;
+  padding: 10px;
+  margin: 10px;
 }
 
 .spot-item img {
-  height: 300px;
+  height: 200px;
   width: 100%;
-  border-radius: 10px;
+  object-fit: cover;
+  border-radius: 20px;
 }
 
 .spot-info-row1 {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin: 10px;
 }
 
 .spot-item-link {
   text-decoration: none;
   color: black;
+  transition: color 0.3s;
 }
 
-.spot-item-link h2,
+.spot-item-link:hover {
+  color: #ffa500;
+}
+
+.spot-item h2,
 .spot-info {
   margin: 10px;
-  padding: 5px;
+}
+
+/* Price and rating container */
+.price-rating {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Rating style */
+.rating {
+  display: flex;
+  align-items: center;
+  margin-left: 5px;
+  font-weight: bold;
+  color: black; /* Adjust color to match star icon */
 }
 
 .fa-star {
+  margin-right: 5px; /* Space between star icon and rating number */
   color: gold;
 }
 
-.rating {
-  margin-left: 5px;
-  font-weight: bold;
+/* Hover effect for the entire card */
+.spot-item-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
