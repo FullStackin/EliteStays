@@ -3,10 +3,7 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  margin: 20px auto;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-
+  /* margin: 20px auto; */
 }
 
 .spot-item {
@@ -15,9 +12,9 @@
   width: 300px;
   border-radius: 20px;
   overflow: hidden;
-  background-color: #fcfcfc;
-  padding: 10px;
-  margin: 10px;
+  /* background-color: #fcfcfc; */
+  /* padding: 10px; */
+  /* margin: 10px; */
 }
 
 .spot-item img {
