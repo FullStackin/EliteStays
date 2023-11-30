@@ -4,9 +4,6 @@ import { getAllSpotsThunk } from "../../store/spots";
 import "./AllSpots.css";
 import AllSpotsItem from "../AllSpotsItem";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTwitter, faInstagram, faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
-
 function AllSpots() {
   const allSpots = Object.values(
     useSelector((state) => state.spots.allSpots)
