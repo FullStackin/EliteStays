@@ -7,22 +7,16 @@ import DeleteBookingModal from "./DeleteBooking";
 import "./ManageBooking.css";
 
 export default function ManageBookings() {
-  // Define a functional component named ManageBookings
-  const userBookingStore = useSelector((state) => state.booking.userBookings); // Use the useSelector hook to extract userBookings from the Redux store
-  // console.log("userBookings in ManageBooking: ", userBookingStore);
-  const userBookingsArr = Object.values(userBookingStore); // Convert the userBookingStore object to an array
-  // console.log("useBookingsArr in ManageBooking: ", userBookingsArr);
+  const userBookingStore = useSelector((state) => state.booking.userBookings);
+  const userBookingsArr = Object.values(userBookingStore);
 
-  const dispatch = useDispatch(); // Get access to the dispatch function from the Redux store
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    // Use the useEffect hook to perform an action when the component mounts or userBookingStore changes
-    // console.log("getCurrentUserBookingsThuns runs in the ManageBooking useEffect");
-    dispatch(getCurrentUserBookingsThunk()); // Dispatch the getCurrentUserBookingsThunk action to fetch user bookings
-  }, [dispatch]); // Specify the dependency array to trigger the effect when dispatch changes
+    dispatch(getCurrentUserBookingsThunk());
+  }, [dispatch]);
 
   if (!userBookingsArr.length) {
-    // Check if the user has any bookings, and if not, display a message
     return <p>There are currently no reservation under your name.</p>;
   }
 
