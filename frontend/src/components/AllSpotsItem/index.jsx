@@ -1,7 +1,7 @@
 import "./AllSpotsItem.css";
 import { NavLink } from "react-router-dom";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 
 function AllSpotsItem({ spot }) {
   let priceDisplay = Math.round(spot.price);
@@ -15,12 +15,17 @@ function AllSpotsItem({ spot }) {
           <h2>{spot.name}</h2>
           <img src={spot.previewImage} />
           <div className="spot-info">
-            <h3>{spot.city}, {spot.state}</h3>
+            <h3>
+              {spot.city}, {spot.state}
+            </h3>
             <div className="price-rating">
-              <h4><strong>${priceDisplay}</strong> a night</h4>
+              <h4>
+                <strong>${priceDisplay}</strong> a night
+              </h4>
               <div className="rating">
-                <i className="fa-solid fa-star"><FontAwesomeIcon icon={faStar} />
-</i>
+                <i className="fa-solid fa-star">
+                  <FontAwesomeIcon icon={faStar} />
+                </i>
                 <span>{ratingDisplay}</span>
               </div>
             </div>
